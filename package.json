@@ -1,0 +1,30 @@
+{
+  "name": "absmartly",
+  "version": "1.0.0",
+  "description": "Landing Page with Gatsby",
+  "main": "index.js",
+  "repository": "https://github.com/absmartly/landingpage.git",
+  "author": "usaamatahir <usamatahir8330@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby start",
+    "build": "gatsby build"
+  },
+  "dependencies": {
+    "@heroicons/react": "^1.0.5",
+    "gatsby": "^4.4.0",
+    "gatsby-plugin-image": "^2.4.0",
+    "gatsby-plugin-sharp": "^4.4.0",
+    "gatsby-source-filesystem": "^4.4.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "typeface-poppins": "^1.1.13"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.0",
+    "gatsby-plugin-postcss": "^5.4.0",
+    "postcss": "^8.4.5",
+    "tailwindcss": "^3.0.7"
+  }
+}
