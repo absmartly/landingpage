@@ -1,9 +1,11 @@
 import React from "react";
+import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 const Home = () => {
   return (
-    <div className="relative bg-black h-screen">
+    <div className="relative">
       <Navbar />
+      <Footer />
     </div>
   );
 };
