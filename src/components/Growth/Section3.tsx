@@ -1,3 +1,4 @@
+import { Link } from "gatsby";
 import React from "react";
 
 const Section3 = () => {
@@ -11,12 +12,13 @@ const Section3 = () => {
                 Successful companies of tomorrow are scaling up their A/B
                 testing efforts today. Want to learn more?
               </h5>
-              <button
-                className="button-animation cursor-pointer bg-white text-[13px] font-medium font-poppins tracking-[1px] border-none rounded-[25px] py-[14px] px-[28px] text-primary text-center whitespace-nowrap align-middle"
+              <Link
+                to="/"
+                className="button-animation cursor-pointer bg-white text-[13px] font-medium font-poppins tracking-[1px] border-none rounded-[25px] py-3 px-7 text-primary text-center whitespace-nowrap align-middle"
                 type="submit"
               >
                 Tell me more
-              </button>
+              </Link>
             </div>
           </div>
         </div>

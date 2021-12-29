@@ -20,6 +20,11 @@
         opacity: .6;
     }
 
+    .bg-position {
+        background-position: top 117px right 50px;
+        background-size: 600px;
+    }
+    
     .shadow-form {
         box-shadow: 0 5px 35px #14134859;
     }

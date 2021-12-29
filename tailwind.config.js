@@ -21,7 +21,8 @@ module.exports = {
         height: ["responsive", "hover", "focus"],
       },
       backgroundImage: {
-        hero: "url('https://absmartly.com/wp-content/uploads/2020/01/banner5-3.jpg?id=743')",
+        hero: "url('../assets/hero.jpg')",
+        about: "url('../assets/about.png')",
       },
 
       keyframes: {
