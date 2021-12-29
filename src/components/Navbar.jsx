@@ -31,7 +31,7 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
   return (
-    <div className="fixed w-full mx-auto my-0 py-[10px] top-0 left-0 bg-white z-50">
+    <div className="relative lg:fixed w-full mx-auto my-0 py-[10px] top-0 left-0 bg-white z-50">
       <div
         className={`w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-6xl transform transition-[height] duration-200 ease-in-out ${
           isOpen ? "h-[300px]" : "h-12"
@@ -56,7 +56,7 @@ const Navbar = () => {
               </Link>
             ))}
             <button
-              className="mr-3 px-7 py-3 text-[13px] font-poppins font-medium uppercase text-white bg-primary rounded-full cursor-pointer"
+              className="button-animation mr-3 px-7 py-3 text-[13px] font-poppins font-medium uppercase text-white bg-primary rounded-full cursor-pointer"
               type="button"
             >
               Talk to an Expert
@@ -69,15 +69,15 @@ const Navbar = () => {
                 onClick={handleClick}
               />
             ) : (
-              <div
+              <button
+                type="button"
                 className="cursor-pointer"
-                role="button"
                 onClick={handleClick}
               >
                 <span className="w-[22px] h-[2px] block bg-black mb-[7px]" />
                 <span className="w-[30px] h-[2px] block bg-black mb-[7px]" />
                 <span className="w-[22px] h-[2px] block bg-black mb-[7px]" />
-              </div>
+              </button>
             )}
           </div>
         </div>
@@ -94,7 +94,7 @@ const Navbar = () => {
               ))}
             </ul>
             <button
-              className="mr-3 px-7 py-3 text-[13px] font-poppins font-medium uppercase text-white bg-primary rounded-full cursor-pointer"
+              className=" button-animation mr-3 px-7 py-3 text-[13px] font-poppins font-medium uppercase text-white bg-primary rounded-full cursor-pointer"
               type="button"
             >
               Talk to an Expert
