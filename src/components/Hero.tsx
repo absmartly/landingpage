@@ -100,7 +100,7 @@ const Hero = () => {
                     {/* Button COntainer */}
                     <div className="shrink-0 grow-0 basis-full w-full px-[15px]">
                       <button
-                        className="button-animation cursor-pointer bg-primary text-[13px] font-medium font-poppins tracking-[1px] border-none rounded-[25px] py-[14px] px-[28px] text-white text-center whitespace-nowrap align-middle"
+                        className="button-animation cursor-pointer bg-primary text-[13px] font-medium font-poppins tracking-[1px] border-none rounded-[25px] py-[12px] px-[28px] text-white text-center whitespace-nowrap align-middle"
                         type="submit"
                       >
                         Tell me more
