@@ -17,7 +17,7 @@ const Hero = () => {
                   the big investment
                 </h2>
                 <div className="mt-4 mb-6 pb-4 font-normal">
-                  <p className="text-lg lg:pr-[150px] tracking-[1px] font-poppins text-white">
+                  <p className="text-lg lg:pr-[150px] tracking-[1px] font-poppins text-white text-center xs:text-left">
                     Knowledge based and engineering centric experimentation
                     platform where multiple teams can run hundreds or thousands
                     of simultaneous experiments without stepping on each other
@@ -100,7 +100,7 @@ const Hero = () => {
                     {/* Button COntainer */}
                     <div className="shrink-0 grow-0 basis-full w-full px-[15px]">
                       <button
-                        className="button-animarion cursor-pointer bg-primary text-[13px] font-medium font-poppins tracking-[1px] border-none rounded-[25px] py-[14px] px-[28px] text-white text-center whitespace-nowrap align-middle"
+                        className="button-animation cursor-pointer bg-primary text-[13px] font-medium font-poppins tracking-[1px] border-none rounded-[25px] py-[14px] px-[28px] text-white text-center whitespace-nowrap align-middle"
                         type="submit"
                       >
                         Tell me more
@@ -121,6 +121,7 @@ const Hero = () => {
       {/* Particels */}
       <div className="absolute top-0 left-0 z-[1] w-full h-[calc(100%-100px)]">
         <Particles
+          className="h-full"
           params={{
             particles: {
               number: {
