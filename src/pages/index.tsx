@@ -1,6 +1,7 @@
 import React from "react";
 import About from "../components/About";
 import Experimentation from "../components/Experimentation";
+import FAQ from "../components/FAQ";
 import Footer from "../components/Footer";
 import Growth from "../components/Growth";
 import Hero from "../components/Hero";
@@ -13,8 +14,9 @@ const Home = () => {
       <Hero />
       <Solution />
       <Growth />
-      <About />
       <Experimentation />
+      <About />
+      <FAQ />
       <Footer />
     </div>
   );

@@ -9,6 +9,9 @@ module.exports = {
         xl: "1200px",
         custom: "1280px",
       },
+      borderRadius: {
+        custom: "calc(0.25rem - 1px)",
+      },
       colors: {
         primary: "#2b60ba",
         secondary: "#2b2b2b",

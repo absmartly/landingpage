@@ -51,4 +51,32 @@
     .filter3 {
         filter: hue-rotate(575deg);
     }
+
+    .accordion {}
+    .accordion:before {
+        content: '';
+        position: absolute;
+        background-color: #2b60ba;
+        width: 17px;
+        height: 1px;
+        top: 50%;
+        right: 15px;
+        z-index: 1;
+        transition: all 200ms linear;
+    }
+    .accordion:hover:before, .accordion:hover:after {
+        background-color: #fff;
+    }
+    .accordion:after {
+        content: '';
+        position: absolute;
+        background-color: #2b60ba;
+        width: 1px;
+        height: 17px;
+        bottom: 50%;
+        margin-bottom: -9px;
+        right: 23px;
+        z-index: 1;
+        transition: all 200ms linear;
+    }
 }
