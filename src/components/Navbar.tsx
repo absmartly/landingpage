@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { StaticImage } from "gatsby-plugin-image";
-import { XIcon } from "@heroicons/react/outline";
 import { Link } from "gatsby";
 
 const navLinks = [
@@ -64,10 +63,21 @@ const Navbar = () => {
           </nav>
           <div className="block lg:hidden">
             {isOpen ? (
-              <XIcon
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
                 className="w-9 text-black cursor-pointer"
                 onClick={handleClick}
-              />
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
             ) : (
               <button
                 type="button"

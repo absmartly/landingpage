@@ -15,17 +15,17 @@ const Footer = () => {
           <div className="mt-8 lg:mt-0">
             <StaticImage
               className="w-4 h-4 object-contain mr-3 ml-3 cursor-pointer"
-              src="../assets/twitter.png"
+              src="../assets/twitter.svg"
               alt="Twitter"
             />
             <StaticImage
               className="w-4 h-4 object-contain mr-3 ml-3 cursor-pointer"
-              src="../assets/linkedin.png"
+              src="../assets/linkedin.svg"
               alt="LinkedIn"
             />
             <StaticImage
               className="w-4 h-4 object-contain mr-3 ml-3 cursor-pointer"
-              src="../assets/facebook.png"
+              src="../assets/facebook.svg"
               alt="Facebook"
             />
             <StaticImage

@@ -1,6 +1,6 @@
 import React from "react";
 import { StaticImage } from "gatsby-plugin-image";
-import { CheckCircleIcon } from "@heroicons/react/outline";
+import Check from "../../assets/check";
 
 const Section5 = () => {
   return (
@@ -26,7 +26,7 @@ const Section5 = () => {
               </h4>
               <div className="flex items-center justify-start">
                 <div className="w-[35px] h-[35px] rounded-full bg-[#2ad8da1a] flex items-center justify-center ">
-                  <CheckCircleIcon className="w-[20px] h-[20px] text-[#2ad8da]" />
+                  <Check color="#2ad8da" />
                 </div>
                 <h4 className="text-left text-[1.2rem] font-semibold text-[#333333] relative ml-[23px]">
                   Performance
@@ -38,10 +38,9 @@ const Section5 = () => {
                   render times.
                 </p>
               </div>
-              {/* 2nd */}
               <div className="flex items-center justify-start">
                 <div className="w-[35px] h-[35px] rounded-full bg-[#f443361a] flex items-center justify-center ">
-                  <CheckCircleIcon className="w-[20px] h-[20px] text-[#F44336]" />
+                  <Check color="#F44336" />
                 </div>
                 <h4 className="text-left text-[1.2rem] font-semibold text-[#333333] relative ml-[23px]">
                   Bye-bye bots
@@ -53,10 +52,9 @@ const Section5 = () => {
                   humans.
                 </p>
               </div>
-              {/* 3rd */}
               <div className="flex items-center justify-start">
                 <div className="w-[35px] h-[35px] rounded-full bg-[#ff98001a] flex items-center justify-center ">
-                  <CheckCircleIcon className="w-[20px] h-[20px] text-[#FF9800]" />
+                  <Check color="#FF9800" />
                 </div>
                 <h4 className="text-left text-[1.2rem] font-semibold text-[#333333] relative ml-[23px]">
                   Build loyalty
@@ -68,10 +66,9 @@ const Section5 = () => {
                   effects, even months after the decision making.
                 </p>
               </div>
-              {/* 4th */}
               <div className="flex items-center justify-start">
                 <div className="w-[35px] h-[35px] rounded-full bg-[#4caf501a] flex items-center justify-center ">
-                  <CheckCircleIcon className="w-[20px] h-[20px] text-[#4caf50]" />
+                  <Check color="#4caf50" />
                 </div>
                 <h4 className="text-left text-[1.2rem] font-semibold text-[#333333] relative ml-[23px]">
                   Meaningful metrics
@@ -85,7 +82,7 @@ const Section5 = () => {
               </div>
               <div className="flex items-center justify-start">
                 <div className="w-[35px] h-[35px] rounded-full bg-[#fb5c921a] flex items-center justify-center ">
-                  <CheckCircleIcon className="w-[20px] h-[20px] text-[#fb5c92]" />
+                  <Check color="#fb5c92" />
                 </div>
                 <h4 className="text-left text-[1.2rem] font-semibold text-[#333333] relative ml-[23px]">
                   SEO

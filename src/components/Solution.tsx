@@ -1,6 +1,6 @@
 import React from "react";
 import { StaticImage } from "gatsby-plugin-image";
-import { CheckCircleIcon } from "@heroicons/react/outline";
+import Check from "../assets/check";
 
 const Solution = () => {
   return (
@@ -28,7 +28,7 @@ const Solution = () => {
               </h4>
               <div className="flex items-center justify-start">
                 <div className="w-[35px] h-[35px] rounded-full bg-[#2ad8da1a] flex items-center justify-center ">
-                  <CheckCircleIcon className="w-[20px] h-[20px] text-[#2ad8da]" />
+                  <Check color="#2ad8da" />
                 </div>
                 <h4 className="text-left text-[1.2rem] font-semibold text-[#333333] relative ml-[23px]">
                   Run it locally
@@ -43,7 +43,7 @@ const Solution = () => {
               {/* 2nd */}
               <div className="flex items-center justify-start">
                 <div className="w-[35px] h-[35px] rounded-full bg-[#f443361a] flex items-center justify-center ">
-                  <CheckCircleIcon className="w-[20px] h-[20px] text-[#F44336]" />
+                  <Check color="#F44336" />
                 </div>
                 <h4 className="text-left text-[1.2rem] font-semibold text-[#333333] relative ml-[23px]">
                   Store the data anywhere
@@ -58,7 +58,7 @@ const Solution = () => {
               {/* 3rd */}
               <div className="flex items-center justify-start">
                 <div className="w-[35px] h-[35px] rounded-full bg-[#ff98001a] flex items-center justify-center ">
-                  <CheckCircleIcon className="w-[20px] h-[20px] text-[#FF9800]" />
+                  <Check color="#FF9800" />
                 </div>
                 <h4 className="text-left text-[1.2rem] font-semibold text-[#333333] relative ml-[23px]">
                   Real-time reports
@@ -75,7 +75,7 @@ const Solution = () => {
               {/* 4th */}
               <div className="flex items-center justify-start">
                 <div className="w-[35px] h-[35px] rounded-full bg-[#4caf501a] flex items-center justify-center ">
-                  <CheckCircleIcon className="w-[20px] h-[20px] text-[#4caf50]" />
+                  <Check color="#4caf50" />
                 </div>
                 <h4 className="text-left text-[1.2rem] font-semibold text-[#333333] relative ml-[23px]">
                   Rely on guardrail and debugging metrics
