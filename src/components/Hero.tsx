@@ -6,7 +6,7 @@ const Hero = () => {
     <div className="bg-hero bg-no-repeat bg-center bg-cover bg-tertiary min-h-[700px] h-auto pt-20 pb-[180px] lg:h-[100vh] relative w-full block">
       {/* COntent */}
       <div className="relative z-[2] w-full top-auto left-auto translate-y-0 lg:top-1/2 lg:left-0 lg:-translate-y-1/2 h-auto">
-        <div className="w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-6xl">
+        <div className="w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[1140px] xl:max-w-6xl">
           {/* Actual Container */}
           <div className="flex flex-wrap mx-[-15px]">
             {/* Text Container */}

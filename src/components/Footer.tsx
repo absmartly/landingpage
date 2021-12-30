@@ -5,7 +5,7 @@ import { Link } from "gatsby";
 const Footer = () => {
   return (
     <div className="relative bg-primary w-full py-4">
-      <div className="w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-6xl">
+      <div className="w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[1140px] xl:max-w-6xl">
         <div className="flex flex-col justify-between flex-wrap items-center lg:flex-row my-auto mr-3 p-1 text-[13px] font-poppins font-medium uppercase text-white">
           <p className="font-poppins text-center">
             Copyright 2020 - A/B Smartly | <Link to="/">Terms</Link> |{" "}

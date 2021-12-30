@@ -3,7 +3,7 @@ import React from "react";
 const Section1 = () => {
   return (
     <section className="relative block w-full min-h-[300px] pt-[60px] lg:pt-[80px] bg-[#f7f7f7] overflow-x-hidden">
-      <div className="w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-6xl">
+      <div className="w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[1140px] xl:max-w-6xl">
         <div className="flex flex-wrap mx-[-15px]">
           <div className="float-left w-full text-left">
             <div className="w-full px-[15px] box-border">

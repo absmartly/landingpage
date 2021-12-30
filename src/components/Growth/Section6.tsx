@@ -4,7 +4,7 @@ import React from "react";
 const Section6 = () => {
   return (
     <section className="relative w-full block box-border py-36 bg-blend-soft-light bg-center overflow-hidden px-[15px] md:px-20 text-center bg-primary pattern before:w-1/2 mb-10">
-      <div className="w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-6xl">
+      <div className="w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[1140px] xl:max-w-6xl">
         <div className="flex flex-wrap mx-[-15px]">
           <div className="float-left w-full md:w-1/2 relative text-left box-border">
             <div className="w-full px-[15px] mb-[60px] box-border">

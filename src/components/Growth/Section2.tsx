@@ -4,7 +4,7 @@ import { StaticImage } from "gatsby-plugin-image";
 const Section2 = () => {
   return (
     <section className="relative w-full block pt-5 pb-[120px] bg-[#f7f7f7]">
-      <div className="w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-6xl">
+      <div className="w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[1140px] xl:max-w-6xl">
         <div className="flex flex-wrap mx-[-15px]">
           <div className="w-full maxmd:w-1/2 md:w-1/4 mb-[25px] float-left relative">
             <div className="w-full px-[15px] box-border">

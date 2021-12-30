@@ -33,7 +33,7 @@ const FAQ = () => {
   const [selectedItem2, setSelectedItem2] = useState<number | null>(0);
   return (
     <section className="relative w-full block overflow-x-hidden pt-20 pb-28">
-      <div className="w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-6xl">
+      <div className="w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[1140px] xl:max-w-6xl">
         <div className="flex flex-wrap mx-[-15px]">
           {/* Heading */}
           <div className="float-left w-full text-left relative">

@@ -33,7 +33,7 @@ const Navbar = () => {
   return (
     <div className="relative lg:fixed w-full mx-auto my-0 py-[10px] top-0 left-0 bg-white z-50">
       <div
-        className={`w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-6xl transform transition-[height] duration-200 ease-in-out ${
+        className={`w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[1140px] xl:max-w-6xl transform transition-[height] duration-200 ease-in-out ${
           isOpen ? "h-[300px]" : "h-12"
         }`}
       >

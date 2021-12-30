@@ -5,7 +5,7 @@ import { CheckCircleIcon } from "@heroicons/react/outline";
 const Section5 = () => {
   return (
     <div className="w-full min-h-screen relative block overflow-x-hidden pt-20 pb-[60px] bg-[#f7f7f7] md:pt-[60px] md:pb-[180px] lg:pt-[100px] custom:pt-[180px] custom:pb-20">
-      <div className="w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-6xl">
+      <div className="w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[1140px] xl:max-w-6xl">
         <div className="flex flex-wrap items-center mx-[-15px]">
           {/* Picture */}
           <div className="float-left w-full lg:w-1/2 relative text-left box-border">
