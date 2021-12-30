@@ -1,40 +1,23 @@
-import { StaticImage } from "gatsby-plugin-image";
-import React from "react";
+import React, { FC } from "react";
 import { Link } from "gatsby";
+import { AboutProps } from "../utils/types";
 
-const About = () => {
+const About: FC<AboutProps> = ({ title, para1, para2, para3, para4 }) => {
   return (
-    <section className="py-20 px-[180px] bg-about bg-primary bg-no-repeat bg-position bg-blend-soft-light bg-fixed relative overflow-hidden w-full block pattern before:w-1/2">
+    <section
+      id="about"
+      className="py-20 px-[180px] bg-about bg-primary bg-no-repeat bg-position bg-blend-soft-light bg-fixed relative overflow-hidden w-full block pattern before:w-1/2"
+    >
       <div className="w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[1140px] xl:max-w-6xl">
         <div className="flex flex-wrap mx-[-15px]">
           <div className="float-left w-full md:w-1/2 relative text-left box-border">
             <div className="w-full px-[15px] mb-[60px] box-border">
-              <h4 className="text-[40px] font-bold mb-5 text-white">
-                Built for product teams
-              </h4>
+              <h4 className="text-[40px] font-bold mb-5 text-white">{title}</h4>
               <div className="mb-4">
-                <p className="text-white font-medium mb-4">
-                  From some of the minds that powered Booking.com’s
-                  experimentation platform, comes A/B Smartly.
-                </p>
-                <p className="text-white font-medium mb-4">
-                  Our vision is to democratize experimentation across
-                  organizations. We want to empower product teams to A/B test
-                  every change on their own and use the data to answer any
-                  question they might have.
-                </p>
-                <p className="text-white font-medium mb-4">
-                  A/B Smartly helps you understand the "why". A/B tests make it
-                  very easy to measure the impact of your changes, but not so
-                  easy to understand why the visitors are demonstrating a
-                  specific behaviour, or why a test works or doesn't work.
-                </p>
-                <p className="text-white font-medium mb-4">
-                  With A/B Smartly the data lake stays on your side, you can
-                  easily create custom reports or even query it with external
-                  tools like Looker or Tableau. Answer all your questions in
-                  minutes instead of days or weeks.
-                </p>
+                <p className="text-white font-medium mb-4">{para1}</p>
+                <p className="text-white font-medium mb-4">{para2}</p>
+                <p className="text-white font-medium mb-4">{para3}</p>
+                <p className="text-white font-medium mb-4">{para4}</p>
                 <p className="text-white font-medium mb-4">
                   <Link to="/">Learn more</Link>
                 </p>

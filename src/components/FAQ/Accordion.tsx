@@ -1,3 +1,4 @@
+import { Link } from "react-scroll";
 import React, { FC } from "react";
 
 interface IAccordion {
@@ -41,7 +42,22 @@ const Accordion: FC<IAccordion> = ({
         >
           <div className="bg-white p-5 grow shrink basis-auto">
             <p className="leading-[26px] text-sm text-[#333333] font-medium mb-4">
-              {content}
+              {content ?? (
+                <span>
+                  We want to hear it!{" "}
+                  <Link
+                    spy={true}
+                    smooth={true}
+                    offset={-70}
+                    duration={500}
+                    to="contact-us"
+                    className="text-primary"
+                  >
+                    Fill in the form
+                  </Link>
+                  , and we will respond within 24 hours.
+                </span>
+              )}
             </p>
           </div>
         </div>

@@ -1,9 +1,13 @@
-import React from "react";
+import React, { FC } from "react";
 import Particles from "react-particles-js";
+import { HeroProps } from "../utils/types";
 
-const Hero = () => {
+const Hero: FC<HeroProps> = ({ title, description }) => {
   return (
-    <div className="bg-hero bg-no-repeat bg-center bg-cover bg-tertiary min-h-[700px] h-auto pt-20 pb-[180px] lg:h-[100vh] relative w-full block">
+    <section
+      id="contact-us"
+      className="bg-hero bg-no-repeat bg-center bg-cover bg-tertiary min-h-[700px] h-auto pt-20 pb-[180px] lg:h-[100vh] relative w-full block"
+    >
       {/* COntent */}
       <div className="relative z-[2] w-full top-auto left-auto translate-y-0 lg:top-1/2 lg:left-0 lg:-translate-y-1/2 h-auto">
         <div className="w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[1140px] xl:max-w-6xl">
@@ -13,16 +17,11 @@ const Hero = () => {
             <div className="float-left w-full lg:w-1/2 relative min-h-[1px] z-10 text-left self-center">
               <div className="w-full px-[15px] box-border">
                 <h2 className="text-5xl text-white text-center lg:text-left font-semibold font-sans">
-                  Get Booking.com and Netflix Experimentation Culture without
-                  the big investment
+                  {title}
                 </h2>
                 <div className="mt-4 mb-6 pb-4 font-normal">
                   <p className="text-lg lg:pr-[150px] tracking-[1px] font-poppins text-white text-center xs:text-left">
-                    Knowledge based and engineering centric experimentation
-                    platform where multiple teams can run hundreds or thousands
-                    of simultaneous experiments without stepping on each other
-                    toes, with transparency to all stakeholders, and full
-                    visibility about possible interactions.
+                    {description}
                   </p>
                 </div>
               </div>
@@ -134,7 +133,7 @@ const Hero = () => {
           }}
         />
       </div>
-    </div>
+    </section>
   );
 };
 

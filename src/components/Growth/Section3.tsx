@@ -1,7 +1,8 @@
 import { Link } from "gatsby";
-import React from "react";
+import React, { FC } from "react";
+import { Section3Props } from "../../utils/types";
 
-const Section3 = () => {
+const Section3: FC<Section3Props> = ({ banner }) => {
   return (
     <section className="relative w-full block box-border py-20 px-[15px] md:px-20 text-center bg-primary pattern before:w-full mb-10">
       <div className="w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[1140px] xl:max-w-6xl">
@@ -9,8 +10,7 @@ const Section3 = () => {
           <div className="w-full relative min-h-[1px] box-border float-left">
             <div className="w-full px-[15px] mb-[60px]">
               <h5 className="text-3xl pb-[30px] font-semibold text-white text-center">
-                Successful companies of tomorrow are scaling up their A/B
-                testing efforts today. Want to learn more?
+                {banner}
               </h5>
               <Link
                 to="/"
