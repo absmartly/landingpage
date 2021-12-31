@@ -4,7 +4,7 @@ import { Section4Props } from "../../utils/types";
 
 const Section4: FC<Section4Props> = ({ title, para1, para2, para3, image }) => {
   return (
-    <section className="relative w-full block overflow-x-hidden py-20">
+    <section className="relative w-full block overflow-x-hidden py-20 bg-white">
       <div className="w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[1140px] xl:max-w-6xl">
         <div className="flex flex-wrap mx-[-15px]">
           <div className="float-left w-full lg:w-1/2 relative text-left box-border">

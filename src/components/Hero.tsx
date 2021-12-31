@@ -1,19 +1,27 @@
-import React, { FC } from "react";
-import Particles from "react-particles-js";
+import React, { FC, useState } from "react";
+import Particles from "react-tsparticles";
 import { HeroProps } from "../utils/types";
 
 const Hero: FC<HeroProps> = ({ title, description }) => {
+  const [name, setName] = useState("");
+  const [businessEmail, setBusinessEmail] = useState("");
+  const [industry, setIndustry] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  function handleSubmit() {
+    setName("");
+    setBusinessEmail("");
+    setEmail("");
+    setMessage("");
+  }
   return (
     <section
       id="contact-us"
-      className="bg-hero bg-no-repeat bg-center bg-cover bg-tertiary min-h-[700px] h-auto pt-20 pb-[180px] lg:h-[100vh] relative w-full block"
+      className="bg-hero bg-no-repeat bg-center bg-cover bg-tertiary min-h-[700px] h-auto pt-20 pb-[180px] lg:h-[100vh] relative w-full"
     >
-      {/* COntent */}
       <div className="relative z-[2] w-full top-auto left-auto translate-y-0 lg:top-1/2 lg:left-0 lg:-translate-y-1/2 h-auto">
         <div className="w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[1140px] xl:max-w-6xl">
-          {/* Actual Container */}
           <div className="flex flex-wrap mx-[-15px]">
-            {/* Text Container */}
             <div className="float-left w-full lg:w-1/2 relative min-h-[1px] z-10 text-left self-center">
               <div className="w-full px-[15px] box-border">
                 <h2 className="text-[45px] leading-[45px] text-white text-center lg:text-left font-semibold font-work_sans">
@@ -29,7 +37,10 @@ const Hero: FC<HeroProps> = ({ title, description }) => {
             {/* Form Container */}
             <div className="w-full lg:w-1/2 mt-[10px] lg:mt-[250px] md:px-[60px] float-left relative box-border">
               <div className="w-full px-[15px] box-border">
-                <form className="py-5 px-[10px] bg-white rounded-lg shadow-form">
+                <form
+                  className="py-5 px-[10px] bg-white rounded-lg shadow-form"
+                  onSubmit={handleSubmit}
+                >
                   {/* Form Header */}
                   <div className="box-border">
                     <div className="grow-0 shrink-0 basis-full px-[15px] mb-[25px]">
@@ -52,6 +63,9 @@ const Hero: FC<HeroProps> = ({ title, description }) => {
                             className="w-full rounded bg-white text-[#333] border-2 border-solid border-[#2b60ba24] outline-0 py-3 px-5 text-sm font-normal focus:outline-0 focus:border-primary"
                             type="text"
                             placeholder="NAME"
+                            required
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
                           />
                         </span>
                       </div>
@@ -62,6 +76,9 @@ const Hero: FC<HeroProps> = ({ title, description }) => {
                             className="w-full rounded bg-white text-[#333] border-2 border-solid border-[#2b60ba24] outline-0 py-3 px-5 text-sm font-normal focus:outline-0 focus:border-primary"
                             type="text"
                             placeholder="BUSINESS NAME"
+                            required
+                            value={businessEmail}
+                            onChange={(e) => setBusinessEmail(e.target.value)}
                           />
                         </span>
                       </div>
@@ -71,7 +88,10 @@ const Hero: FC<HeroProps> = ({ title, description }) => {
                           <input
                             className="w-full rounded bg-white text-[#333] border-2 border-solid border-[#2b60ba24] outline-0 py-3 px-5 text-sm font-normal focus:outline-0 focus:border-primary"
                             type="text"
+                            required
                             placeholder="INDUSTRY"
+                            value={industry}
+                            onChange={(e) => setIndustry(e.target.value)}
                           />
                         </span>
                       </div>
@@ -82,6 +102,9 @@ const Hero: FC<HeroProps> = ({ title, description }) => {
                             className="w-full rounded bg-white text-[#333] border-2 border-solid border-[#2b60ba24] outline-0 py-3 px-5 text-sm font-normal focus:outline-0 focus:border-primary"
                             type="email"
                             placeholder="EMAIL"
+                            required
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                           />
                         </span>
                       </div>
@@ -91,7 +114,10 @@ const Hero: FC<HeroProps> = ({ title, description }) => {
                           <textarea
                             className="w-full rounded bg-white text-[#333] border-2 border-solid border-[#2b60ba24] outline-0 py-3 px-5 text-sm font-normal focus:outline-0 focus:border-primary overflow-auto resize-y"
                             rows={4}
+                            required
                             placeholder="ANYTHING YOU'D LIKE TO KNOW MORE ABOUT?"
+                            value={message}
+                            onChange={(e) => setMessage(e.target.value)}
                           />
                         </span>
                       </div>
@@ -112,22 +138,50 @@ const Hero: FC<HeroProps> = ({ title, description }) => {
           </div>
         </div>
       </div>
-      {/* Waves */}
       <div className="hidden md:block absolute max-w-[100vw] bottom-0 left-0 h-[5%] w-full bg-white z-[1] overflow-x-clip">
         <div className="bg-wave bg-repeat-x absolute top-[-100px] w-[6400px] h-[100px] animate-wave" />
         <div className="bg-wave bg-repeat-x absolute top-[-56px] w-[6400px] h-[100px] animate-wave2" />
       </div>
-      {/* Particels */}
-      <div className="absolute top-0 left-0 z-[1] w-full h-[calc(100%-100px)]">
+      <div className="  top-0 left-0 z-[0] w-full h-[calc(100%-100px)] overflow-hidden">
         <Particles
-          className="h-full"
-          params={{
+          id="tsparticles"
+          className=" h-full"
+          height="100%"
+          options={{
+            fpsLimit: 60,
+
             particles: {
+              color: {
+                value: "#dddddd",
+              },
+              links: {
+                color: "#dddddd",
+                distance: 150,
+                enable: true,
+                opacity: 0.5,
+                width: 2,
+              },
+              move: {
+                direction: "none",
+                enable: true,
+                outMode: "bounce",
+                random: false,
+                speed: 3,
+                straight: false,
+              },
               number: {
-                value: 65,
+                density: {
+                  enable: true,
+                  area: 800,
+                },
+                value: 52,
+              },
+              opacity: {
+                value: 0.5,
               },
               size: {
-                value: 4,
+                random: true,
+                value: 5,
               },
             },
           }}

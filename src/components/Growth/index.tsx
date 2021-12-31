@@ -26,7 +26,7 @@ const Growth: FC<GrowthProps> = ({
   growthPerformanceTitle,
 }) => {
   return (
-    <div className="relative" id="unlimited-growth">
+    <div className="relative bg-white" id="unlimited-growth">
       <Section1 title={title} subTitle={subTitle} description={description} />
       <Section2 cards={cards} />
       <Section3 banner={growthBanner} />
