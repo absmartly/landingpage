@@ -1,7 +1,12 @@
 import React, { FC } from "react";
 import { ExperimentationProps } from "../utils/types";
+import Slider from "./Slider";
 
-const Experimentation: FC<ExperimentationProps> = ({ title, description }) => {
+const Experimentation: FC<ExperimentationProps> = ({
+  title,
+  description,
+  list,
+}) => {
   return (
     <section
       id="experimentation"
@@ -11,14 +16,15 @@ const Experimentation: FC<ExperimentationProps> = ({ title, description }) => {
         <div className="flex flex-wrap mx-[-15px]">
           <div className="float-left w-full relative box-border">
             <div className="w-full px-[15px] mb-[60px] box-border">
-              <h3 className="text-[40px] font-bold text-primary mb-5 text-center">
+              <h3 className="text-[40px] font-work_sans font-bold text-primary mb-5 text-center">
                 {title}
               </h3>
               <div className="mb-9">
-                <p className="text-center px-[140px] font-medium text-[#535353]">
+                <p className="text-center font-work_sans md:px-[140px] font-medium text-[#535353]">
                   {description}
                 </p>
               </div>
+              <Slider list={list} />
             </div>
           </div>
         </div>

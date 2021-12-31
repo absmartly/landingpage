@@ -27,10 +27,14 @@
     "react-helmet": "^6.1.0",
     "react-particles-js": "^3.6.0",
     "react-scroll": "^1.8.4",
-    "typeface-poppins": "^1.1.13"
+    "react-swipeable-views": "^0.14.0",
+    "typeface-poppins": "^1.1.13",
+    "typeface-work-sans": "^1.1.13"
   },
   "devDependencies": {
     "@types/react-helmet": "^6.1.5",
+    "@types/react-scroll": "^1.8.3",
+    "@types/react-swipeable-views": "^0.13.1",
     "autoprefixer": "^10.4.0",
     "gatsby-plugin-postcss": "^5.4.0",
     "postcss": "^8.4.5",

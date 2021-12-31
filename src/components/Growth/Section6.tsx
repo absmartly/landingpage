@@ -10,7 +10,7 @@ const Section6: FC<Section6Props> = ({ description, image }) => {
           <div className="float-left w-full md:w-1/2 relative text-left box-border">
             <div className="w-full px-[15px] mb-[60px] box-border">
               <div className="py-[50px] lg:pr-[50px] pl-0">
-                <h5 className="text-xl font-semibold text-white mb-[25px] text-left leading-8">
+                <h5 className="text-xl font-work_sans font-semibold text-white mb-[25px] text-left leading-8">
                   {description}
                 </h5>
               </div>

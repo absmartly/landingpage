@@ -9,10 +9,10 @@ const Section4: FC<Section4Props> = ({ title, para1, para2, para3, image }) => {
         <div className="flex flex-wrap mx-[-15px]">
           <div className="float-left w-full lg:w-1/2 relative text-left box-border">
             <div className="w-full px-[15px] box-border">
-              <h4 className="text-left text-[40px] font-bold text-primary mb-[35px] ml-0 relative">
+              <h4 className="text-left font-work_sans text-[40px] font-bold text-primary mb-[35px] ml-0 relative">
                 {title}
               </h4>
-              <div className="mb-4">
+              <div className="mb-4 font-poppins">
                 <p className="font-medium mb-4 text-[15px] text-left text-[#535353]">
                   {para1}
                 </p>

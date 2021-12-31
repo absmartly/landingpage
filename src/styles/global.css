@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@layer base {
+    @font-face {
+      font-family: WorkSans;
+      src: url("WorkSans-VariableFont_wght.ttf") format("truetype");
+    }
+  }
 @layer components {
     .bg-wave {
         background-image: url('../assets/wave.svg');
@@ -79,4 +86,27 @@
         z-index: 1;
         transition: all 200ms linear;
     }
+
+    .link-animation {
+        transition-property: color;
+        transition-duration: 0.2s;
+        transition-timing-function: ease-in-out;
+        transition-delay: 0s;
+    }
+
+    .link-animation-2 {
+        transition-property: color;
+        transition-duration: 0.2s;
+        transition-timing-function: ease-in-out;
+        transition-delay: 0s;
+    }
+
+    .div-animation {
+        transition-property: padding;
+        transition-duration: 0.2s;
+        transition-timing-function: ease-in-out;
+        transition-delay: 0s;
+    }
+    
+
 }

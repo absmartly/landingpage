@@ -33,7 +33,6 @@ const Navbar = () => {
 
   function handleSetActive(to) {
     setActive(to);
-    console.log(to);
   }
   return (
     <div className="relative lg:fixed w-full mx-auto my-0 py-[10px] top-0 left-0 bg-white z-50">

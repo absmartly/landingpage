@@ -16,7 +16,7 @@ const Hero: FC<HeroProps> = ({ title, description }) => {
             {/* Text Container */}
             <div className="float-left w-full lg:w-1/2 relative min-h-[1px] z-10 text-left self-center">
               <div className="w-full px-[15px] box-border">
-                <h2 className="text-5xl text-white text-center lg:text-left font-semibold font-sans">
+                <h2 className="text-[45px] leading-[45px] text-white text-center lg:text-left font-semibold font-work_sans">
                   {title}
                 </h2>
                 <div className="mt-4 mb-6 pb-4 font-normal">
@@ -33,10 +33,10 @@ const Hero: FC<HeroProps> = ({ title, description }) => {
                   {/* Form Header */}
                   <div className="box-border">
                     <div className="grow-0 shrink-0 basis-full px-[15px] mb-[25px]">
-                      <h5 className="text-2xl mb-[5px] text-primary font-semibold">
+                      <h5 className="text-2xl mb-[5px] text-primary font-semibold font-work_sans">
                         Talk to us
                       </h5>
-                      <h6 className="text-sm text-[#808080] font-medium mb-4">
+                      <h6 className="text-sm text-[#808080] font-medium mb-4 font-work_sans">
                         Want more info or talk about partnerships?
                       </h6>
                     </div>

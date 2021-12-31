@@ -21,7 +21,7 @@ const Section2: FC<Section2Props> = ({ cards }) => {
                     image={card.gatsbyImageData}
                     alt={card.title}
                   />
-                  <h5 className="mb-[0.8rem] text-[#212121] font-semibold text-center text-xl">
+                  <h5 className="mb-[0.8rem] font-work_sans text-[#212121] font-semibold text-center text-xl">
                     {card.title}
                   </h5>
                 </div>

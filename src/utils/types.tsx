@@ -6,6 +6,17 @@ interface SolutionDetail {
   description: string;
 }
 
+export interface ExperimentationList {
+  id: string;
+  title: string;
+  description: {
+    description: string;
+  };
+  image: {
+    gatsbyImageData: IGatsbyImageData;
+  };
+}
+
 export interface Section6Props {
   description: string;
   image: IGatsbyImageData;
@@ -52,6 +63,7 @@ export interface SolutionProps {
 export interface ExperimentationProps {
   title: string;
   description: string;
+  list: ExperimentationList[];
 }
 
 export interface AboutProps {
@@ -175,6 +187,9 @@ export interface HomeProps {
   data: {
     allContentfulLandingPage: {
       nodes: LandingPage[];
+    };
+    allContentfulExperimentation: {
+      nodes: ExperimentationList[];
     };
   };
 }

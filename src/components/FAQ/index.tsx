@@ -16,10 +16,10 @@ const FAQ: FC<FAQProps> = ({ title, subTitle, list }) => {
           <div className="float-left w-full text-left relative">
             <div className="w-full px-[15px] box-border">
               <div className="relative mb-[60px] text-center">
-                <div className="absolute z-[1] -top-6 md:-top-[2.2rem] lg:-top-[60px] left-0 w-full text-center font-bold uppercase text-[50px] md:text-[70px] lg:text-[100px] opacity-10 text-primary">
+                <div className="absolute font-work_sans z-[1] -top-6 md:-top-[2.2rem] lg:-top-[60px] left-0 w-full text-center font-bold uppercase text-[50px] md:text-[70px] lg:text-[100px] opacity-10 text-primary">
                   {subTitle}
                 </div>
-                <h3 className="relative z-[2] w-full text-center text-[30px] font-bold mb-[0.8rem] uppercase text-[#323232]">
+                <h3 className="relative font-work_sans z-[2] w-full text-center text-[30px] font-bold mb-[0.8rem] uppercase text-[#323232]">
                   {title}
                 </h3>
               </div>

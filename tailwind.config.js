@@ -19,6 +19,7 @@ module.exports = {
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
+        work_sans: ["WorkSans", "sans-serif"],
       },
       transitionProperty: {
         height: ["responsive", "hover", "focus"],

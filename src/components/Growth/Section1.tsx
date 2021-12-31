@@ -10,13 +10,13 @@ const Section1: FC<Section1Props> = ({ title, subTitle, description }) => {
             <div className="w-full px-[15px] box-border">
               <div className="block">
                 <div className="relative mb-[60px] text-center text-primary">
-                  <div className="absolute z-[1] -top-6 md:-top-[2.2rem] lg:-top-[60px] left-0 w-full text-center font-bold uppercase text-[50px] md:text-[70px] lg:text-[100px] opacity-10">
+                  <div className="absolute font-work_sans z-[1] -top-6 md:-top-[2.2rem] lg:-top-[60px] left-0 w-full text-center font-bold uppercase text-[50px] md:text-[70px] lg:text-[100px] opacity-10">
                     {subTitle}
                   </div>
-                  <h3 className="relative z-[2] w-full text-center text-[40px] font-bold mb-[0.8rem]">
+                  <h3 className="relative font-work_sans z-[2] w-full text-center text-[40px] font-bold mb-[0.8rem]">
                     {title}
                   </h3>
-                  <p className="relative text-[17px] font-normal text-[#444444] w-full max-w-[580px] mx-auto pt-[10px] text-center">
+                  <p className="relative font-work_sans text-[17px] font-normal text-[#444444] w-full max-w-[580px] mx-auto pt-[10px] text-center">
                     {description}
                   </p>
                 </div>

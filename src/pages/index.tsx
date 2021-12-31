@@ -12,7 +12,6 @@ import { graphql } from "gatsby";
 import { HomeProps } from "../utils/types";
 
 const Home: FC<HomeProps> = ({ data }) => {
-  console.log(data);
   const {
     heroTitle,
     heroDescription,
@@ -45,6 +44,8 @@ const Home: FC<HomeProps> = ({ data }) => {
     faqSubtitle,
     faqList,
   } = data.allContentfulLandingPage.nodes[0];
+
+  const list = data.allContentfulExperimentation.nodes;
   return (
     <div className="min-h-screen">
       <SEO />
@@ -75,6 +76,7 @@ const Home: FC<HomeProps> = ({ data }) => {
       <Experimentation
         title={experimentationTitle}
         description={experimentationDescription.experimentationDescription}
+        list={list}
       />
       <About
         title={aboutTitle}
@@ -166,6 +168,18 @@ export const query = graphql`
         faqList {
           question
           answer
+        }
+      }
+    }
+    allContentfulExperimentation(sort: { fields: createdAt, order: ASC }) {
+      nodes {
+        id
+        title
+        description {
+          description
+        }
+        image {
+          gatsbyImageData
         }
       }
     }

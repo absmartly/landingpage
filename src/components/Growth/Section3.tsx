@@ -9,7 +9,7 @@ const Section3: FC<Section3Props> = ({ banner }) => {
         <div className="flex flex-wrap mx-[-15px]">
           <div className="w-full relative min-h-[1px] box-border float-left">
             <div className="w-full px-[15px] mb-[60px]">
-              <h5 className="text-3xl pb-[30px] font-semibold text-white text-center">
+              <h5 className="text-3xl font-work_sans pb-[30px] font-semibold text-white text-center">
                 {banner}
               </h5>
               <Link

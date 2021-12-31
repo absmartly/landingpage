@@ -1,25 +1,45 @@
 import React, { FC } from "react";
-import { Link } from "gatsby";
+import { Link } from "react-scroll";
 import { AboutProps } from "../utils/types";
 
 const About: FC<AboutProps> = ({ title, para1, para2, para3, para4 }) => {
   return (
     <section
       id="about"
-      className="py-20 px-[180px] bg-about bg-primary bg-no-repeat bg-position bg-blend-soft-light bg-fixed relative overflow-hidden w-full block pattern before:w-1/2"
+      className="pt-20 pb-[180px] xs:bg-about bg-[#3933d1] xs:bg-primary bg-no-repeat bg-position bg-blend-soft-light bg-fixed
+       relative overflow-hidden w-full block pattern before:w-1/2"
     >
       <div className="w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[1140px] xl:max-w-6xl">
         <div className="flex flex-wrap mx-[-15px]">
           <div className="float-left w-full md:w-1/2 relative text-left box-border">
             <div className="w-full px-[15px] mb-[60px] box-border">
-              <h4 className="text-[40px] font-bold mb-5 text-white">{title}</h4>
+              <h4 className="text-[40px] font-work_sans font-bold mb-5 text-white">
+                {title}
+              </h4>
               <div className="mb-4">
-                <p className="text-white font-medium mb-4">{para1}</p>
-                <p className="text-white font-medium mb-4">{para2}</p>
-                <p className="text-white font-medium mb-4">{para3}</p>
-                <p className="text-white font-medium mb-4">{para4}</p>
-                <p className="text-white font-medium mb-4">
-                  <Link to="/">Learn more</Link>
+                <p className="text-white font-poppins font-medium mb-4">
+                  {para1}
+                </p>
+                <p className="text-white font-poppins font-medium mb-4">
+                  {para2}
+                </p>
+                <p className="text-white font-poppins font-medium mb-4">
+                  {para3}
+                </p>
+                <p className="text-white font-poppins font-medium mb-4">
+                  {para4}
+                </p>
+                <p className="text-white font-poppins font-medium mb-4">
+                  <Link
+                    spy={true}
+                    smooth={true}
+                    offset={-70}
+                    duration={500}
+                    to="contact-us"
+                    className="underline"
+                  >
+                    Contact us today
+                  </Link>
                 </p>
               </div>
               <Link
