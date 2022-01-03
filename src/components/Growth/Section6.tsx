@@ -4,7 +4,7 @@ import { Section6Props } from "../../utils/types";
 
 const Section6: FC<Section6Props> = ({ description, image }) => {
   return (
-    <section className="relative w-full md:max-h-[80vh] lg:max-h-[70vh] block py-28 bg-blend-soft-light bg-center overflow-hidden px-[15px] md:px-20 text-center bg-primary pattern">
+    <section className="relative w-full md:max-h-[75vh] lg:max-h-[65vh] block py-28 bg-blend-soft-light bg-center overflow-hidden px-[15px] md:px-20 text-center bg-primary pattern">
       <div className="w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[1140px] xl:max-w-6xl">
         <div className="flex flex-wrap mx-[-15px]">
           <div className="float-left w-full md:h-80 md:w-1/2 relative text-left box-border">
@@ -21,7 +21,7 @@ const Section6: FC<Section6Props> = ({ description, image }) => {
               <div className="pb-[50px] lg:pr-[50px]">
                 <div className="relative w-full">
                   <GatsbyImage
-                    className="relative md:absolute md:-top-40 lg:-top-[120px] min-w-full md:min-w-[990px] max-w-full w-full align-middle border-none"
+                    className="relative md:absolute md:-top-[50px] min-w-full md:min-w-[990px] max-w-full w-full align-middle border-none"
                     image={image}
                     alt={description}
                   />
