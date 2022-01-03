@@ -7,8 +7,8 @@ export const colors = [
 ];
 
 export const cardsColors = [
-  { filter: "", border: "#2ad8da" },
-  { filter: "filter1", border: "#f89291" },
-  { filter: "filter2", border: "#51df65" },
-  { filter: "filter3", border: "#ffaa52" },
+  { filter: "", border: "border0" },
+  { filter: "filter1", border: "border1" },
+  { filter: "filter2", border: "border2" },
+  { filter: "filter3", border: "border3" },
 ];
