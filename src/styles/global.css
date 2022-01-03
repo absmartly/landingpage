@@ -23,10 +23,11 @@
         position: absolute;
         background: url('../assets/pattern.png') repeat-x;
         background-size: cover;
+        width: 50%;
         height: 100%;
         left: 0;
         top: 0;
-        opacity: .6;
+        opacity: 0.6;
     }
 
     .bg-position {
