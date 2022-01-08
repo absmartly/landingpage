@@ -8,6 +8,7 @@ import SEO from "../components/Common/SEO";
 import Solution from "../components/Home/Solution";
 import { graphql } from "gatsby";
 import { HomeProps } from "../utils/types";
+import Layout from "../components/Common/Layout";
 
 const Home: FC<HomeProps> = ({ data }) => {
   const {
@@ -45,7 +46,7 @@ const Home: FC<HomeProps> = ({ data }) => {
 
   const list = data.allContentfulExperimentation.nodes;
   return (
-    <div className="min-h-screen">
+    <Layout>
       <SEO />
       <Hero title={heroTitle} description={heroDescription.heroDescription} />
       <Solution
@@ -83,7 +84,7 @@ const Home: FC<HomeProps> = ({ data }) => {
         para4={aboutPara4.aboutPara4}
       />
       <FAQ title={faqTitle} subTitle={faqSubtitle} list={faqList} />
-    </div>
+    </Layout>
   );
 };
 

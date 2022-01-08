@@ -3,6 +3,7 @@ import Header from "../components/Blog/Header";
 import { BlogProps } from "../utils/types";
 import RichText from "@madebyconnor/rich-text-to-jsx";
 import { BLOCKS } from "@contentful/rich-text-types";
+import Layout from "../components/Common/Layout";
 
 const Paragraph = ({ children, ...props }) => (
   <p
@@ -43,7 +44,7 @@ const List = ({ children, ...props }) => {
 const Blog: FC<BlogProps> = ({ pageContext }) => {
   const blog = pageContext.data;
   return (
-    <div>
+    <Layout>
       <Header title={blog.title} />
       <div className="py-20 bg-[#f8f8f8]">
         <div className="w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[1140px] xl:max-w-6xl">
@@ -71,7 +72,7 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
           </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 

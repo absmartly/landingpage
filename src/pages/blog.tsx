@@ -5,13 +5,14 @@ import Header from "../components/Blog/Header";
 import { BlogsProps } from "../utils/types";
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 import slugify from "react-slugify";
+import Layout from "../components/Common/Layout";
 
 const Blogs: FC<BlogsProps> = ({ data }) => {
   function truncate(str: string, n: number) {
     return str?.length > n ? str.substring(0, n - 1) + "..." : str;
   }
   return (
-    <div className="h-full">
+    <Layout>
       <Header title="Blog" />
       <div className="py-20 bg-[#f8f8f8]">
         <div className="w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[1140px] xl:max-w-6xl">
@@ -65,7 +66,7 @@ const Blogs: FC<BlogsProps> = ({ data }) => {
           </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 
