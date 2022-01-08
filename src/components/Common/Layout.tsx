@@ -8,7 +8,7 @@ interface ILayoutProps {
 
 const Layout: FC<ILayoutProps> = ({ children }) => {
   return (
-    <div>
+    <div className="relative min-h-screen">
       <Navbar />
       {children}
       <Footer />

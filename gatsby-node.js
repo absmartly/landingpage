@@ -17,9 +17,8 @@ exports.createPages = async function ({ actions, graphql }) {
   data.allContentfulBlog.nodes.forEach((blog) => {
     const slug = blog.title
       .replace(/\s+/g, "-")
-      .replace(/[?,]*/g, "")
+      .replace(/[?,/]*/g, "")
       .toLowerCase();
-    console.log(slug);
     actions.createPage({
       path: `/blog/${slug}`,
       component: require.resolve(`./src/Template/index.tsx`),

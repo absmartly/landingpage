@@ -14,6 +14,16 @@
         background-image: url('../assets/wave.svg');
         transform: translate3d(0, 0, 0);
     }
+    
+    ol {
+        @apply list-decimal ml-8 mb-4 font-poppins text-[15px] font-normal text-[#535353];
+        
+    }
+
+    ul {
+        @apply list-disc ml-8 mb-4 font-poppins text-[15px] font-normal text-[#535353];
+        
+    }
 
     
 
