@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { Section2Props } from "../../utils/types";
-import { cardsColors } from "../../utils/utils";
+import { Section2Props } from "../../../utils/types";
+import { cardsColors } from "../../../utils/utils";
 const borderColor = ["2ad8da", "f89291", "51df65", "ffaa52"];
 const Section2: FC<Section2Props> = ({ cards }) => {
   return (

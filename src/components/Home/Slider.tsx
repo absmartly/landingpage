@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
 import SwipeableViews from "react-swipeable-views";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { ExperimentationList } from "../utils/types";
+import { ExperimentationList } from "../..//utils/types";
 
 interface SliderProps {
   list: ExperimentationList[];

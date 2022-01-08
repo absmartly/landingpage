@@ -1,6 +1,6 @@
 import React from "react";
 import { FC } from "react";
-import { GrowthProps } from "../../utils/types";
+import { GrowthProps } from "../../../utils/types";
 import Section1 from "./Section1";
 import Section2 from "./Section2";
 import Section3 from "./Section3";

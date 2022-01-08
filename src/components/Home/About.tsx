@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { Link } from "react-scroll";
-import { AboutProps } from "../utils/types";
+import { AboutProps } from "../../utils/types";
 
 const About: FC<AboutProps> = ({ title, para1, para2, para3, para4 }) => {
   return (

@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Section1Props } from "../../utils/types";
+import { Section1Props } from "../../../utils/types";
 
 const Section1: FC<Section1Props> = ({ title, subTitle, description }) => {
   return (

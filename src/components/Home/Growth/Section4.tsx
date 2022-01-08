@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image";
-import { Section4Props } from "../../utils/types";
+import { Section4Props } from "../../../utils/types";
 
 const Section4: FC<Section4Props> = ({ title, para1, para2, para3, image }) => {
   return (

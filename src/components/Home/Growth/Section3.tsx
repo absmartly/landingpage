@@ -1,6 +1,6 @@
 import { Link } from "gatsby";
 import React, { FC } from "react";
-import { Section3Props } from "../../utils/types";
+import { Section3Props } from "../../../utils/types";
 
 const Section3: FC<Section3Props> = ({ banner }) => {
   return (

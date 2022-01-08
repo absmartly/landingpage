@@ -31,7 +31,7 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
-  function handleSetActive(to) {
+  function handleSetActive(to: string) {
     setActive(to);
   }
   return (

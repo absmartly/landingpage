@@ -1,6 +1,6 @@
 import { GatsbyImage } from "gatsby-plugin-image";
 import React, { FC } from "react";
-import { Section6Props } from "../../utils/types";
+import { Section6Props } from "../../../utils/types";
 
 const Section6: FC<Section6Props> = ({ description, image }) => {
   return (

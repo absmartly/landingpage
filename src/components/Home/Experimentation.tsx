@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { ExperimentationProps } from "../utils/types";
+import { ExperimentationProps } from "../../utils/types";
 import Slider from "./Slider";
 
 const Experimentation: FC<ExperimentationProps> = ({

@@ -1,7 +1,6 @@
 import React from "react";
 import { StaticImage } from "gatsby-plugin-image";
 import { Link } from "gatsby";
-
 const Footer = () => {
   return (
     <div className="relative bg-primary w-full py-4">
@@ -25,7 +24,7 @@ const Footer = () => {
             <a href="https://twitter.com/absmartly" target="_blank">
               <StaticImage
                 className="w-4 h-4 object-contain mr-3 ml-3 cursor-pointer"
-                src="../assets/twitter.svg"
+                src="../../assets/twitter.svg"
                 alt="Twitter"
               />
             </a>
@@ -35,21 +34,21 @@ const Footer = () => {
             >
               <StaticImage
                 className="w-4 h-4 object-contain mr-3 ml-3 cursor-pointer"
-                src="../assets/linkedin.svg"
+                src="../../assets/linkedin.svg"
                 alt="LinkedIn"
               />
             </a>
             <a href="https://www.facebook.com/absmartly" target="_blank">
               <StaticImage
                 className="w-4 h-4 object-contain mr-3 ml-3 cursor-pointer"
-                src="../assets/facebook.svg"
+                src="../../assets/facebook.svg"
                 alt="Facebook"
               />
             </a>
             <a href="https://github.com/absmartly/" target="_blank">
               <StaticImage
                 className="w-4 h-4 object-contain mr-3 ml-3 cursor-pointer"
-                src="../assets/git.png"
+                src="../../assets/git.png"
                 alt="Git"
               />
             </a>

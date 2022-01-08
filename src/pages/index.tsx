@@ -1,13 +1,11 @@
 import React, { FC } from "react";
-import About from "../components/About";
-import Experimentation from "../components/Experimentation";
-import FAQ from "../components/FAQ";
-import Footer from "../components/Footer";
-import Growth from "../components/Growth";
-import Hero from "../components/Hero";
-import Navbar from "../components/Navbar";
-import SEO from "../components/SEO";
-import Solution from "../components/Solution";
+import About from "../components/Home/About";
+import Experimentation from "../components/Home/Experimentation";
+import FAQ from "../components/Home/FAQ";
+import Growth from "../components/Home/Growth";
+import Hero from "../components/Home/Hero";
+import SEO from "../components/Common/SEO";
+import Solution from "../components/Home/Solution";
 import { graphql } from "gatsby";
 import { HomeProps } from "../utils/types";
 
@@ -49,7 +47,6 @@ const Home: FC<HomeProps> = ({ data }) => {
   return (
     <div className="min-h-screen">
       <SEO />
-      <Navbar />
       <Hero title={heroTitle} description={heroDescription.heroDescription} />
       <Solution
         title={solutionTitle}
@@ -86,7 +83,6 @@ const Home: FC<HomeProps> = ({ data }) => {
         para4={aboutPara4.aboutPara4}
       />
       <FAQ title={faqTitle} subTitle={faqSubtitle} list={faqList} />
-      <Footer />
     </div>
   );
 };

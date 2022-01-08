@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import { GatsbyImage } from "gatsby-plugin-image";
-import Check from "../../assets/check";
-import { SolutionProps } from "../../utils/types";
-import { colors } from "../../utils/utils";
+import Check from "../../../assets/check";
+import { SolutionProps } from "../../../utils/types";
+import { colors } from "../../../utils/utils";
 
 const Section5: FC<SolutionProps> = ({ title, details, image }) => {
   return (

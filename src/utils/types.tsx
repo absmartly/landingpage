@@ -183,6 +183,17 @@ interface LandingPage {
   }[];
 }
 
+interface Blogs {
+  id: string;
+  title: string;
+  description: {
+    raw: string;
+  };
+  updatedAt: string;
+  type: string;
+  tags: string[];
+}
+
 export interface HomeProps {
   data: {
     allContentfulLandingPage: {
@@ -191,5 +202,19 @@ export interface HomeProps {
     allContentfulExperimentation: {
       nodes: ExperimentationList[];
     };
+  };
+}
+
+export interface BlogsProps {
+  data: {
+    allContentfulBlog: {
+      nodes: Blogs[];
+    };
+  };
+}
+
+export interface BlogProps {
+  pageContext: {
+    data: Blogs;
   };
 }

@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react";
 import Particles from "react-tsparticles";
-import { HeroProps } from "../utils/types";
+import { HeroProps } from "../../utils/types";
 
 const Hero: FC<HeroProps> = ({ title, description }) => {
   const [name, setName] = useState("");

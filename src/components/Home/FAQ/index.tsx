@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import { FAQProps } from "../../utils/types";
+import { FAQProps } from "../../../utils/types";
 import Accordion from "./Accordion";
 
 const FAQ: FC<FAQProps> = ({ title, subTitle, list }) => {
