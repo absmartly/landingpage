@@ -1,30 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StaticImage } from "gatsby-plugin-image";
-import { Link, animateScroll as scroll } from "react-scroll";
+import { Link as LinkScroll } from "react-scroll";
+import { Link } from "gatsby";
 
 let navLinks = [
   {
     name: "Contact Us",
-    link: "contact-us",
+    linkHome: "contact-us",
+    link: "/#contact-us",
   },
   {
     name: "Unlimited Growth",
-    link: "unlimited-growth",
+    linkHome: "unlimited-growth",
+    link: "/#unlimited-growth",
   },
   {
     name: "Experimentation",
-    link: "experimentation",
+    linkHome: "experimentation",
+    link: "/#experimentation",
   },
   {
     name: "About",
-    link: "about",
+    linkHome: "about",
+    link: "/#about",
   },
   {
     name: "FAQ",
-    link: "faq",
+    linkHome: "faq",
+    link: "/#faq",
   },
 ];
-const Navbar = () => {
+const Navbar = ({ home }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [active, setActive] = useState("contact-us");
   const handleClick = () => {
@@ -34,6 +40,7 @@ const Navbar = () => {
   function handleSetActive(to: string) {
     setActive(to);
   }
+
   return (
     <div className="relative lg:fixed w-full mx-auto my-0 py-[10px] top-0 left-0 bg-white z-50 shadow-md">
       <div
@@ -43,7 +50,7 @@ const Navbar = () => {
         }`}
       >
         <div className="flex justify-between flex-wrap items-center my-auto">
-          <Link to="/" className="max-w-[220px]">
+          <Link to="/" className="max-w-[220px] cursor-pointer">
             <StaticImage
               className="max-w-full"
               src="https://absmartly.com/wp-content/uploads/2020/01/logo2.png"
@@ -51,25 +58,41 @@ const Navbar = () => {
             />
           </Link>
           <nav className="grow hidden lg:flex justify-end items-center">
-            {navLinks.map((link, index) => (
-              <Link
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}
-                key={index}
-                to={link.link}
-                onSetActive={handleSetActive}
-                className={`mr-3 p-1 text-[13px] font-poppins font-medium uppercase cursor-pointer
-                 hover:text-primary active:border-b-2 active:border-b-primary active:text-primary hover:border-b-2 hover:border-primary ${
-                   link.link === active
+            {home
+              ? navLinks.map((link, index) => (
+                  <LinkScroll
+                    spy={true}
+                    smooth={true}
+                    offset={-70}
+                    duration={500}
+                    key={index}
+                    to={link.linkHome}
+                    onSetActive={handleSetActive}
+                    className={`mr-3 p-1 text-[13px] font-poppins font-medium uppercase cursor-pointer
+                 hover:text-primary active:border-b-2 hover:border-b-2 hover:border-primary ${
+                   link.linkHome === active
                      ? "border-b-2 border-solid border-b-primary text-primary"
                      : "text-secondary"
                  }`}
-              >
-                {link.name}
-              </Link>
-            ))}
+                  >
+                    {link.name}
+                  </LinkScroll>
+                ))
+              : navLinks.map((link, index) => (
+                  <Link
+                    key={index}
+                    to={link.link}
+                    onClick={() => handleSetActive(link.linkHome)}
+                    className={`mr-3 p-1 text-[13px] font-poppins font-medium uppercase cursor-pointer
+                 hover:text-primary active:border-b-2 active:border-b-primary active:text-primary hover:border-b-2 hover:border-primary ${
+                   link.linkHome === active
+                     ? "border-b-2 border-solid border-b-primary text-primary"
+                     : "text-secondary"
+                 }`}
+                  >
+                    {link.name}
+                  </Link>
+                ))}
             <button
               className="button-animation mr-3 px-7 py-3 text-[13px] font-poppins font-medium uppercase text-white
                bg-primary rounded-full cursor-pointer"
@@ -111,14 +134,23 @@ const Navbar = () => {
         {isOpen && (
           <div className="block basis-full grow flex-1 lg:hidden">
             <ul className="flex flex-col list-none py-9">
-              {navLinks.map((link, index) => (
-                <li
-                  key={index}
-                  className="mr-3 p-1 text-[13px] font-poppins font-medium uppercase text-secondary hover:text-primary active:border-b-primary hover:border-b-2 hover:border-primary"
-                >
-                  <Link to={link.link}>{link.name}</Link>
-                </li>
-              ))}
+              {home
+                ? navLinks.map((link, index) => (
+                    <li
+                      key={index}
+                      className="mr-3 p-1 text-[13px] font-poppins font-medium uppercase text-secondary hover:text-primary active:border-b-primary hover:border-b-2 hover:border-primary"
+                    >
+                      <LinkScroll to={link.linkHome}>{link.name}</LinkScroll>
+                    </li>
+                  ))
+                : navLinks.map((link, index) => (
+                    <li
+                      key={index}
+                      className="mr-3 p-1 text-[13px] font-poppins font-medium uppercase text-secondary hover:text-primary active:border-b-primary hover:border-b-2 hover:border-primary"
+                    >
+                      <Link to={link.link}>{link.name}</Link>
+                    </li>
+                  ))}
             </ul>
             <button
               className=" button-animation mr-3 px-7 py-3 text-[13px] font-poppins font-medium uppercase text-white bg-primary rounded-full cursor-pointer"

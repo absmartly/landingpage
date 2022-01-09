@@ -10,17 +10,14 @@ exports.createPages = async function ({ actions, graphql }) {
             raw
           }
           tags
+          slug
         }
       }
     }
   `);
   data.allContentfulBlog.nodes.forEach((blog) => {
-    const slug = blog.title
-      .replace(/\s+/g, "-")
-      .replace(/[?,/]*/g, "")
-      .toLowerCase();
     actions.createPage({
-      path: `/blog/${slug}`,
+      path: `/blog/${blog.slug}`,
       component: require.resolve(`./src/Template/index.tsx`),
       context: {
         data: blog,

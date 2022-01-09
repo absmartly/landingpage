@@ -76,13 +76,15 @@ const Home: FC<HomeProps> = ({ data }) => {
         description={experimentationDescription.experimentationDescription}
         list={list}
       />
-      <About
-        title={aboutTitle}
-        para1={aboutDescription.aboutDescription}
-        para2={aboutPara2.aboutPara2}
-        para3={aboutPara3.aboutPara3}
-        para4={aboutPara4.aboutPara4}
-      />
+      <div>
+        <About
+          title={aboutTitle}
+          para1={aboutDescription.aboutDescription}
+          para2={aboutPara2.aboutPara2}
+          para3={aboutPara3.aboutPara3}
+          para4={aboutPara4.aboutPara4}
+        />
+      </div>
       <FAQ title={faqTitle} subTitle={faqSubtitle} list={faqList} />
     </Layout>
   );
