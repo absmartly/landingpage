@@ -2,6 +2,12 @@ module.exports = function (migration) {
   const blog = migration.createContentType("blog").name("Blog");
   blog.createField("title").type("Symbol").name("Title").required(true);
   blog
+    .createField("slug")
+    .type("Symbol")
+    .required(true)
+    .name("Slug")
+    .validations([{ unique: true }]);
+  blog
     .createField("description")
     .type("RichText")
     .name("Description")
@@ -14,5 +20,8 @@ module.exports = function (migration) {
     .name("Tags")
     .required(true);
 
+  blog.changeFieldControl("slug", "builtin", "slugEditor", {
+    trackingField: "title",
+  });
   migration.editContentType("blog").displayField("title");
 };

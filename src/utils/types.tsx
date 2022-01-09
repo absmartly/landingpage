@@ -191,6 +191,7 @@ interface Blogs {
   };
   updatedAt: string;
   type: string;
+  slug: string;
   tags: string[];
 }
 

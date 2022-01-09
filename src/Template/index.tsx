@@ -4,6 +4,7 @@ import { BlogProps } from "../utils/types";
 import RichText from "@madebyconnor/rich-text-to-jsx";
 import { BLOCKS } from "@contentful/rich-text-types";
 import Layout from "../components/Common/Layout";
+import SEO from "../components/Common/SEO";
 
 const Paragraph = ({ children, ...props }) => (
   <p
@@ -45,6 +46,7 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
   const blog = pageContext.data;
   return (
     <Layout>
+      <SEO title={blog.title} />
       <Header title={blog.title} />
       <div className="py-20 bg-[#f8f8f8]">
         <div className="w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[1140px] xl:max-w-6xl">
