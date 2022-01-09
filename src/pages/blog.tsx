@@ -4,8 +4,8 @@ import { FC } from "react";
 import Header from "../components/Blog/Header";
 import { BlogsProps } from "../utils/types";
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
-import slugify from "react-slugify";
 import Layout from "../components/Common/Layout";
+import SEO from "../components/Common/SEO";
 
 const Blogs: FC<BlogsProps> = ({ data }) => {
   function truncate(str: string, n: number) {
@@ -14,6 +14,7 @@ const Blogs: FC<BlogsProps> = ({ data }) => {
   return (
     <Layout>
       <Header title="Blog" />
+      <SEO title="Blog" />
       <div className="py-20 bg-[#f8f8f8]">
         <div className="w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[1140px] xl:max-w-6xl">
           <div className="-mx-[15px]">

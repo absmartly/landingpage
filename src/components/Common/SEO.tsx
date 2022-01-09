@@ -1,11 +1,16 @@
-import React from "react";
+import React, { FC } from "react";
 import { Helmet } from "react-helmet";
 
-const SEO = () => {
+interface ISEOProps {
+  title: string;
+  description?: string;
+}
+
+const SEO: FC<ISEOProps> = ({ title, description }) => {
   return (
     <Helmet>
       <html lang="en" />
-      <title>Home - In-house experimentation platform | A/B Smartly</title>
+      <title>{title} - In-house experimentation platform | A/B Smartly</title>
       <meta charSet="utf-8" />
       <meta
         name="description"

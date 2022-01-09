@@ -47,7 +47,7 @@ const Home: FC<HomeProps> = ({ data }) => {
   const list = data.allContentfulExperimentation.nodes;
   return (
     <Layout>
-      <SEO />
+      <SEO title="Home" />
       <Hero title={heroTitle} description={heroDescription.heroDescription} />
       <Solution
         title={solutionTitle}
