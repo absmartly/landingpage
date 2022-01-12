@@ -189,10 +189,32 @@ interface Blogs {
   description: {
     raw: string;
   };
+  createdAt: string;
   updatedAt: string;
   type: string;
   slug: string;
   tags: string[];
+  author: {
+    name: string;
+    username: string;
+  };
+}
+
+interface AuthorBlogs {
+  id: string;
+  title: string;
+  slug: string;
+  type: string;
+  updatedAt: string;
+  description: {
+    raw: string;
+  };
+}
+
+interface Author {
+  name: string;
+  username: string;
+  blog: AuthorBlogs[];
 }
 
 export interface HomeProps {
@@ -217,5 +239,11 @@ export interface BlogsProps {
 export interface BlogProps {
   pageContext: {
     data: Blogs;
+  };
+}
+
+export interface AuthorProps {
+  pageContext: {
+    data: Author;
   };
 }

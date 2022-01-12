@@ -12,3 +12,5 @@ export const cardsColors = [
   { filter: "filter2", border: "border2" },
   { filter: "filter3", border: "border3" },
 ];
+
+export const url = typeof window !== "undefined" ? window.location.href : "";

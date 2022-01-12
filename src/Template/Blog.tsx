@@ -5,6 +5,17 @@ import RichText from "@madebyconnor/rich-text-to-jsx";
 import { BLOCKS } from "@contentful/rich-text-types";
 import Layout from "../components/Common/Layout";
 import SEO from "../components/Common/SEO";
+import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
+import { Link } from "gatsby";
+import { url } from "../utils/utils";
+import {
+  LinkedinShareButton,
+  FacebookShareButton,
+  TwitterShareButton,
+  FacebookIcon,
+  TwitterIcon,
+  LinkedinIcon,
+} from "react-share";
 
 const Paragraph = ({ children, ...props }) => (
   <p
@@ -44,9 +55,23 @@ const List = ({ children, ...props }) => {
 };
 const Blog: FC<BlogProps> = ({ pageContext }) => {
   const blog = pageContext.data;
+  function truncate(str: string, n: number) {
+    return str?.length > n ? str.substring(0, n - 1) + "..." : str;
+  }
   return (
     <Layout>
-      <SEO title={blog.title} />
+      <SEO
+        title={blog.title}
+        description={truncate(
+          documentToPlainTextString(JSON.parse(blog.description.raw)),
+          200
+        )}
+        path={url}
+        createdAt={blog.createdAt}
+        updatedAt={blog.updatedAt}
+        author={blog.author.name}
+        type={blog.type}
+      />
       <Header title={blog.title} />
       <div className="py-20 bg-[#f8f8f8]">
         <div className="w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[1140px] xl:max-w-6xl">
@@ -66,9 +91,39 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
                   },
                 }}
               />
-              <div className="font-poppins">
-                <span className="mr-2">Tags:</span>
-                <span className="text-primary">{blog.tags.join(", ")}</span>
+              <div className="flex items-center justify-between space-x-5">
+                <div className="font-poppins">
+                  <span className="mr-2">Author:</span>
+                  <Link to={`/author/${blog.author.username}`}>
+                    <span className="text-primary">{blog.author.name}</span>
+                  </Link>
+                </div>
+                <div className="flex items-center font-poppins">
+                  <span className="mr-2">Share:</span>
+                  <FacebookShareButton
+                    url={url}
+                    quote={blog.title}
+                    hashtag={blog.tags.join(",")}
+                    className="mx-2"
+                  >
+                    <FacebookIcon size={32} round />
+                  </FacebookShareButton>
+                  <TwitterShareButton
+                    url={url}
+                    title={blog.title}
+                    hashtags={blog.tags}
+                    className="mx-2"
+                  >
+                    <TwitterIcon size={32} round />
+                  </TwitterShareButton>
+                  <LinkedinShareButton
+                    url={url}
+                    title={blog.title}
+                    className="mx-2"
+                  >
+                    <LinkedinIcon size={32} round />
+                  </LinkedinShareButton>
+                </div>
               </div>
             </div>
           </div>

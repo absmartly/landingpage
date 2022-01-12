@@ -4,18 +4,49 @@ import { Helmet } from "react-helmet";
 interface ISEOProps {
   title: string;
   description?: string;
+  path: string;
+  createdAt?: string;
+  updatedAt?: string;
+  author?: string;
+  type?: string;
 }
 
-const SEO: FC<ISEOProps> = ({ title, description }) => {
+const SEO: FC<ISEOProps> = ({
+  title,
+  description,
+  path,
+  createdAt,
+  updatedAt,
+  author,
+  type,
+}) => {
   return (
     <Helmet>
       <html lang="en" />
-      <title>{title} - In-house experimentation platform | A/B Smartly</title>
       <meta charSet="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="canonical" href={path} />
+      <title>{title}</title>
+      <meta property="og:locale" content="en_US" />
+      {type && <meta property="og:type" content="article" />}
+      <meta property="og:title" content={title} />
+      {description && <meta property="og:description" content={description} />}
+      <meta property="og:url" content={path} />
       <meta
-        name="description"
-        content="Knowledge based and engineering centric experimentation platform where multiple teams can run hundreds or thousands of simultaneous experiments without stepping on each other toes, with transparency to all stakeholders, and full visibility about possible interactions."
+        property="og:site_name"
+        content="In-house experimentation platform | A/B Smartly"
       />
+      {createdAt && (
+        <meta property="article:published_time" content={createdAt} />
+      )}
+      {updatedAt && (
+        <meta property="article:modified_time" content={updatedAt} />
+      )}
+      <meta name="twitter:card" content="summary_large_image" />
+      {author && <meta name="twitter:label1" content="Written by" />}
+      {author && <meta name="twitter:data1" content={author} />}
+      {author && <meta name="twitter:label2" content="Est. reading time" />}
+      {author && <meta name="twitter:data2" content="9 minutes" />}
     </Helmet>
   );
 };

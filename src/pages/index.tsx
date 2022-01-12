@@ -9,6 +9,7 @@ import Solution from "../components/Home/Solution";
 import { graphql } from "gatsby";
 import { HomeProps } from "../utils/types";
 import Layout from "../components/Common/Layout";
+import { url } from "../utils/utils";
 
 const Home: FC<HomeProps> = ({ data }) => {
   const {
@@ -47,7 +48,10 @@ const Home: FC<HomeProps> = ({ data }) => {
   const list = data.allContentfulExperimentation.nodes;
   return (
     <Layout>
-      <SEO title="Home" />
+      <SEO
+        title="Home - In-house experimentation platform | A/B Smartly"
+        path={url}
+      />
       <Hero title={heroTitle} description={heroDescription.heroDescription} />
       <Solution
         title={solutionTitle}

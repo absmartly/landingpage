@@ -1,12 +1,24 @@
 require("dotenv").config();
 
 module.exports = {
+  siteMetadata: {
+    siteUrl: "https://absmartly.netlify.app/",
+  },
   plugins: [
     "gatsby-plugin-postcss",
     "gatsby-plugin-image",
     "gatsby-plugin-sharp",
     "gatsby-plugin-react-helmet",
     "gatsby-transformer-sharp",
+    "gatsby-plugin-sitemap",
+    {
+      resolve: "gatsby-plugin-robots-txt",
+      options: {
+        host: "https://absmartly.netlify.app",
+        sitemap: "https://absmartly.netlify.app/sitemap/sitemap-index.xml",
+        policy: [{ userAgent: "*", allow: "/" }],
+      },
+    },
     {
       resolve: "gatsby-plugin-typescript",
       options: {
