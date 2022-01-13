@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useRef, useState } from "react";
 import { path } from "../../utils/utils";
 
 const Form = () => {
@@ -7,7 +7,22 @@ const Form = () => {
   const [website, setWebsite] = useState("");
   const [comment, setComment] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-
+  const ref = useRef<HTMLFormElement>(null);
+  const processForm = (form) => {
+    const data = new FormData(form);
+    data.append("form-name", "newsletter");
+    fetch("/.netlify/functions/comment-handler", {
+      method: "POST",
+      body: data,
+    })
+      .then((res) => {
+        console.log(res);
+        form.innerHTML = `<div class="form--success">Almost there! Check your inbox for a confirmation e-mail.</div>`;
+      })
+      .catch((error) => {
+        form.innerHTML = `<div class="form--error">Error: ${error}</div>`;
+      });
+  };
   const encode = (data) => {
     return Object.keys(data)
       .map(
@@ -17,20 +32,12 @@ const Form = () => {
   };
 
   const submitForm = (event) => {
-    const encode = (data) => {
-      const formData = new FormData();
-
-      for (const key of Object.keys(data)) {
-        formData.append(key, data[key]);
-      }
-
-      return formData;
-    };
     event.preventDefault();
-    fetch("/", {
+    fetch("/.netlify/functions/comment-handler", {
       method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({
-        "form-name": event.target.name,
+        "form-name": "contact",
         name,
         email,
         website,
@@ -62,6 +69,7 @@ const Form = () => {
         onSubmit={submitForm}
         className="grid md:grid-cols-3 grid-rows-1 gap-3"
       >
+        <input type="hidden" name="form-name" value="comments-queue" />
         <textarea
           id="comment"
           name="comment"

@@ -4,8 +4,10 @@ require("dotenv").config();
 
 const URL = "https://absmartly.netlify.app";
 
-export function handler(event, context, callback) {
+exports.handler = async (event, context, callback) => {
   // get the arguments from the notification
+  console.log(event.body);
+  // console.log(context);
   var body = JSON.parse(event.body);
 
   // prepare call to the Slack API
@@ -60,4 +62,4 @@ export function handler(event, context, callback) {
       return console.log(msg);
     }
   );
-}
+};
