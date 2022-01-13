@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, FormEvent, useState } from "react";
 import Header from "../components/Blog/Header";
 import { BlogProps } from "../utils/types";
 import RichText from "@madebyconnor/rich-text-to-jsx";
@@ -17,6 +17,8 @@ import {
   LinkedinIcon,
 } from "react-share";
 import getReadingTime from "../components/Common/readTime";
+
+type FormDataState = { [key: string]: string };
 
 const Paragraph = ({ children, ...props }) => (
   <p
@@ -54,7 +56,24 @@ const List = ({ children, ...props }) => {
     </ol>
   );
 };
+
+const encode = (data: FormDataState) => {
+  const formData = new FormData();
+
+  for (const key of Object.keys(data)) {
+    formData.append(key, data[key]);
+  }
+
+  return formData;
+};
+
 const Blog: FC<BlogProps> = ({ pageContext }) => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [website, setWebsite] = useState("");
+  const [comment, setComment] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const blog = pageContext.data;
   function truncate(str: string, n: number) {
     return str?.length > n ? str.substring(0, n - 1) + "..." : str;
@@ -66,6 +85,35 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
   const hashtags = blog.tags.map((tag) => {
     return tag.replace(/\s/g, "").replace(/\//g, "");
   });
+
+  async function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+    setIsSubmitting(true);
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({
+        "form-name": "comments-queue",
+        name,
+        email,
+        website,
+        comment,
+      }),
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          alert("Thanks for your comment!");
+          setName("");
+          setEmail("");
+          setWebsite("");
+          setComment("");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    setIsSubmitting(false);
+  }
   return (
     <Layout>
       <SEO
@@ -81,8 +129,8 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
       <Header title={blog.title} />
       <div className="py-20 bg-[#f8f8f8]">
         <div className="w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[1140px] xl:max-w-6xl">
-          <div className="-mx-[15px]">
-            <div className="relative w-full px-[15px] md:grow-0 md:shrink-0 md:basis-full md:max-w-full ">
+          <div className="-mx-[15px] border-b-2 border-secondary">
+            <div className="relative w-full px-[15px] md:grow-0 md:shrink-0 md:basis-full md:max-w-full mb-20">
               <RichText
                 richText={JSON.parse(blog.description.raw)}
                 overrides={{
@@ -132,6 +180,73 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="py-10">
+            <h3 className="font-work_sans text-2xl font-normal mb-3 text-[#212121] leading-5">
+              Leave a Comment
+            </h3>
+            <form
+              data-netlify="true"
+              name="comments-queue"
+              data-netlify-honeypot="bot-field"
+              className="grid md:grid-cols-3 grid-rows-1 gap-3"
+              onSubmit={handleSubmit}
+            >
+              <textarea
+                name="comment"
+                rows={6}
+                placeholder="Comment *"
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                className="md:col-span-3 w-full mb-4 bg-[#2b60ba14] outline-0 border-0 py-3 px-5 text-black
+                font-normal text-sm"
+              />
+              <input
+                name="name"
+                type="text"
+                placeholder="Name *"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full mb-4 bg-[#2b60ba14] outline-0 border-0 py-3 px-5 text-black
+                font-normal text-sm"
+              />
+              <input
+                name="email"
+                type="email"
+                placeholder="Email *"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full mb-4 bg-[#2b60ba14] outline-0 border-0 py-3 px-5 text-black
+                font-normal text-sm"
+              />
+              <input
+                name="website"
+                type="url"
+                placeholder="Website *"
+                value={website}
+                onChange={(e) => setWebsite(e.target.value)}
+                className="w-full mb-4 bg-[#2b60ba14] outline-0 border-0 py-3 px-5 text-black
+                font-normal text-sm"
+              />
+              <p className="md:col-span-3 w-full mb-4 py-3 px-1 flex items-center">
+                <input id="checkbox" name="checkbox" type="checkbox" />
+                <label
+                  htmlFor="checkbox"
+                  className="font-poppins text-[16px] font-medium ml-3 text-[#535353]"
+                >
+                  Save my name, email, and website in this browser for the next
+                  time I comment.
+                </label>
+              </p>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="bg-primary w-min text-[13px] font-medium mx-2 py-[14px] px-7 rounded-3xl border-none
+              outline-none shadow-sm text-white align-middle whitespace-nowrap button-animation"
+              >
+                Send Comment
+              </button>
+            </form>
           </div>
         </div>
       </div>
