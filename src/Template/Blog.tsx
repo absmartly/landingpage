@@ -89,7 +89,7 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     setIsSubmitting(true);
-    fetch("/", {
+    fetch("/comment-handler", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({
