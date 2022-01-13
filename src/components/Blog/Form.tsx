@@ -33,7 +33,7 @@ const Form = () => {
 
   const submitForm = (event) => {
     event.preventDefault();
-    fetch("/.netlify/functions/comment-handler", {
+    fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({
