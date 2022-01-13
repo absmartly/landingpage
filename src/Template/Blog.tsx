@@ -6,7 +6,7 @@ import { BLOCKS } from "@contentful/rich-text-types";
 import Layout from "../components/Common/Layout";
 import SEO from "../components/Common/SEO";
 import { Link } from "gatsby";
-import { url } from "../utils/utils";
+import { path, url } from "../utils/utils";
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 import {
   LinkedinShareButton,
@@ -57,14 +57,10 @@ const List = ({ children, ...props }) => {
   );
 };
 
-const encode = (data: FormDataState) => {
-  const formData = new FormData();
-
-  for (const key of Object.keys(data)) {
-    formData.append(key, data[key]);
-  }
-
-  return formData;
+const encode = (data) => {
+  return Object.keys(data)
+    .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&");
 };
 
 const Blog: FC<BlogProps> = ({ pageContext }) => {
@@ -98,6 +94,7 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
         email,
         website,
         comment,
+        path: path,
       }),
     })
       .then((res) => {
@@ -186,11 +183,11 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
               Leave a Comment
             </h3>
             <form
-              data-netlify="true"
               name="comments-queue"
+              method="post"
+              data-netlify="true"
               data-netlify-honeypot="bot-field"
               className="grid md:grid-cols-3 grid-rows-1 gap-3"
-              onSubmit={handleSubmit}
             >
               <textarea
                 name="comment"
