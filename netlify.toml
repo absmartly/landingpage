@@ -13,3 +13,5 @@
     # e.g. "ALL"
     # default: "ALL"
     formNames = "approved-comments"
+
+    dataDirectory = "_data"
