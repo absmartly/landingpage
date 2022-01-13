@@ -123,10 +123,8 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
                     <TwitterIcon size={32} round />
                   </TwitterShareButton>
                   <LinkedinShareButton
-                    title={blog.title}
-                    summary={blog.description.raw}
-                    source="In-house experimentation platform | A/B Smartly"
                     url={url}
+                    title={blog.title}
                     className="mx-2"
                   >
                     <LinkedinIcon size={32} round />
