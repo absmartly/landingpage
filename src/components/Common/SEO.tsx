@@ -7,6 +7,7 @@ interface ISEOProps {
   path: string;
   createdAt?: string;
   updatedAt?: string;
+  estTime?: string;
   author?: string;
   type?: string;
 }
@@ -18,6 +19,7 @@ const SEO: FC<ISEOProps> = ({
   createdAt,
   updatedAt,
   author,
+  estTime,
   type,
 }) => {
   return (
@@ -30,6 +32,7 @@ const SEO: FC<ISEOProps> = ({
       <meta property="og:locale" content="en_US" />
       {type && <meta property="og:type" content="article" />}
       <meta property="og:title" content={title} />
+      {description && <meta name="description" content={description} />}
       {description && <meta property="og:description" content={description} />}
       <meta property="og:url" content={path} />
       <meta
@@ -46,7 +49,7 @@ const SEO: FC<ISEOProps> = ({
       {author && <meta name="twitter:label1" content="Written by" />}
       {author && <meta name="twitter:data1" content={author} />}
       {author && <meta name="twitter:label2" content="Est. reading time" />}
-      {author && <meta name="twitter:data2" content="9 minutes" />}
+      {author && <meta name="twitter:data2" content={estTime} />}
     </Helmet>
   );
 };

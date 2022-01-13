@@ -5,9 +5,9 @@ import RichText from "@madebyconnor/rich-text-to-jsx";
 import { BLOCKS } from "@contentful/rich-text-types";
 import Layout from "../components/Common/Layout";
 import SEO from "../components/Common/SEO";
-import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 import { Link } from "gatsby";
 import { url } from "../utils/utils";
+import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 import {
   LinkedinShareButton,
   FacebookShareButton,
@@ -16,6 +16,7 @@ import {
   TwitterIcon,
   LinkedinIcon,
 } from "react-share";
+import getReadingTime from "../components/Common/readTime";
 
 const Paragraph = ({ children, ...props }) => (
   <p
@@ -58,18 +59,23 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
   function truncate(str: string, n: number) {
     return str?.length > n ? str.substring(0, n - 1) + "..." : str;
   }
+  const estTime = getReadingTime(
+    documentToPlainTextString(JSON.parse(blog.description.raw))
+  ) as unknown as string;
+
+  const hashtags = blog.tags.map((tag) => {
+    return tag.replace(/\s/g, "").replace(/\//g, "");
+  });
   return (
     <Layout>
       <SEO
         title={blog.title}
-        description={truncate(
-          documentToPlainTextString(JSON.parse(blog.description.raw)),
-          200
-        )}
+        description={truncate(blog.seoDescription.seoDescription, 200)}
         path={url}
         createdAt={blog.createdAt}
         updatedAt={blog.updatedAt}
         author={blog.author.name}
+        estTime={estTime}
         type={blog.type}
       />
       <Header title={blog.title} />
@@ -91,7 +97,7 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
                   },
                 }}
               />
-              <div className="flex items-center justify-between space-x-5">
+              <div className="flex flex-col md:flex-row md:items-center justify-between space-y-4 md:space-x-5 ">
                 <div className="font-poppins">
                   <span className="mr-2">Author:</span>
                   <Link to={`/author/${blog.author.username}`}>
@@ -103,7 +109,7 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
                   <FacebookShareButton
                     url={url}
                     quote={blog.title}
-                    hashtag={blog.tags.join(",")}
+                    hashtag={hashtags[0]}
                     className="mx-2"
                   >
                     <FacebookIcon size={32} round />
@@ -111,14 +117,16 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
                   <TwitterShareButton
                     url={url}
                     title={blog.title}
-                    hashtags={blog.tags}
+                    hashtags={hashtags}
                     className="mx-2"
                   >
                     <TwitterIcon size={32} round />
                   </TwitterShareButton>
                   <LinkedinShareButton
-                    url={url}
                     title={blog.title}
+                    summary={blog.description.raw}
+                    source="In-house experimentation platform | A/B Smartly"
+                    url={url}
                     className="mx-2"
                   >
                     <LinkedinIcon size={32} round />

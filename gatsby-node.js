@@ -12,6 +12,9 @@ exports.createPages = async function ({ actions, graphql }) {
           }
           tags
           slug
+          seoDescription {
+            seoDescription
+          }
           author {
             name
             username

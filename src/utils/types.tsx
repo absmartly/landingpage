@@ -189,6 +189,9 @@ interface Blogs {
   description: {
     raw: string;
   };
+  seoDescription: {
+    seoDescription: string;
+  };
   createdAt: string;
   updatedAt: string;
   type: string;
