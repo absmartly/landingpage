@@ -10,6 +10,7 @@ import { graphql } from "gatsby";
 import { HomeProps } from "../utils/types";
 import Layout from "../components/Common/Layout";
 import { url } from "../utils/utils";
+import Form from "../components/Blog/Form";
 
 const Home: FC<HomeProps> = ({ data }) => {
   const {
@@ -90,6 +91,7 @@ const Home: FC<HomeProps> = ({ data }) => {
         />
       </div>
       <FAQ title={faqTitle} subTitle={faqSubtitle} list={faqList} />
+      <Form />
     </Layout>
   );
 };

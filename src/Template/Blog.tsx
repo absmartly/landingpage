@@ -58,11 +58,7 @@ const List = ({ children, ...props }) => {
   );
 };
 
-
-
 const Blog: FC<BlogProps> = ({ pageContext }) => {
-  
-
   const blog = pageContext.data;
   function truncate(str: string, n: number) {
     return str?.length > n ? str.substring(0, n - 1) + "..." : str;
@@ -74,7 +70,6 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
   const hashtags = blog.tags.map((tag) => {
     return tag.replace(/\s/g, "").replace(/\//g, "");
   });
-
 
   return (
     <Layout>
@@ -143,7 +138,12 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
               </div>
             </div>
           </div>
-          <Form />
+          <div className="py-10">
+            <h3 className="font-work_sans text-2xl font-normal mb-3 text-[#212121] leading-5">
+              Leave a Comment
+            </h3>
+            <Form />
+          </div>
         </div>
       </div>
     </Layout>
