@@ -7,22 +7,7 @@ const Form = () => {
   const [website, setWebsite] = useState("");
   const [comment, setComment] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const ref = useRef<HTMLFormElement>(null);
-  const processForm = (form) => {
-    const data = new FormData(form);
-    data.append("form-name", "newsletter");
-    fetch("/.netlify/functions/comment-handler", {
-      method: "POST",
-      body: data,
-    })
-      .then((res) => {
-        console.log(res);
-        form.innerHTML = `<div class="form--success">Almost there! Check your inbox for a confirmation e-mail.</div>`;
-      })
-      .catch((error) => {
-        form.innerHTML = `<div class="form--error">Error: ${error}</div>`;
-      });
-  };
+
   const encode = (data) => {
     return Object.keys(data)
       .map(
