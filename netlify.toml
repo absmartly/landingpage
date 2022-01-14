@@ -1,0 +1,12 @@
+[build]
+  Functions = "functions"
+  command = "npm run build"
+  publish = "public"
+
+# Config for the Netlify Build Plugin: netlify-plugin-form-submissions
+[[plugins]]
+  package = "netlify-plugin-form-submissions"
+
+  [plugins.inputs]
+    formNames = "approved-comments"
+    dataDirectory = "_data"
