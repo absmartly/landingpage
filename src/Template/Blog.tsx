@@ -18,8 +18,7 @@ import {
 } from "react-share";
 import getReadingTime from "../components/Common/readTime";
 import Form from "../components/Blog/Form";
-
-type FormDataState = { [key: string]: string };
+import { Disqus } from "gatsby-plugin-disqus";
 
 const Paragraph = ({ children, ...props }) => (
   <p
@@ -70,6 +69,12 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
   const hashtags = blog.tags.map((tag) => {
     return tag.replace(/\s/g, "").replace(/\//g, "");
   });
+
+  let disqusConfig = {
+    url: url,
+    identifier: blog.slug,
+    title: blog.title,
+  };
 
   return (
     <Layout>
@@ -138,12 +143,7 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
               </div>
             </div>
           </div>
-          <div className="py-10">
-            <h3 className="font-work_sans text-2xl font-normal mb-3 text-[#212121] leading-5">
-              Leave a Comment
-            </h3>
-            <Form />
-          </div>
+          <Disqus config={disqusConfig} />
         </div>
       </div>
     </Layout>

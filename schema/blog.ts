@@ -19,6 +19,14 @@ module.exports = function (migration) {
     .items({ type: "Symbol" })
     .name("Tags")
     .required(true);
+  blog
+    .createField("author")
+    .type("Link")
+    .name("Author")
+    .linkType("Entry")
+    .required(true)
+    .validations([{ linkContentType: ["author"] }]);
+  blog.createField("seoDescription").type("Text").name("SEO Description");
 
   blog.changeFieldControl("slug", "builtin", "slugEditor", {
     trackingField: "title",

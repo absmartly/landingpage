@@ -12,6 +12,12 @@ module.exports = {
     "gatsby-transformer-sharp",
     "gatsby-plugin-sitemap",
     {
+      resolve: `gatsby-plugin-disqus`,
+      options: {
+        shortname: `absmartly`,
+      },
+    },
+    {
       resolve: "gatsby-plugin-robots-txt",
       options: {
         host: "https://absmartly.netlify.app",
