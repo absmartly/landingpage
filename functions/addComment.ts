@@ -76,7 +76,8 @@ exports.handler = function (
         // Update post
         console.log("Post Comments ==> ", postComments);
         console.log("Data Updated ==> ", entry);
-        return entry;
+        entry.update();
+        return entry.publish();
       })
       .catch(console.error);
     // Callback with updated comments to update state
