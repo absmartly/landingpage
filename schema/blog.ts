@@ -26,8 +26,8 @@ module.exports = function (migration) {
     .linkType("Entry")
     .required(true)
     .validations([{ linkContentType: ["author"] }]);
+  blog.createField("comments").type("JSON").name("Comments").required(false);
   blog.createField("seoDescription").type("Text").name("SEO Description");
-
   blog.changeFieldControl("slug", "builtin", "slugEditor", {
     trackingField: "title",
   });

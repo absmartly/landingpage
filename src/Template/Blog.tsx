@@ -5,76 +5,29 @@ import RichText from "@madebyconnor/rich-text-to-jsx";
 import { BLOCKS } from "@contentful/rich-text-types";
 import Layout from "../components/Common/Layout";
 import SEO from "../components/Common/SEO";
-import { Link } from "gatsby";
-import { path, url } from "../utils/utils";
+import { graphql, Link } from "gatsby";
+import { url } from "../utils/utils";
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
-import {
-  LinkedinShareButton,
-  FacebookShareButton,
-  TwitterShareButton,
-  FacebookIcon,
-  TwitterIcon,
-  LinkedinIcon,
-} from "react-share";
+
 import getReadingTime from "../components/Common/readTime";
-import Form from "../components/Blog/Form";
 import { Disqus } from "gatsby-plugin-disqus";
+import Form from "../components/Blog/Form";
+import {
+  Heading2,
+  Heading3,
+  Paragraph,
+} from "../components/Common/RichTextComponents";
+import SocialShare from "../components/Common/SocialShare";
 
-const Paragraph = ({ children, ...props }) => (
-  <p
-    {...props}
-    className="font-poppins text-[15px] leading-6 text-left text-[#535353] mb-4"
-  >
-    {children}
-  </p>
-);
-
-const Heading2 = ({ children, ...props }) => (
-  <h2
-    {...props}
-    className="font-work_sans mb-[0.8rem] text-[2.3rem] font-normal text-[#212121] tracking-[1.25]"
-  >
-    {children}
-  </h2>
-);
-
-const Heading3 = ({ children, ...props }) => (
-  <h3
-    {...props}
-    className="font-work_sans mb-[0.8rem] text-[2rem] font-normal text-[#212121] tracking-[1.25]"
-  >
-    {children}
-  </h3>
-);
-
-const List = ({ children, ...props }) => {
-  return (
-    <ol {...props} className="list-decimal ml-8">
-      {children.map((item, index) => {
-        return <li key={index}>{item}</li>;
-      })}
-    </ol>
-  );
-};
-
-const Blog: FC<BlogProps> = ({ pageContext }) => {
+const Blog: FC<BlogProps> = ({ pageContext, data }) => {
   const blog = pageContext.data;
+  console.log("Data ==> ", blog);
   function truncate(str: string, n: number) {
     return str?.length > n ? str.substring(0, n - 1) + "..." : str;
   }
   const estTime = getReadingTime(
     documentToPlainTextString(JSON.parse(blog.description.raw))
   ) as unknown as string;
-
-  const hashtags = blog.tags.map((tag) => {
-    return tag.replace(/\s/g, "").replace(/\//g, "");
-  });
-
-  let disqusConfig = {
-    url: url,
-    identifier: blog.slug,
-    title: blog.title,
-  };
 
   return (
     <Layout>
@@ -114,36 +67,11 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
                     <span className="text-primary">{blog.author.name}</span>
                   </Link>
                 </div>
-                <div className="flex items-center font-poppins">
-                  <span className="mr-2">Share:</span>
-                  <FacebookShareButton
-                    url={url}
-                    quote={blog.title}
-                    hashtag={hashtags[0]}
-                    className="mx-2"
-                  >
-                    <FacebookIcon size={32} round />
-                  </FacebookShareButton>
-                  <TwitterShareButton
-                    url={url}
-                    title={blog.title}
-                    hashtags={hashtags}
-                    className="mx-2"
-                  >
-                    <TwitterIcon size={32} round />
-                  </TwitterShareButton>
-                  <LinkedinShareButton
-                    url={url}
-                    title={blog.title}
-                    className="mx-2"
-                  >
-                    <LinkedinIcon size={32} round />
-                  </LinkedinShareButton>
-                </div>
+                <SocialShare title={blog.title} tags={blog.tags} />
               </div>
             </div>
           </div>
-          <Disqus config={disqusConfig} />
+          <Form id={blog.contentful_id} />
         </div>
       </div>
     </Layout>
@@ -151,3 +79,27 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
 };
 
 export default Blog;
+
+export const query = graphql`
+  query ($slug: String!) {
+    allWebMentionEntry(filter: { wmTarget: { eq: $slug } }) {
+      totalCount
+      edges {
+        node {
+          id
+          published(formatString: "MM-DD-YYYY")
+          author {
+            name
+            photo
+            url
+          }
+          url
+          wmId
+          content {
+            html
+          }
+        }
+      }
+    }
+  }
+`;

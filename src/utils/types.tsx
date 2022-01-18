@@ -185,6 +185,7 @@ interface LandingPage {
 
 interface Blogs {
   id: string;
+  contentful_id: string;
   title: string;
   description: {
     raw: string;
@@ -243,6 +244,7 @@ export interface BlogProps {
   pageContext: {
     data: Blogs;
   };
+  data: any;
 }
 
 export interface AuthorProps {

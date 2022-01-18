@@ -4,6 +4,7 @@ exports.createPages = async function ({ actions, graphql }) {
       allContentfulBlog {
         nodes {
           id
+          contentful_id
           title
           createdAt(formatString: "MMM-DD-YYYY")
           updatedAt(formatString: "MMM-DD-YYYY")
@@ -45,6 +46,7 @@ exports.createPages = async function ({ actions, graphql }) {
       component: require.resolve(`./src/Template/Blog.tsx`),
       context: {
         data: blog,
+        slug: `https://absmartly.com/blog/${blog.slug}`,
       },
     });
   });

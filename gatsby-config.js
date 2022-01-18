@@ -12,9 +12,17 @@ module.exports = {
     "gatsby-transformer-sharp",
     "gatsby-plugin-sitemap",
     {
-      resolve: `gatsby-plugin-disqus`,
+      resolve: `gatsby-plugin-webmention`,
       options: {
-        shortname: `absmartly`,
+        username: "www.absmartly.com",
+        identity: {
+          twitter: "absmartly",
+        },
+        mentions: true,
+        pingbacks: false,
+        domain: "www.absmartly.com",
+        fetchLimit: 100,
+        token: process.env.WEBMENTIONS_TOKEN,
       },
     },
     {
