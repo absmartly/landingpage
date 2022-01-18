@@ -1,15 +1,17 @@
-import React, { useState } from "react";
-import { FC } from "react";
+import React, { useState, FC } from "react";
+import { Comments as IComments } from "../../utils/types";
 
 interface IFormProps {
   id: string;
+  comments: IComments[];
 }
 
-const Form: FC<IFormProps> = ({ id }) => {
+const Form: FC<IFormProps> = ({ id, comments }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [website, setWebsite] = useState("");
   const [comment, setComment] = useState("");
+  const [postComments, setPostComments] = useState(comments);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const submitForm = (event) => {
@@ -23,7 +25,7 @@ const Form: FC<IFormProps> = ({ id }) => {
     };
     setIsSubmitting(true);
 
-    fetch("/.netlify/functions/addComments", {
+    fetch("/.netlify/functions/addComment", {
       method: "POST",
       headers: axiosConfig.header,
       body: JSON.stringify({
@@ -32,13 +34,43 @@ const Form: FC<IFormProps> = ({ id }) => {
         website,
         message: comment,
         ID: id,
-        reply: [],
-        replyID: "",
       }),
-    });
+    })
+      .then((res) => {
+        setIsSubmitting(false);
+        console.log("Response from server: ", res);
+        setName("");
+        setEmail("");
+        setWebsite("");
+        setComment("");
+        return res.json();
+      })
+      .then((data) => {
+        console.log("JSON DAta: ", data.comments);
+        setPostComments(data.comments);
+      })
+      .catch((err) => {
+        setIsSubmitting(false);
+        console.log("Error: ", err);
+      });
   };
   return (
     <div className="py-10">
+      <div className="px-10 my-10">
+        <h3 className="font-work_sans text-2xl font-normal mb-3 text-[#212121] leading-5">
+          Comments
+        </h3>
+        {postComments?.map((comment) => {
+          return (
+            <div key={comment.id} className="px-5 py-5 my-5">
+              <p>{comment.name}</p>
+              <p>{comment.email}</p>
+              <p>{comment.website}</p>
+              <p>{comment.message}</p>
+            </div>
+          );
+        })}
+      </div>
       <h3 className="font-work_sans text-2xl font-normal mb-3 text-[#212121] leading-5">
         Leave a Comment
       </h3>

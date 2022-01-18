@@ -8,9 +8,7 @@ import SEO from "../components/Common/SEO";
 import { graphql, Link } from "gatsby";
 import { url } from "../utils/utils";
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
-
 import getReadingTime from "../components/Common/readTime";
-import { Disqus } from "gatsby-plugin-disqus";
 import Form from "../components/Blog/Form";
 import {
   Heading2,
@@ -70,7 +68,7 @@ const Blog: FC<BlogProps> = ({ pageContext, data }) => {
               </div>
             </div>
           </div>
-          <Form id={blog.contentful_id} />
+          <Form id={blog.contentful_id} comments={blog.comments.comments} />
         </div>
       </div>
     </Layout>

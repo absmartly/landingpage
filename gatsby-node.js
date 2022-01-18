@@ -20,6 +20,16 @@ exports.createPages = async function ({ actions, graphql }) {
             name
             username
           }
+          comments {
+            comments {
+              id
+              message
+              name
+              timestamp
+              website
+              email
+            }
+          }
         }
       }
       allContentfulAuthor {

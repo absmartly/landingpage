@@ -83,6 +83,15 @@ export interface FAQProps {
   }[];
 }
 
+export interface Comments {
+  id: string;
+  message: string;
+  name: string;
+  timestamp: string;
+  website: string;
+  email: string;
+}
+
 export interface GrowthProps {
   title: string;
   subTitle: string;
@@ -189,6 +198,9 @@ interface Blogs {
   title: string;
   description: {
     raw: string;
+  };
+  comments: {
+    comments: Comments[] | null;
   };
   seoDescription: {
     seoDescription: string;
