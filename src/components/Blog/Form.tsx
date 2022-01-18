@@ -1,5 +1,6 @@
-import React, { useState, FC } from "react";
+import React, { useState, FC, useEffect } from "react";
 import { Comments as IComments } from "../../utils/types";
+import moment from "moment";
 
 interface IFormProps {
   id: string;
@@ -12,8 +13,12 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
   const [website, setWebsite] = useState("");
   const [comment, setComment] = useState("");
   const [postComments, setPostComments] = useState(comments);
+  const [sortComments, setSortComments] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  function getTime(time: number) {
+    return new Date(time).toDateString();
+  }
   const submitForm = (event) => {
     event.preventDefault();
     const axiosConfig = {
@@ -37,36 +42,53 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
       }),
     })
       .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setPostComments(data.comments);
         setIsSubmitting(false);
-        console.log("Response from server: ", res);
         setName("");
         setEmail("");
         setWebsite("");
         setComment("");
-        return res.json();
-      })
-      .then((data) => {
-        console.log("JSON DAta: ", data.comments);
-        setPostComments(data.comments);
       })
       .catch((err) => {
         setIsSubmitting(false);
         console.log("Error: ", err);
       });
   };
+
+  useEffect(() => {
+    const sorts = postComments.sort((a, b) =>
+      a.timestamp > b.timestamp ? -1 : 1
+    );
+    setSortComments(sorts);
+  }, [postComments, comments]);
+
   return (
     <div className="py-10">
-      <div className="px-10 my-10">
+      <div className="my-10">
         <h3 className="font-work_sans text-2xl font-normal mb-3 text-[#212121] leading-5">
-          Comments
+          {sortComments.length} Comments
         </h3>
-        {postComments?.map((comment) => {
+        {sortComments?.map((comment) => {
           return (
-            <div key={comment.id} className="px-5 py-5 my-5">
-              <p>{comment.name}</p>
-              <p>{comment.email}</p>
-              <p>{comment.website}</p>
-              <p>{comment.message}</p>
+            <div key={comment.id} className="py-5 flex items-start">
+              <div
+                className="m-1 mr-2 w-16 h-16 relative flex justify-center items-center rounded-full bg-gray-300 
+                text-2xl text-gray-700 uppercase"
+              >
+                {comment.name.charAt(0)}
+              </div>
+              <div className="mx-4">
+                <h3 className="text-2xl my-1 font-work_sans">{comment.name}</h3>
+                <p className="text-gray-600 my-1 font-poppins">
+                  {getTime(comment.timestamp * 1000)}
+                </p>
+                <p className="text-gray-600 my-1 font-poppins">
+                  {comment.message}
+                </p>
+              </div>
             </div>
           );
         })}

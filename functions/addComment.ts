@@ -13,8 +13,6 @@ exports.handler = function (
   async function main() {
     // Setup variables
     const data = JSON.parse(event.body);
-    console.log(data);
-    console.log("Token is: " + process.env.CONTENTFUL_MANAGEMENT_TOKEN);
     const { name, email, website, message, ID, reply, replyID } = data;
     let postComments = [];
     // Connect to contentful
@@ -25,22 +23,16 @@ exports.handler = function (
     await client
       .getSpace(process.env.CONTENTFUL_SPACE_ID)
       .then((space) => {
-        console.log("Space is: " + space);
         return space.getEnvironment("master");
       })
       .then((environment) => {
-        console.log("Environment is: " + environment);
         return environment.getEntry(ID);
       })
       .then((entry) => {
-        console.log("Entry ==> ", entry);
-        // Get current comments
-        console.log("Entry.fields.comments ==> ", entry.fields.comments);
         entry.fields.comments?.["en-US"].comments?.forEach((comment) => {
           postComments.push(comment);
         });
         if (reply) {
-          console.log("Reply is: " + reply);
           postComments.forEach((comment) => {
             if (comment.id === replyID) {
               comment.replies.push({
@@ -54,7 +46,6 @@ exports.handler = function (
             }
           });
         } else {
-          console.log("No Reply Found");
           postComments.push({
             name: name,
             email: email,
@@ -71,16 +62,13 @@ exports.handler = function (
       .then((space) => space.getEnvironment("master"))
       .then((environment) => environment.getEntry(ID))
       .then((entry) => {
-        // Update comments
         entry.fields.comments = { "en-US": { comments: postComments } };
-        // Update post
-        console.log("Post Comments ==> ", postComments);
-        console.log("Data Updated ==> ", entry);
-        entry.update();
+        return entry.update();
+      })
+      .then((entry) => {
         return entry.publish();
       })
       .catch(console.error);
-    // Callback with updated comments to update state
     callback(null, {
       statusCode: 200,
       body: JSON.stringify({
