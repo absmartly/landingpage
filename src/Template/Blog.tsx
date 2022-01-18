@@ -68,7 +68,7 @@ const Blog: FC<BlogProps> = ({ pageContext, data }) => {
               </div>
             </div>
           </div>
-          <Form id={blog.contentful_id} comments={blog.comments.comments} />
+          <Form id={blog.contentful_id} comments={blog.comments?.comments} />
         </div>
       </div>
     </Layout>
