@@ -25,7 +25,7 @@ const Blog: FC<AuthorProps> = ({ pageContext }) => {
             <div className="relative w-full px-[15px] md:grow-0 md:shrink-0 md:basis-full md:max-w-full">
               {/* Blogs List */}
               <div className="grid grid-cols-1 lg:grid-cols-2 grid-rows-1 text-center">
-                {author.blog.map((blog) => (
+                {author.blog?.map((blog) => (
                   <div
                     key={blog.id}
                     className="z-[2] mb-[30px] bg-white py-6 px-[30px] text-center max-w-full"
