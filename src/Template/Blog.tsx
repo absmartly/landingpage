@@ -21,7 +21,6 @@ import SocialShare from "../components/Common/SocialShare";
 
 const Blog: FC<BlogProps> = ({ pageContext, data }) => {
   const blog = pageContext.data;
-  console.log("Data ==> ", blog);
   function truncate(str: string, n: number) {
     return str?.length > n ? str.substring(0, n - 1) + "..." : str;
   }

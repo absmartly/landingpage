@@ -218,7 +218,7 @@ interface AuthorBlogs {
 interface Author {
   name: string;
   username: string;
-  blog: AuthorBlogs[];
+  blog?: AuthorBlogs[];
 }
 
 export interface HomeProps {
