@@ -4,7 +4,7 @@ import moment from "moment";
 
 interface IFormProps {
   id: string;
-  comments: IComments[];
+  comments?: IComments[];
 }
 
 const Form: FC<IFormProps> = ({ id, comments }) => {
@@ -12,7 +12,9 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
   const [email, setEmail] = useState("");
   const [website, setWebsite] = useState("");
   const [comment, setComment] = useState("");
-  const [postComments, setPostComments] = useState(comments);
+  const [postComments, setPostComments] = useState(
+    comments?.filter((comment) => comment.approved === true) || []
+  );
   const [sortComments, setSortComments] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -44,8 +46,7 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
       .then((res) => {
         return res.json();
       })
-      .then((data) => {
-        setPostComments(data.comments);
+      .then(() => {
         setIsSubmitting(false);
         setName("");
         setEmail("");
@@ -59,7 +60,7 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
   };
 
   useEffect(() => {
-    const sorts = postComments.sort((a, b) =>
+    const sorts = postComments?.sort((a, b) =>
       a.timestamp > b.timestamp ? -1 : 1
     );
     setSortComments(sorts);
@@ -69,24 +70,26 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
     <div className="py-10">
       <div className="my-10">
         <h3 className="font-work_sans text-2xl font-normal mb-3 text-[#212121] leading-5">
-          {sortComments.length} Comments
+          {sortComments?.length} Comments
         </h3>
         {sortComments?.map((comment) => {
           return (
-            <div key={comment.id} className="py-5 flex items-start">
+            <div key={comment?.id} className="py-5 flex items-start">
               <div
                 className="m-1 mr-2 w-16 h-16 relative flex justify-center items-center rounded-full bg-gray-300 
                 text-2xl text-gray-700 uppercase"
               >
-                {comment.name.charAt(0)}
+                {comment?.name.charAt(0)}
               </div>
               <div className="mx-4">
-                <h3 className="text-2xl my-1 font-work_sans">{comment.name}</h3>
+                <h3 className="text-2xl my-1 font-work_sans">
+                  {comment?.name}
+                </h3>
                 <p className="text-gray-600 my-1 font-poppins">
-                  {getTime(comment.timestamp * 1000)}
+                  {getTime(comment?.timestamp * 1000)}
                 </p>
                 <p className="text-gray-600 my-1 font-poppins">
-                  {comment.message}
+                  {comment?.message.message}
                 </p>
               </div>
             </div>

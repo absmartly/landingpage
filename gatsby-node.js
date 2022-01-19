@@ -21,14 +21,14 @@ exports.createPages = async function ({ actions, graphql }) {
             username
           }
           comments {
-            comments {
-              id
+            id
+            message {
               message
-              name
-              timestamp
-              website
-              email
             }
+            name
+            website
+            email
+            approved
           }
         }
       }

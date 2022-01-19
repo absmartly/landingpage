@@ -14,7 +14,7 @@ exports.handler = function (
     // Setup variables
     const data = JSON.parse(event.body);
     const { name, email, website, message, ID, reply, replyID } = data;
-    let postComments = [];
+    let commentsRef = [];
     // Connect to contentful
     const client = contentful.createClient({
       accessToken: process.env.CONTENTFUL_MANAGEMENT_TOKEN,
@@ -29,50 +29,51 @@ exports.handler = function (
         return environment.getEntry(ID);
       })
       .then((entry) => {
-        entry.fields.comments?.["en-US"].comments?.forEach((comment) => {
-          postComments.push(comment);
+        return entry.fields.comments?.["en-US"].forEach((ref) => {
+          return commentsRef.push(ref);
         });
-        if (reply) {
-          postComments.forEach((comment) => {
-            if (comment.id === replyID) {
-              comment.replies.push({
-                name: name,
-                email: email,
-                website: website,
-                message: message,
-                timestamp: Math.round(new Date().getTime() / 1000),
-                id: util.uuid(),
-              });
-            }
-          });
-        } else {
-          postComments.push({
-            name: name,
-            email: email,
-            website: website,
-            message: message,
-            timestamp: Math.round(new Date().getTime() / 1000),
-            id: util.uuid(),
-            replies: [],
-          });
-        }
       });
+
+    await client.getSpace(process.env.CONTENTFUL_SPACE_ID).then((space) => {
+      return space.getEnvironment("master").then((environment) =>
+        environment
+          .createEntry("comments", {
+            fields: {
+              name: { "en-US": name },
+              email: { "en-US": email },
+              website: { "en-US": website },
+              message: { "en-US": message },
+              approved: { "en-US": false },
+              replies: { "en-US": [] },
+            },
+          })
+          .then((entry) => entry.update())
+          .then((entry) => entry.publish())
+          .then((entry) => {
+            commentsRef.push({
+              sys: { type: "Link", linkType: "Entry", id: entry.sys.id },
+            });
+            return entry.sys.id;
+          })
+      );
+    });
     await client
       .getSpace(process.env.CONTENTFUL_SPACE_ID)
       .then((space) => space.getEnvironment("master"))
       .then((environment) => environment.getEntry(ID))
       .then((entry) => {
-        entry.fields.comments = { "en-US": { comments: postComments } };
+        entry.fields.comments = { "en-US": commentsRef };
         return entry.update();
       })
       .then((entry) => {
         return entry.publish();
       })
       .catch(console.error);
+
     callback(null, {
       statusCode: 200,
       body: JSON.stringify({
-        comments: postComments,
+        comments: commentsRef,
       }),
     });
   }
