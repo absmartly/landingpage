@@ -4,7 +4,7 @@ import {
   HandlerCallback,
 } from "@netlify/functions";
 import contentful from "contentful-management";
-import util from "uuidv4";
+
 exports.handler = function (
   event: HandlerEvent,
   context: HandlerContext,

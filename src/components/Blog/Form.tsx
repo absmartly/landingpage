@@ -1,6 +1,5 @@
 import React, { useState, FC, useEffect } from "react";
 import { Comments as IComments } from "../../utils/types";
-import moment from "moment";
 
 interface IFormProps {
   id: string;
@@ -15,6 +14,7 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
   const [postComments, setPostComments] = useState(
     comments?.filter((comment) => comment.approved === true) || []
   );
+  const [showAlert, setShowAlert] = useState(false);
   const [sortComments, setSortComments] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -31,7 +31,11 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
       },
     };
     setIsSubmitting(true);
-
+    setName("");
+    setEmail("");
+    setWebsite("");
+    setComment("");
+    setShowAlert(true);
     fetch("/.netlify/functions/addComment", {
       method: "POST",
       headers: axiosConfig.header,
@@ -48,10 +52,6 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
       })
       .then(() => {
         setIsSubmitting(false);
-        setName("");
-        setEmail("");
-        setWebsite("");
-        setComment("");
       })
       .catch((err) => {
         setIsSubmitting(false);
@@ -156,10 +156,11 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
           className="w-full mb-4 bg-[#2b60ba14] outline-0 border-0 py-3 px-5 text-black
                 font-normal text-sm"
         />
+
         <label htmlFor="website" hidden>
           Website
         </label>
-        <p className="md:col-span-3 w-full mb-4 py-3 px-1 flex items-center">
+        <p className="md:col-span-3 w-full mb-4 py-3 px-1 flex items-center block">
           <input id="checkbox" name="checkbox" type="checkbox" />
           <label
             htmlFor="checkbox"
@@ -169,11 +170,43 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
             comment.
           </label>
         </p>
+        {showAlert && (
+          <div
+            className="px-4 py-2 mb-4 col-span-3 text-sm text-gray-100 bg-green-600 rounded-lg w-max 
+          flex items-center justify-between"
+            onClick={() => setShowAlert(false)}
+            role="alert"
+          >
+            <span className="font-medium">
+              Your comment is submitted for approval
+            </span>
+            <button
+              type="button"
+              className="bg-transparent text-gray-100 rounded-lg ml-5"
+              data-collapse-toggle="alertId"
+              aria-label="Close"
+            >
+              <span className="sr-only">Dismiss</span>
+              <svg
+                className="w-5 h-5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        )}
         <button
           type="submit"
           disabled={isSubmitting}
           className="bg-primary w-min text-[13px] font-medium mx-2 py-[14px] px-7 rounded-3xl border-none
-              outline-none shadow-sm text-white align-middle whitespace-nowrap button-animation"
+              outline-none shadow-sm text-white align-middle whitespace-nowrap button-animation block"
         >
           Send Comment
         </button>

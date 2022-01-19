@@ -38,8 +38,7 @@
     "react-swipeable-views": "^0.14.0",
     "react-tsparticles": "^1.38.0",
     "typeface-poppins": "^1.1.13",
-    "typeface-work-sans": "^1.1.13",
-    "uuidv4": "^6.2.12"
+    "typeface-work-sans": "^1.1.13"
   },
   "devDependencies": {
     "@types/react-helmet": "^6.1.5",
