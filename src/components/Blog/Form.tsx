@@ -101,13 +101,9 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
       </h3>
       <form
         name="comments-queue"
-        method="post"
-        data-netlify="true"
-        data-netlify-honeypot="bot-field"
         onSubmit={submitForm}
         className="grid md:grid-cols-3 grid-rows-1 gap-3"
       >
-        <input type="hidden" name="form-name" value="comments-queue" />
         <textarea
           id="comment"
           name="comment"
