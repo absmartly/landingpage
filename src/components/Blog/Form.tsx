@@ -1,5 +1,5 @@
 import React, { useState, FC, useEffect } from "react";
-import { Comments as IComments } from "../../utils/types";
+import { Comments as IComments, Status } from "../../utils/types";
 
 interface IFormProps {
   id: string;
@@ -12,7 +12,7 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
   const [website, setWebsite] = useState("");
   const [comment, setComment] = useState("");
   const [postComments, setPostComments] = useState(
-    comments?.filter((comment) => comment.approved === true) || []
+    comments?.filter((comment) => comment.status === Status.Approved) || []
   );
   const [showAlert, setShowAlert] = useState(false);
   const [sortComments, setSortComments] = useState([]);

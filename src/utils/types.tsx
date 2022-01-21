@@ -83,6 +83,11 @@ export interface FAQProps {
   }[];
 }
 
+export enum Status {
+  UnApproved = "UnApproved",
+  Approved = "Approved",
+  Rejected = "Rejected",
+}
 export interface Comments {
   id: string;
   message: {
@@ -92,7 +97,7 @@ export interface Comments {
   timestamp: string;
   website: string;
   email: string;
-  approved: boolean;
+  status: Status;
 }
 
 export interface GrowthProps {
