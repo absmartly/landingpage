@@ -66,6 +66,10 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
     setSortComments(sorts);
   }, [postComments, comments]);
 
+  useEffect(() => {
+    setTimeout(() => setShowAlert(false), 2000);
+  }, [showAlert === true]);
+
   return (
     <div className="py-10">
       <div className="my-10">

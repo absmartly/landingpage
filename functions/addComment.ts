@@ -43,7 +43,6 @@ exports.handler = function (
               email: { "en-US": email },
               website: { "en-US": website },
               message: { "en-US": message },
-              approved: { "en-US": false },
               replies: { "en-US": [] },
             },
           })
