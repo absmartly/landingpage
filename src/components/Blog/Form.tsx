@@ -160,7 +160,7 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
         <label htmlFor="website" hidden>
           Website
         </label>
-        <p className="md:col-span-3 w-full mb-4 py-3 px-1 flex items-center block">
+        <p className="md:col-span-3 w-full mb-4 py-3 px-1 flex items-center">
           <input id="checkbox" name="checkbox" type="checkbox" />
           <label
             htmlFor="checkbox"
