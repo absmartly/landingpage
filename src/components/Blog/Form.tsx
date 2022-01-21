@@ -11,6 +11,7 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
   const [email, setEmail] = useState("");
   const [website, setWebsite] = useState("");
   const [comment, setComment] = useState("");
+  const [save, setSave] = useState(false);
   const [postComments, setPostComments] = useState(
     comments?.filter((comment) => comment.status === Status.Approved) || []
   );
@@ -57,6 +58,16 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
         setIsSubmitting(false);
         console.log("Error: ", err);
       });
+    if (save && typeof window !== "undefined") {
+      localStorage.setItem(
+        "myInfo",
+        JSON.stringify({
+          name,
+          email,
+          website,
+        })
+      );
+    }
   };
 
   useEffect(() => {
@@ -70,6 +81,18 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
     setTimeout(() => setShowAlert(false), 2000);
   }, [showAlert === true]);
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const info = localStorage.getItem("myInfo");
+      if (info) {
+        const { name, email, website } = JSON.parse(info);
+        setName(name);
+        setEmail(email);
+        setWebsite(website);
+      }
+    }
+  }, []);
+  console.log(save);
   return (
     <div className="py-10">
       <div className="my-10">
@@ -117,6 +140,7 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
           onChange={(e) => setComment(e.target.value)}
           className="md:col-span-3 w-full mb-4 bg-[#2b60ba14] outline-0 border-0 py-3 px-5 text-black
                 font-normal text-sm"
+          required
         />
         <label htmlFor="comment" hidden>
           Comment
@@ -130,6 +154,7 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
           onChange={(e) => setName(e.target.value)}
           className="w-full mb-4 bg-[#2b60ba14] outline-0 border-0 py-3 px-5 text-black
                 font-normal text-sm"
+          required
         />
         <label htmlFor="name" hidden>
           Name
@@ -143,6 +168,7 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
           onChange={(e) => setEmail(e.target.value)}
           className="w-full mb-4 bg-[#2b60ba14] outline-0 border-0 py-3 px-5 text-black
                 font-normal text-sm"
+          required
         />
         <label htmlFor="email" hidden>
           Email
@@ -155,13 +181,20 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
           onChange={(e) => setWebsite(e.target.value)}
           className="w-full mb-4 bg-[#2b60ba14] outline-0 border-0 py-3 px-5 text-black
                 font-normal text-sm"
+          required
         />
 
         <label htmlFor="website" hidden>
           Website
         </label>
         <p className="md:col-span-3 w-full mb-4 py-3 px-1 flex items-center">
-          <input id="checkbox" name="checkbox" type="checkbox" />
+          <input
+            id="checkbox"
+            name="checkbox"
+            type="checkbox"
+            checked={save}
+            onChange={() => setSave(!save)}
+          />
           <label
             htmlFor="checkbox"
             className="font-poppins text-[16px] font-medium ml-3 text-[#535353]"
@@ -194,9 +227,9 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 ></path>
               </svg>
             </button>

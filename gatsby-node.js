@@ -28,7 +28,7 @@ exports.createPages = async function ({ actions, graphql }) {
             name
             website
             email
-            approved
+            status
           }
         }
       }
