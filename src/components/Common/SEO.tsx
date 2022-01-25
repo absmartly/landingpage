@@ -28,6 +28,11 @@ const SEO: FC<ISEOProps> = ({
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="canonical" href={path} />
+      <link
+        rel="webmention"
+        href="https://webmention.io/absmartly.com/webmention"
+      />
+      <link rel="pingback" href="https://webmention.io/absmartly.com/xmlrpc" />
       <title>{title}</title>
       <meta property="og:locale" content="en_US" />
       {type && <meta property="og:type" content="article" />}

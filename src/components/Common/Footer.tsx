@@ -22,7 +22,7 @@ const Footer = () => {
               </Link>
             </p>
             <div className="mt-8 lg:mt-0">
-              <a href="https://twitter.com/absmartly" target="_blank">
+              <a href="https://twitter.com/absmartly" target="_blank" rel="me">
                 <StaticImage
                   className="w-4 h-4 object-contain mr-3 ml-3 cursor-pointer"
                   src="../../assets/twitter.svg"
@@ -32,6 +32,7 @@ const Footer = () => {
               <a
                 href="https://www.linkedin.com/company/absmartly"
                 target="_blank"
+                rel="me"
               >
                 <StaticImage
                   className="w-4 h-4 object-contain mr-3 ml-3 cursor-pointer"
@@ -39,14 +40,18 @@ const Footer = () => {
                   alt="LinkedIn"
                 />
               </a>
-              <a href="https://www.facebook.com/absmartly" target="_blank">
+              <a
+                href="https://www.facebook.com/absmartly"
+                target="_blank"
+                rel="me"
+              >
                 <StaticImage
                   className="w-4 h-4 object-contain mr-3 ml-3 cursor-pointer"
                   src="../../assets/facebook.svg"
                   alt="Facebook"
                 />
               </a>
-              <a href="https://github.com/absmartly/" target="_blank">
+              <a href="https://github.com/absmartly/" target="_blank" rel="me">
                 <StaticImage
                   className="w-4 h-4 object-contain mr-3 ml-3 cursor-pointer"
                   src="../../assets/git.png"
