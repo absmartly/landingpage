@@ -100,6 +100,11 @@ export interface Comments {
   status: Status;
 }
 
+export interface CategroyProps {
+  name: string;
+  slug: string;
+}
+
 export interface GrowthProps {
   title: string;
   subTitle: string;
@@ -220,6 +225,7 @@ interface Blogs {
     name: string;
     username: string;
   };
+  category: CategroyProps;
 }
 
 interface AuthorBlogs {

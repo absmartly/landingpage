@@ -30,6 +30,10 @@ exports.createPages = async function ({ actions, graphql }) {
             email
             status
           }
+          category {
+            name
+            slug
+          }
         }
       }
       allContentfulAuthor {
@@ -52,7 +56,7 @@ exports.createPages = async function ({ actions, graphql }) {
   `);
   data.allContentfulBlog.nodes.forEach((blog) => {
     actions.createPage({
-      path: `/blog/${blog.slug}`,
+      path: `/${blog.category.slug}/${blog.slug}`,
       component: require.resolve(`./src/Template/Blog.tsx`),
       context: {
         data: blog,

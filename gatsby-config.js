@@ -49,6 +49,14 @@ module.exports = {
       },
     },
     {
+      resolve: "gatsby-plugin-hubspot",
+      options: {
+        trackingCode: process.env.HUBSPOT_ID,
+        respectDNT: false,
+        productionOnly: true,
+      },
+    },
+    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: "AB Smartly",
