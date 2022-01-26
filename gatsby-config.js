@@ -12,6 +12,20 @@ module.exports = {
     "gatsby-transformer-sharp",
     "gatsby-plugin-sitemap",
     {
+      resolve: `gatsby-plugin-webmention`,
+      options: {
+        username: "www.absmartly.com",
+        identity: {
+          twitter: "absmartly",
+        },
+        mentions: true,
+        pingbacks: false,
+        domain: "www.absmartly.com",
+        fetchLimit: 100,
+        token: process.env.WEBMENTIONS_TOKEN,
+      },
+    },
+    {
       resolve: "gatsby-plugin-robots-txt",
       options: {
         host: "https://absmartly.netlify.app",

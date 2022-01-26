@@ -6,11 +6,12 @@ import SEO from "../components/Common/SEO";
 import { Link } from "gatsby";
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 
-const Blog: FC<AuthorProps> = ({ pageContext }) => {
+const Author: FC<AuthorProps> = ({ pageContext }) => {
   const author = pageContext.data;
   function truncate(str: string, n: number) {
     return str?.length > n ? str.substring(0, n - 1) + "..." : str;
   }
+
   return (
     <Layout>
       <Header title={author.name} />
@@ -69,4 +70,4 @@ const Blog: FC<AuthorProps> = ({ pageContext }) => {
   );
 };
 
-export default Blog;
+export default Author;

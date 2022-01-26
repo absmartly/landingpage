@@ -83,6 +83,23 @@ export interface FAQProps {
   }[];
 }
 
+export enum Status {
+  UnApproved = "UnApproved",
+  Approved = "Approved",
+  Rejected = "Rejected",
+}
+export interface Comments {
+  id: string;
+  message: {
+    message: string;
+  };
+  name: string;
+  timestamp: string;
+  website: string;
+  email: string;
+  status: Status;
+}
+
 export interface GrowthProps {
   title: string;
   subTitle: string;
@@ -185,10 +202,12 @@ interface LandingPage {
 
 interface Blogs {
   id: string;
+  contentful_id: string;
   title: string;
   description: {
     raw: string;
   };
+  comments: Comments[] | null;
   seoDescription: {
     seoDescription: string;
   };
@@ -217,7 +236,7 @@ interface AuthorBlogs {
 interface Author {
   name: string;
   username: string;
-  blog: AuthorBlogs[];
+  blog?: AuthorBlogs[];
 }
 
 export interface HomeProps {
@@ -243,6 +262,7 @@ export interface BlogProps {
   pageContext: {
     data: Blogs;
   };
+  data: any;
 }
 
 export interface AuthorProps {
