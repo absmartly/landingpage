@@ -41,7 +41,7 @@ exports.createPages = async function ({ actions, graphql }) {
           }
           category {
             name
-            slug
+            url
           }
         }
       }
@@ -53,7 +53,10 @@ exports.createPages = async function ({ actions, graphql }) {
             id
             title
             slug
-            type
+            category {
+              name
+              url
+            }
             updatedAt(formatString: "MMM-DD-YYYY")
             description {
               raw
@@ -65,7 +68,7 @@ exports.createPages = async function ({ actions, graphql }) {
   `);
   data.allContentfulBlog.nodes.forEach((blog) => {
     actions.createPage({
-      path: `/${blog.category.slug}/${blog.slug}`,
+      path: `/${blog.category.url}/${blog.slug}`,
       component: require.resolve(`./src/Template/Blog.tsx`),
       context: {
         data: blog,

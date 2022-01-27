@@ -46,7 +46,7 @@ const Blogs: FC<BlogsProps> = ({ data }) => {
                       className='mt-[10px] mb-5 text-xl font-semibold font-work_sans text-[#212121] 
                     hover:text-primary'
                     >
-                      <Link to={`/${blog.category.slug}/${blog.slug}`}>
+                      <Link to={`/${blog.category.url}/${blog.slug}`}>
                         {blog.title}
                       </Link>
                     </h5>
@@ -86,9 +86,8 @@ export const query = graphql`
         }
         category {
           name
-          slug
+          url
         }
-        type
         tags
         slug
       }

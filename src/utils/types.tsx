@@ -109,7 +109,7 @@ export interface References {
 }
 export interface CategroyProps {
   name: string;
-  slug: string;
+  url: string;
 }
 
 export interface GrowthProps {
@@ -241,7 +241,7 @@ interface AuthorBlogs {
   id: string;
   title: string;
   slug: string;
-  type: string;
+  category: CategroyProps;
   updatedAt: string;
   description: {
     raw: string;
