@@ -122,11 +122,19 @@ module.exports = function (migration) {
     .validations([{ linkContentType: ["category"] }]);
   blog
     .createField("comments1")
-    .type("Link")
+    .type("Array")
     .name("Comments")
     .linkType("Entry")
-    .required(true)
-    .validations([{ linkContentType: ["comments1"] }]);
+    .items({
+      type: "Link",
+      validations: [
+        {
+          linkContentType: ["comments1"],
+        },
+      ],
+      linkType: "Entry",
+    })
+    .required(true);
   blog.changeFieldControl("slug", "builtin", "slugEditor", {
     trackingField: "title",
   });
