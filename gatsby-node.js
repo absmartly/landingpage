@@ -10,6 +10,15 @@ exports.createPages = async function ({ actions, graphql }) {
           updatedAt(formatString: "MMM-DD-YYYY")
           description {
             raw
+            references {
+              ... on ContentfulAsset {
+                contentful_id
+                gatsbyImageData(placeholder: TRACED_SVG)
+                file {
+                  fileName
+                }
+              }
+            }
           }
           tags
           slug

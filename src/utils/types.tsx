@@ -99,7 +99,14 @@ export interface Comments {
   email: string;
   status: Status;
 }
-
+export interface References {
+  contentful_id: string;
+  gatsbyImageData: IGatsbyImageData;
+  file: {
+    fileName: string;
+  };
+  title: string;
+}
 export interface CategroyProps {
   name: string;
   slug: string;
@@ -211,7 +218,9 @@ interface Blogs {
   title: string;
   description: {
     raw: string;
+    references: References[];
   };
+
   comments: Comments[] | null;
   seoDescription: {
     seoDescription: string;
