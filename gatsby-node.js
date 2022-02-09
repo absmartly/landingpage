@@ -4,23 +4,85 @@ exports.createPages = async function ({ actions, graphql }) {
       allContentfulBlog {
         nodes {
           id
+          contentful_id
           title
+          createdAt(formatString: "MMM-DD-YYYY")
           updatedAt(formatString: "MMM-DD-YYYY")
           description {
             raw
+            references {
+              ... on ContentfulAsset {
+                contentful_id
+                gatsbyImageData(placeholder: TRACED_SVG)
+                file {
+                  fileName
+                }
+              }
+            }
           }
           tags
           slug
+          seoDescription {
+            seoDescription
+          }
+          author {
+            name
+            username
+          }
+          comments {
+            id
+            message {
+              message
+            }
+            name
+            website
+            email
+            status
+          }
+          category {
+            name
+            url
+          }
+        }
+      }
+      allContentfulAuthor {
+        nodes {
+          name
+          username
+          blog {
+            id
+            title
+            slug
+            category {
+              name
+              url
+            }
+            updatedAt(formatString: "MMM-DD-YYYY")
+            description {
+              raw
+            }
+          }
         }
       }
     }
   `);
   data.allContentfulBlog.nodes.forEach((blog) => {
     actions.createPage({
-      path: `/blog/${blog.slug}`,
-      component: require.resolve(`./src/Template/index.tsx`),
+      path: `/${blog.category.url}/${blog.slug}`,
+      component: require.resolve(`./src/Template/Blog.tsx`),
       context: {
         data: blog,
+        slug: `https://absmartly.com/blog/${blog.slug}`,
+      },
+    });
+  });
+
+  data.allContentfulAuthor.nodes.forEach((author) => {
+    actions.createPage({
+      path: `/author/${author.username}`,
+      component: require.resolve(`./src/Template/Author.tsx`),
+      context: {
+        data: author,
       },
     });
   });

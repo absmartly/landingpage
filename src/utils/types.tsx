@@ -83,6 +83,35 @@ export interface FAQProps {
   }[];
 }
 
+export enum Status {
+  UnApproved = "UnApproved",
+  Approved = "Approved",
+  Rejected = "Rejected",
+}
+export interface Comments {
+  id: string;
+  message: {
+    message: string;
+  };
+  name: string;
+  timestamp: string;
+  website: string;
+  email: string;
+  status: Status;
+}
+export interface References {
+  contentful_id: string;
+  gatsbyImageData: IGatsbyImageData;
+  file: {
+    fileName: string;
+  };
+  title: string;
+}
+export interface CategroyProps {
+  name: string;
+  url: string;
+}
+
 export interface GrowthProps {
   title: string;
   subTitle: string;
@@ -185,14 +214,44 @@ interface LandingPage {
 
 interface Blogs {
   id: string;
+  contentful_id: string;
   title: string;
   description: {
     raw: string;
+    references: References[];
   };
+
+  comments: Comments[] | null;
+  seoDescription: {
+    seoDescription: string;
+  };
+  createdAt: string;
   updatedAt: string;
   type: string;
   slug: string;
   tags: string[];
+  author: {
+    name: string;
+    username: string;
+  };
+  category: CategroyProps;
+}
+
+interface AuthorBlogs {
+  id: string;
+  title: string;
+  slug: string;
+  category: CategroyProps;
+  updatedAt: string;
+  description: {
+    raw: string;
+  };
+}
+
+interface Author {
+  name: string;
+  username: string;
+  blog?: AuthorBlogs[];
 }
 
 export interface HomeProps {
@@ -217,5 +276,12 @@ export interface BlogsProps {
 export interface BlogProps {
   pageContext: {
     data: Blogs;
+  };
+  data: any;
+}
+
+export interface AuthorProps {
+  pageContext: {
+    data: Author;
   };
 }

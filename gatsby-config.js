@@ -1,12 +1,38 @@
 require("dotenv").config();
 
 module.exports = {
+  siteMetadata: {
+    siteUrl: "https://absmartly.netlify.app/",
+  },
   plugins: [
     "gatsby-plugin-postcss",
     "gatsby-plugin-image",
     "gatsby-plugin-sharp",
     "gatsby-plugin-react-helmet",
     "gatsby-transformer-sharp",
+    "gatsby-plugin-sitemap",
+    {
+      resolve: `gatsby-plugin-webmention`,
+      options: {
+        username: "www.absmartly.com",
+        identity: {
+          twitter: "absmartly",
+        },
+        mentions: true,
+        pingbacks: false,
+        domain: "www.absmartly.com",
+        fetchLimit: 100,
+        token: process.env.WEBMENTIONS_TOKEN,
+      },
+    },
+    {
+      resolve: "gatsby-plugin-robots-txt",
+      options: {
+        host: "https://absmartly.netlify.app",
+        sitemap: "https://absmartly.netlify.app/sitemap/sitemap-index.xml",
+        policy: [{ userAgent: "*", allow: "/" }],
+      },
+    },
     {
       resolve: "gatsby-plugin-typescript",
       options: {
@@ -21,6 +47,14 @@ module.exports = {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
         accessToken: process.env.CONTENT_PREVIEW_TOKEN,
         host: process.env.CONTENTFUL_HOST || "cdn.contentful.com",
+      },
+    },
+    {
+      resolve: "gatsby-plugin-hubspot",
+      options: {
+        trackingCode: process.env.HUBSPOT_ID,
+        respectDNT: false,
+        productionOnly: true,
       },
     },
     {
