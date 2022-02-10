@@ -66,16 +66,31 @@ exports.createPages = async function ({ actions, graphql }) {
       }
     }
   `);
-  data.allContentfulBlog.nodes.forEach((blog) => {
-    actions.createPage({
-      path: `/${blog.category.url}/${blog.slug}`,
-      component: require.resolve(`./src/Template/Blog.tsx`),
-      context: {
-        data: blog,
-        slug: `https://absmartly.com/blog/${blog.slug}`,
-      },
+  data.allContentfulBlog.nodes
+    .filter((blog) => blog.category.url !== "root")
+    .forEach((blog) => {
+      actions.createPage({
+        path: `/${blog.category.url}/${blog.slug}`,
+        component: require.resolve(`./src/Template/Blog.tsx`),
+        context: {
+          data: blog,
+          slug: `https://absmartly.com/blog/${blog.slug}`,
+        },
+      });
     });
-  });
+
+  data.allContentfulBlog.nodes
+    .filter((blog) => blog.category.url == "root")
+    .forEach((blog) => {
+      actions.createPage({
+        path: `/${blog.slug}`,
+        component: require.resolve(`./src/Template/Policy.tsx`),
+        context: {
+          data: blog,
+          // slug: `https://absmartly.com/blog/${blog.slug}`,
+        },
+      });
+    });
 
   data.allContentfulAuthor.nodes.forEach((author) => {
     actions.createPage({
