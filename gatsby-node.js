@@ -34,6 +34,8 @@ exports.createPages = async function ({ actions, graphql }) {
             message {
               message
             }
+            createdAt(formatString: "MMM-DD-YYYY")
+            updatedAt(formatString: "MMM-DD-YYYY")
             name
             website
             email

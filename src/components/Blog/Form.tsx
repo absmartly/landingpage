@@ -1,5 +1,5 @@
 import React, { useState, FC, useEffect } from "react";
-import { Comments as IComments, Status } from "../../utils/types";
+import { Comments as IComments } from "../../utils/types";
 
 interface IFormProps {
   id: string;
@@ -12,9 +12,7 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
   const [website, setWebsite] = useState("");
   const [comment, setComment] = useState("");
   const [save, setSave] = useState(false);
-  const [postComments, setPostComments] = useState(
-    comments?.filter((comment) => comment.status === Status.Approved) || []
-  );
+  const [postComments, setPostComments] = useState(comments || []);
   const [showAlert, setShowAlert] = useState(false);
   const [sortComments, setSortComments] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -72,7 +70,7 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
 
   useEffect(() => {
     const sorts = postComments?.sort((a, b) =>
-      a.timestamp > b.timestamp ? -1 : 1
+      a.updatedAt > b.updatedAt ? -1 : 1
     );
     setSortComments(sorts);
   }, [postComments, comments]);
@@ -99,6 +97,7 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
           {sortComments?.length} Comments
         </h3>
         {sortComments?.map((comment) => {
+          console.log(comment);
           return (
             <div key={comment?.id} className='py-5 flex items-start'>
               <div
@@ -112,7 +111,7 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
                   {comment?.name}
                 </h3>
                 <p className='text-gray-600 my-1 font-poppins'>
-                  {getTime(comment?.timestamp * 1000)}
+                  {comment.updatedAt}
                 </p>
                 <p className='text-gray-600 my-1 font-poppins'>
                   {comment?.message.message}

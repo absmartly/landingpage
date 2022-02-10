@@ -94,7 +94,8 @@ export interface Comments {
     message: string;
   };
   name: string;
-  timestamp: string;
+  createdAt: string;
+  updatedAt: string;
   website: string;
   email: string;
   status: Status;
