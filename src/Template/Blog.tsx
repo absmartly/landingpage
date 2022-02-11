@@ -73,9 +73,11 @@ const Blog: FC<BlogProps> = ({ pageContext, data }) => {
               <div className='flex flex-col md:flex-row md:items-center justify-between space-y-4 md:space-x-5 '>
                 <div className='font-poppins'>
                   <span className='mr-2'>Author:</span>
-                  <Link to={`/author/${blog.author.username}`}>
-                    <span className='text-primary'>{blog.author.name}</span>
-                  </Link>
+                  {blog.author && (
+                    <Link to={`/author/${blog.author.username}`}>
+                      <span className='text-primary'>{blog.author.name}</span>
+                    </Link>
+                  )}
                 </div>
                 <SocialShare title={blog.title} tags={blog.tags} />
               </div>

@@ -69,7 +69,7 @@ exports.createPages = async function ({ actions, graphql }) {
     }
   `);
   data.allContentfulBlog.nodes
-    .filter((blog) => blog.category.url !== "root")
+    .filter((blog) => blog.category.url == "blog")
     .forEach((blog) => {
       actions.createPage({
         path: `/${blog.category.url}/${blog.slug}`,
@@ -82,10 +82,10 @@ exports.createPages = async function ({ actions, graphql }) {
     });
 
   data.allContentfulBlog.nodes
-    .filter((blog) => blog.category.url == "root")
+    .filter((blog) => blog.category.url == "legal/terms")
     .forEach((blog) => {
       actions.createPage({
-        path: `/${blog.slug}`,
+        path: `${blog.slug}`,
         component: require.resolve(`./src/Template/Policy.tsx`),
         context: {
           data: blog,
