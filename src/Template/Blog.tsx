@@ -52,11 +52,11 @@ const Blog: FC<BlogProps> = ({ pageContext, data }) => {
     <Layout>
       <SEO
         title={blog.title}
-        description={truncate(blog.seoDescription.seoDescription, 200)}
+        description={truncate(blog?.seoDescription?.seoDescription, 200)}
         path={url}
         createdAt={blog.createdAt}
         updatedAt={blog.updatedAt}
-        author={blog.author.name}
+        author={blog.author?.name}
         estTime={estTime}
         type={blog.type}
       />
@@ -71,22 +71,26 @@ const Blog: FC<BlogProps> = ({ pageContext, data }) => {
                   options
                 )}
               <div className='flex flex-col md:flex-row md:items-center justify-between space-y-4 md:space-x-5 '>
-                <div className='font-poppins'>
-                  <span className='mr-2'>Author:</span>
-                  {blog.author && (
+                {blog.author && (
+                  <div className='font-poppins'>
+                    <span className='mr-2'>Author:</span>
                     <Link to={`/author/${blog.author.username}`}>
                       <span className='text-primary'>{blog.author.name}</span>
                     </Link>
-                  )}
-                </div>
-                <SocialShare title={blog.title} tags={blog.tags} />
+                  </div>
+                )}
+                {blog.isSocialShare && (
+                  <SocialShare title={blog.title} tags={blog.tags} />
+                )}
               </div>
             </div>
           </div>
-          <Form
-            id={blog.contentful_id}
-            comments={blog.comments && blog.comments}
-          />
+          {blog.isComments && (
+            <Form
+              id={blog.contentful_id}
+              comments={blog.comments && blog.comments}
+            />
+          )}
         </div>
       </div>
     </Layout>

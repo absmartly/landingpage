@@ -236,6 +236,8 @@ interface Blogs {
     username: string;
   };
   category: CategroyProps;
+  isSocialShare: boolean;
+  isComments: boolean;
 }
 
 interface AuthorBlogs {

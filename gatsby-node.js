@@ -45,6 +45,8 @@ exports.createPages = async function ({ actions, graphql }) {
             name
             url
           }
+          isSocialShare
+          isComments
         }
       }
       allContentfulAuthor {
@@ -68,31 +70,18 @@ exports.createPages = async function ({ actions, graphql }) {
       }
     }
   `);
-  data.allContentfulBlog.nodes
-    .filter((blog) => blog.category.url == "blog")
-    .forEach((blog) => {
-      actions.createPage({
-        path: `/${blog.category.url}/${blog.slug}`,
-        component: require.resolve(`./src/Template/Blog.tsx`),
-        context: {
-          data: blog,
-          slug: `https://absmartly.com/blog/${blog.slug}`,
-        },
-      });
+  data.allContentfulBlog.nodes.forEach((blog) => {
+    actions.createPage({
+      path:
+        blog.category.url === "/"
+          ? `${blog.category.url}${blog.slug}`
+          : `/${blog.category.url}/${blog.slug}`,
+      component: require.resolve(`./src/Template/Blog.tsx`),
+      context: {
+        data: blog,
+      },
     });
-
-  data.allContentfulBlog.nodes
-    .filter((blog) => blog.category.url == "legal/terms")
-    .forEach((blog) => {
-      actions.createPage({
-        path: `${blog.slug}`,
-        component: require.resolve(`./src/Template/Policy.tsx`),
-        context: {
-          data: blog,
-          // slug: `https://absmartly.com/blog/${blog.slug}`,
-        },
-      });
-    });
+  });
 
   data.allContentfulAuthor.nodes.forEach((author) => {
     actions.createPage({
