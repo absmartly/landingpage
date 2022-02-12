@@ -11,7 +11,6 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import getReadingTime from "../components/Common/readTime";
 import Form from "../components/Blog/Form";
 import { GatsbyImage } from "gatsby-plugin-image";
-
 import {
   Heading2,
   Heading3,
@@ -35,6 +34,13 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
 
       [BLOCKS.HEADING_2]: (node, children) => <Heading2>{children}</Heading2>,
       [BLOCKS.HEADING_3]: (node, children) => <Heading3>{children}</Heading3>,
+      [BLOCKS.TABLE]: (node, children) => <table>{children}</table>,
+      [BLOCKS.TABLE_ROW]: (node, children) => (
+        <tr className='text-center p-2'>{children}</tr>
+      ),
+      [BLOCKS.TABLE_CELL]: (node, children) => (
+        <td className='p-2'>{children}</td>
+      ),
       [BLOCKS.EMBEDDED_ASSET]: (node, children) => {
         const ref = blog.description.references[count];
         count++;
