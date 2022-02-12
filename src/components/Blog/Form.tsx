@@ -13,9 +13,7 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
   const [website, setWebsite] = useState("");
   const [comment, setComment] = useState("");
   const [save, setSave] = useState(false);
-  const [postComments, setPostComments] = useState(
-    comments.filter((comment) => comment.status === "Approved") || []
-  );
+  const [postComments, setPostComments] = useState(comments || []);
   const [showAlert, setShowAlert] = useState(false);
   const [sortComments, setSortComments] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
