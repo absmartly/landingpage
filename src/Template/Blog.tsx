@@ -19,7 +19,7 @@ import {
 } from "../components/Common/RichTextComponents";
 import SocialShare from "../components/Common/SocialShare";
 
-const Blog: FC<BlogProps> = ({ pageContext, data }) => {
+const Blog: FC<BlogProps> = ({ pageContext }) => {
   let count = 0;
   const blog = pageContext.data;
   function truncate(str: string, n: number) {
@@ -99,26 +99,26 @@ const Blog: FC<BlogProps> = ({ pageContext, data }) => {
 
 export default Blog;
 
-export const query = graphql`
-  query ($slug: String!) {
-    allWebMentionEntry(filter: { wmTarget: { eq: $slug } }) {
-      totalCount
-      edges {
-        node {
-          id
-          published(formatString: "MM-DD-YYYY")
-          author {
-            name
-            photo
-            url
-          }
-          url
-          wmId
-          content {
-            html
-          }
-        }
-      }
-    }
-  }
-`;
+// export const query = graphql`
+//   query ($slug: String!) {
+//     allWebMentionEntry(filter: { wmTarget: { eq: $slug } }) {
+//       totalCount
+//       edges {
+//         node {
+//           id
+//           published(formatString: "MM-DD-YYYY")
+//           author {
+//             name
+//             photo
+//             url
+//           }
+//           url
+//           wmId
+//           content {
+//             html
+//           }
+//         }
+//       }
+//     }
+//   }
+// `;

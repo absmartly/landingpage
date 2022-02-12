@@ -1,5 +1,6 @@
 import React, { useState, FC, useEffect } from "react";
 import { Comments as IComments } from "../../utils/types";
+import ReactMarkdown from "react-markdown";
 
 interface IFormProps {
   id: string;
@@ -116,7 +117,7 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
                   {comment.updatedAt}
                 </p>
                 <p className='text-gray-600 my-1 font-poppins'>
-                  {comment?.message.message}
+                  <ReactMarkdown>{comment?.message.message}</ReactMarkdown>
                 </p>
               </div>
             </div>
