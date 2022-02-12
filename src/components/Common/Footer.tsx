@@ -4,7 +4,7 @@ import { graphql, Link, useStaticQuery } from "gatsby";
 const Footer = () => {
   const data = useStaticQuery(graphql`
     {
-      allContentfulBlog(filter: { category: { url: { eq: "legal/terms" } } }) {
+      allContentfulBlog(filter: { category: { url: { eq: "/" } } }) {
         nodes {
           contentful_id
           title
