@@ -11,7 +11,6 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import getReadingTime from "../components/Common/readTime";
 import Form from "../components/Blog/Form";
 import { GatsbyImage } from "gatsby-plugin-image";
-
 import {
   Heading2,
   Heading3,
@@ -19,7 +18,7 @@ import {
 } from "../components/Common/RichTextComponents";
 import SocialShare from "../components/Common/SocialShare";
 
-const Blog: FC<BlogProps> = ({ pageContext, data }) => {
+const Blog: FC<BlogProps> = ({ pageContext }) => {
   let count = 0;
   const blog = pageContext.data;
   function truncate(str: string, n: number) {
@@ -35,6 +34,13 @@ const Blog: FC<BlogProps> = ({ pageContext, data }) => {
 
       [BLOCKS.HEADING_2]: (node, children) => <Heading2>{children}</Heading2>,
       [BLOCKS.HEADING_3]: (node, children) => <Heading3>{children}</Heading3>,
+      [BLOCKS.TABLE]: (node, children) => <table>{children}</table>,
+      [BLOCKS.TABLE_ROW]: (node, children) => (
+        <tr className='text-center p-2'>{children}</tr>
+      ),
+      [BLOCKS.TABLE_CELL]: (node, children) => (
+        <td className='p-2'>{children}</td>
+      ),
       [BLOCKS.EMBEDDED_ASSET]: (node, children) => {
         const ref = blog.description.references[count];
         count++;
@@ -52,11 +58,11 @@ const Blog: FC<BlogProps> = ({ pageContext, data }) => {
     <Layout>
       <SEO
         title={blog.title}
-        description={truncate(blog.seoDescription.seoDescription, 200)}
+        description={truncate(blog?.seoDescription?.seoDescription, 200)}
         path={url}
         createdAt={blog.createdAt}
         updatedAt={blog.updatedAt}
-        author={blog.author.name}
+        author={blog.author?.name}
         estTime={estTime}
         type={blog.type}
       />
@@ -71,22 +77,26 @@ const Blog: FC<BlogProps> = ({ pageContext, data }) => {
                   options
                 )}
               <div className='flex flex-col md:flex-row md:items-center justify-between space-y-4 md:space-x-5 '>
-                <div className='font-poppins'>
-                  <span className='mr-2'>Author:</span>
-                  {blog.author && (
+                {blog.author && (
+                  <div className='font-poppins'>
+                    <span className='mr-2'>Author:</span>
                     <Link to={`/author/${blog.author.username}`}>
                       <span className='text-primary'>{blog.author.name}</span>
                     </Link>
-                  )}
-                </div>
-                <SocialShare title={blog.title} tags={blog.tags} />
+                  </div>
+                )}
+                {blog.isSocialShare && (
+                  <SocialShare title={blog.title} tags={blog.tags} />
+                )}
               </div>
             </div>
           </div>
-          <Form
-            id={blog.contentful_id}
-            comments={blog.comments && blog.comments}
-          />
+          {blog.isComments && (
+            <Form
+              id={blog.contentful_id}
+              comments={blog.comments && blog.comments}
+            />
+          )}
         </div>
       </div>
     </Layout>
@@ -95,26 +105,26 @@ const Blog: FC<BlogProps> = ({ pageContext, data }) => {
 
 export default Blog;
 
-export const query = graphql`
-  query ($slug: String!) {
-    allWebMentionEntry(filter: { wmTarget: { eq: $slug } }) {
-      totalCount
-      edges {
-        node {
-          id
-          published(formatString: "MM-DD-YYYY")
-          author {
-            name
-            photo
-            url
-          }
-          url
-          wmId
-          content {
-            html
-          }
-        }
-      }
-    }
-  }
-`;
+// export const query = graphql`
+//   query ($slug: String!) {
+//     allWebMentionEntry(filter: { wmTarget: { eq: $slug } }) {
+//       totalCount
+//       edges {
+//         node {
+//           id
+//           published(formatString: "MM-DD-YYYY")
+//           author {
+//             name
+//             photo
+//             url
+//           }
+//           url
+//           wmId
+//           content {
+//             html
+//           }
+//         }
+//       }
+//     }
+//   }
+// `;

@@ -1,5 +1,6 @@
 import React, { useState, FC, useEffect } from "react";
 import { Comments as IComments } from "../../utils/types";
+import ReactMarkdown from "react-markdown";
 
 interface IFormProps {
   id: string;
@@ -12,7 +13,9 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
   const [website, setWebsite] = useState("");
   const [comment, setComment] = useState("");
   const [save, setSave] = useState(false);
-  const [postComments, setPostComments] = useState(comments || []);
+  const [postComments, setPostComments] = useState(
+    comments.filter((comment) => comment.status === "Approved") || []
+  );
   const [showAlert, setShowAlert] = useState(false);
   const [sortComments, setSortComments] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -114,7 +117,7 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
                   {comment.updatedAt}
                 </p>
                 <p className='text-gray-600 my-1 font-poppins'>
-                  {comment?.message.message}
+                  <ReactMarkdown>{comment?.message.message}</ReactMarkdown>
                 </p>
               </div>
             </div>
