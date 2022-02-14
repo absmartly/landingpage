@@ -75,7 +75,7 @@ export default Blogs;
 
 export const query = graphql`
   {
-    allContentfulBlog {
+    allContentfulBlog(filter: { category: { url: { ne: "/" } } }) {
       nodes {
         id
         title
