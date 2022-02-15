@@ -213,16 +213,49 @@ interface LandingPage {
   }[];
 }
 
+interface FooterLinks {
+  contentful_id: string;
+  title: string;
+  slug: string;
+}
+
+interface SocialLinks {
+  contentful_id: string;
+  name: string;
+  url: string;
+  image: {
+    gatsbyImageData: IGatsbyImageData;
+  };
+}
+
+interface FooterContent {
+  title: string;
+  footerLinks: FooterLinks[];
+  socialLinks: SocialLinks[];
+}
+
+export interface FooterProps {
+  allContentfulFooter: {
+    nodes: FooterContent[];
+  };
+}
+
 interface Blogs {
   id: string;
   contentful_id: string;
   title: string;
+  heroImage:
+    | {
+        gatsbyImageData: IGatsbyImageData | undefined;
+      }
+    | undefined;
   description: {
     raw: string;
     references: References[];
   };
 
   comments: Comments[] | null;
+  seoTitle: string;
   seoDescription: {
     seoDescription: string;
   };
@@ -249,11 +282,21 @@ interface AuthorBlogs {
   description: {
     raw: string;
   };
+  heroImage: {
+    gatsbyImageData: IGatsbyImageData | undefined;
+  };
 }
 
 interface Author {
   name: string;
   username: string;
+  bio: {
+    bio: string;
+  };
+  profilePic: {
+    gatsbyImageData: IGatsbyImageData | undefined;
+  };
+  linkedinUrl: string | undefined;
   blog?: AuthorBlogs[];
 }
 

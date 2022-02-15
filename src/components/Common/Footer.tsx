@@ -1,18 +1,31 @@
 import React from "react";
-import { StaticImage } from "gatsby-plugin-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import { graphql, Link, useStaticQuery } from "gatsby";
+import { FooterProps } from "../../utils/types";
 const Footer = () => {
-  const data = useStaticQuery(graphql`
+  const data: FooterProps = useStaticQuery(graphql`
     {
-      allContentfulBlog(filter: { category: { url: { eq: "/" } } }) {
+      allContentfulFooter {
         nodes {
-          contentful_id
           title
-          slug
+          footerLinks {
+            contentful_id
+            title
+            slug
+          }
+          socialLinks {
+            contentful_id
+            name
+            url
+            image {
+              gatsbyImageData
+            }
+          }
         }
       }
     }
   `);
+  const footer = data.allContentfulFooter.nodes[0];
   return (
     <div className='relative mt-20 lg:mt-5'>
       <div className='absolute bottom-0 left-0 bg-primary w-full py-4'>
@@ -20,10 +33,10 @@ const Footer = () => {
           <div className='flex flex-col justify-between flex-wrap items-center lg:flex-row my-auto mr-3 p-1 text-[13px] font-poppins font-medium uppercase text-white'>
             <p className='font-poppins text-center text-[#a3b0bd]'>
               Copyright 2020 - A/B Smartly |{" "}
-              {data?.allContentfulBlog.nodes.map((node) => (
+              {footer.footerLinks.map((node) => (
                 <Link
                   key={node.contentful_id}
-                  to={node.slug}
+                  to={`/${node.slug}`}
                   className='text-white'
                 >
                   {node.title}
@@ -31,42 +44,20 @@ const Footer = () => {
               ))}
             </p>
             <div className='mt-8 lg:mt-0'>
-              <a href='https://twitter.com/absmartly' target='_blank' rel='me'>
-                <StaticImage
-                  className='w-4 h-4 object-contain mr-3 ml-3 cursor-pointer'
-                  src='../../assets/twitter.svg'
-                  alt='Twitter'
-                />
-              </a>
-              <a
-                href='https://www.linkedin.com/company/absmartly'
-                target='_blank'
-                rel='me'
-              >
-                <StaticImage
-                  className='w-4 h-4 object-contain mr-3 ml-3 cursor-pointer'
-                  src='../../assets/linkedin.svg'
-                  alt='LinkedIn'
-                />
-              </a>
-              <a
-                href='https://www.facebook.com/absmartly'
-                target='_blank'
-                rel='me'
-              >
-                <StaticImage
-                  className='w-4 h-4 object-contain mr-3 ml-3 cursor-pointer'
-                  src='../../assets/facebook.svg'
-                  alt='Facebook'
-                />
-              </a>
-              <a href='https://github.com/absmartly/' target='_blank' rel='me'>
-                <StaticImage
-                  className='w-4 h-4 object-contain mr-3 ml-3 cursor-pointer'
-                  src='../../assets/git.png'
-                  alt='Git'
-                />
-              </a>
+              {footer.socialLinks.map((node) => (
+                <a
+                  key={node.contentful_id}
+                  href={node.url}
+                  target='_blank'
+                  rel='me'
+                >
+                  <GatsbyImage
+                    className='w-4 h-4 object-contain mr-3 ml-3 cursor-pointer'
+                    image={node.image.gatsbyImageData}
+                    alt={node.name}
+                  />
+                </a>
+              ))}
             </div>
           </div>
         </div>

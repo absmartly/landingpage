@@ -6,8 +6,11 @@ exports.createPages = async function ({ actions, graphql }) {
           id
           contentful_id
           title
-          createdAt(formatString: "MMM-DD-YYYY")
-          updatedAt(formatString: "MMM-DD-YYYY")
+          heroImage {
+            gatsbyImageData
+          }
+          createdAt(formatString: "MMM DD YYYY")
+          updatedAt(formatString: "MMM DD YYYY")
           description {
             raw
             references {
@@ -22,6 +25,7 @@ exports.createPages = async function ({ actions, graphql }) {
           }
           tags
           slug
+          seoTitle
           seoDescription {
             seoDescription
           }
@@ -34,8 +38,8 @@ exports.createPages = async function ({ actions, graphql }) {
             message {
               message
             }
-            createdAt(formatString: "MMM-DD-YYYY")
-            updatedAt(formatString: "MMM-DD-YYYY")
+            createdAt(formatString: "MMM DD YYYY")
+            updatedAt(formatString: "MMM DD YYYY")
             name
             website
             email
@@ -53,15 +57,25 @@ exports.createPages = async function ({ actions, graphql }) {
         nodes {
           name
           username
+          bio {
+            bio
+          }
+          profilePic {
+            gatsbyImageData
+          }
+          linkedinUrl
           blog {
             id
             title
             slug
+            heroImage {
+              gatsbyImageData
+            }
             category {
               name
               url
             }
-            updatedAt(formatString: "MMM-DD-YYYY")
+            updatedAt(formatString: "MMM DD YYYY")
             description {
               raw
             }

@@ -18,26 +18,26 @@ const SocialShare: FC<ShareProps> = ({ title, tags }) => {
     return tag.replace(/\s/g, "").replace(/\//g, "");
   });
   return (
-    <div className="flex items-center font-poppins">
-      <span className="mr-2">Share:</span>
+    <div className='flex flex-col items-center justify-center'>
+      <span className='font-sans text-base text-gray-800 mb-2'>Share</span>
       <FacebookShareButton
         url={url}
         quote={title}
         hashtag={hashtags[0]}
-        className="mx-2"
+        className='my-1'
       >
-        <FacebookIcon size={32} round />
+        <FacebookIcon size={40} round />
       </FacebookShareButton>
       <TwitterShareButton
         url={url}
         title={title}
         hashtags={hashtags}
-        className="mx-2"
+        className='my-1'
       >
-        <TwitterIcon size={32} round />
+        <TwitterIcon size={40} round />
       </TwitterShareButton>
-      <LinkedinShareButton url={url} title={title} className="mx-2">
-        <LinkedinIcon size={32} round />
+      <LinkedinShareButton url={url} title={title} className='my-1'>
+        <LinkedinIcon size={40} round />
       </LinkedinShareButton>
     </div>
   );
