@@ -119,9 +119,9 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
                   {comment.updatedAt}
                 </p>
                 <div className='text-gray-600 my-1 font-sans'>
-                  <p className='whitespace-pre-wrap'>
+                  <div className='whitespace-pre-wrap'>
                     <ReactMarkdown>{comment?.message.message}</ReactMarkdown>
-                  </p>
+                  </div>
                 </div>
               </div>
             </div>

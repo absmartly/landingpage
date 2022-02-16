@@ -51,6 +51,17 @@ exports.createPages = async function ({ actions, graphql }) {
           }
           isSocialShare
           isComments
+          faQs {
+            id
+            title
+            questions {
+              contentful_id
+              question
+              answer {
+                answer
+              }
+            }
+          }
         }
       }
       allContentfulAuthor {

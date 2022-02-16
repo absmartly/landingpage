@@ -259,6 +259,14 @@ export interface Blog {
   updatedAt: string;
 }
 
+export interface Questions {
+  contentful_id: string;
+  question: string;
+  answer: {
+    answer: string;
+  };
+}
+
 export interface Blogs {
   id: string;
   contentful_id: string;
@@ -290,6 +298,11 @@ export interface Blogs {
   category: CategroyProps;
   isSocialShare: boolean;
   isComments: boolean;
+  faQs?: {
+    id: string;
+    title: string;
+    questions: Questions[];
+  };
 }
 
 export interface AuthorBlogs {

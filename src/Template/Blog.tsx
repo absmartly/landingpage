@@ -54,6 +54,7 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
       },
     },
   };
+
   return (
     <Layout>
       <SEO
@@ -65,6 +66,7 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
         author={blog.author?.name}
         estTime={estTime}
         type={blog.type}
+        data={blog.faQs}
       />
       <div className='py-20 sm:px-10 md:px-20'>
         <div className='w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[1140px] xl:max-w-6xl'>
@@ -113,6 +115,26 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
                   <SocialShare title={blog.title} tags={blog.tags} />
                 )}
               </div>
+              {blog.faQs && (
+                <div className='py-5'>
+                  <h2
+                    className='font-barlow_semi_condensed font-semibold mb-[0.8rem] text-[2.3rem] text-gray-800 
+                  tracking-[1.25]'
+                  >
+                    Frequently asked questions on A/B testing
+                  </h2>
+                  {blog.faQs.questions.map((question) => (
+                    <div className='my-5' key={question.contentful_id}>
+                      <h3 className='font-barlow_semi_condensed font-semibold text-lg text-gray-800 mt-2'>
+                        {question.question}
+                      </h3>
+                      <p className='text-base font-sans text-gray-600 my-2'>
+                        {question.answer.answer}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
           {blog.isComments && (
@@ -130,27 +152,3 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
 };
 
 export default Blog;
-
-// export const query = graphql`
-//   query ($slug: String!) {
-//     allWebMentionEntry(filter: { wmTarget: { eq: $slug } }) {
-//       totalCount
-//       edges {
-//         node {
-//           id
-//           published(formatString: "MM-DD-YYYY")
-//           author {
-//             name
-//             photo
-//             url
-//           }
-//           url
-//           wmId
-//           content {
-//             html
-//           }
-//         }
-//       }
-//     }
-//   }
-// `;
