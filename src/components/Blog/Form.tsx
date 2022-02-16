@@ -68,6 +68,13 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
     }
   };
 
+  function checkURL() {
+    if (!~website.indexOf("https://")) {
+      setWebsite("https://" + website);
+    }
+    return website;
+  }
+
   useEffect(() => {
     const sorts = postComments?.sort((a, b) =>
       a.updatedAt > b.updatedAt ? -1 : 1
@@ -90,6 +97,7 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
       }
     }
   }, []);
+
   return (
     <div className='py-10'>
       <div className='my-10'>
@@ -111,7 +119,9 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
                   {comment.updatedAt}
                 </p>
                 <div className='text-gray-600 my-1 font-sans'>
-                  <ReactMarkdown>{comment?.message.message}</ReactMarkdown>
+                  <p className='whitespace-pre-wrap'>
+                    <ReactMarkdown>{comment?.message.message}</ReactMarkdown>
+                  </p>
                 </div>
               </div>
             </div>
@@ -171,6 +181,7 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
           type='url'
           placeholder='Website *'
           value={website}
+          onBlur={checkURL}
           onChange={(e) => setWebsite(e.target.value)}
           className='w-full mb-4 bg-[#2b60ba14] outline-0 border-0 py-3 px-5 text-black font-normal text-sm'
           required

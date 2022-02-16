@@ -240,7 +240,26 @@ export interface FooterProps {
   };
 }
 
-interface Blogs {
+export interface Blog {
+  id: string;
+  title: string;
+  slug: string;
+  heroImage: {
+    gatsbyImageData: IGatsbyImageData;
+  };
+  author: {
+    name: string;
+    username: string;
+  };
+  category: {
+    name: string;
+    url: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Blogs {
   id: string;
   contentful_id: string;
   title: string;
@@ -273,7 +292,7 @@ interface Blogs {
   isComments: boolean;
 }
 
-interface AuthorBlogs {
+export interface AuthorBlogs {
   id: string;
   title: string;
   slug: string;
@@ -297,7 +316,7 @@ interface Author {
     gatsbyImageData: IGatsbyImageData | undefined;
   };
   linkedinUrl: string | undefined;
-  blog?: AuthorBlogs[];
+  blog?: Blog[];
 }
 
 export interface HomeProps {
@@ -307,6 +326,14 @@ export interface HomeProps {
     };
     allContentfulExperimentation: {
       nodes: ExperimentationList[];
+    };
+  };
+}
+
+export interface BlogListProps {
+  data: {
+    allContentfulBlog: {
+      nodes: Blog[];
     };
   };
 }

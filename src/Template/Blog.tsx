@@ -66,7 +66,6 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
         estTime={estTime}
         type={blog.type}
       />
-      {/* <Header title={blog.title} /> */}
       <div className='py-20 sm:px-10 md:px-20'>
         <div className='w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[1140px] xl:max-w-6xl'>
           <div className='-mx-[15px] border-b-2 border-secondary'>
