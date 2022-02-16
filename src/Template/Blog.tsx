@@ -54,10 +54,11 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
       },
     },
   };
+
   return (
     <Layout>
       <SEO
-        title={blog.title}
+        title={blog.seoTitle}
         description={truncate(blog?.seoDescription?.seoDescription, 200)}
         path={url}
         createdAt={blog.createdAt}
@@ -65,37 +66,84 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
         author={blog.author?.name}
         estTime={estTime}
         type={blog.type}
+        data={blog.faQs}
       />
-      <Header title={blog.title} />
-      <div className='py-20 bg-[#f8f8f8]'>
+      <div className='py-20 sm:px-10 md:px-20'>
         <div className='w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[1140px] xl:max-w-6xl'>
           <div className='-mx-[15px] border-b-2 border-secondary'>
-            <div className='relative w-full px-[15px] md:grow-0 md:shrink-0 md:basis-full md:max-w-full mb-20'>
-              {blog.description &&
-                documentToReactComponents(
-                  JSON.parse(blog.description.raw),
-                  options
-                )}
-              <div className='flex flex-col md:flex-row md:items-center justify-between space-y-4 md:space-x-5 '>
-                {blog.author && (
-                  <div className='font-poppins'>
-                    <span className='mr-2'>Author:</span>
-                    <Link to={`/author/${blog.author.username}`}>
-                      <span className='text-primary'>{blog.author.name}</span>
-                    </Link>
-                  </div>
-                )}
+            {blog.heroImage && (
+              <div className='my-10'>
+                <GatsbyImage
+                  image={blog.heroImage.gatsbyImageData}
+                  alt={blog.title}
+                  objectFit='contain'
+                />
+              </div>
+            )}
+            <div className='relative w-full px-10 md:px-20 md:grow-0 md:shrink-0 md:basis-full md:max-w-full mb-20'>
+              <h1 className='text-4xl leading-10 md:text-7xl md:leading-[80px] font-barlow_semi_condensed text-gray-800'>
+                {blog.title}
+              </h1>
+              {blog.author && (
+                <p className='font-sans text-base text-gray-700 py-5'>
+                  By{" "}
+                  <Link
+                    to={`/author/${blog.author.username}`}
+                    className='text-[#039] hover:text-primary'
+                  >
+                    {blog.author.name}
+                  </Link>{" "}
+                  on{" "}
+                  <span className='text-lg text-gray-800'>
+                    {blog.createdAt}
+                  </span>{" "}
+                  |{" "}
+                  <span className='text-lg text-gray-800'>
+                    Be the first to comment
+                  </span>
+                </p>
+              )}
+              <div className='pt-10'>
+                {blog.description &&
+                  documentToReactComponents(
+                    JSON.parse(blog.description.raw),
+                    options
+                  )}
+              </div>
+              <div className='fixed left-2 top-24'>
                 {blog.isSocialShare && (
                   <SocialShare title={blog.title} tags={blog.tags} />
                 )}
               </div>
+              {blog.faQs && (
+                <div className='py-5'>
+                  <h2
+                    className='font-barlow_semi_condensed font-semibold mb-[0.8rem] text-[2.3rem] text-gray-800 
+                  tracking-[1.25]'
+                  >
+                    Frequently asked questions on A/B testing
+                  </h2>
+                  {blog.faQs.questions.map((question) => (
+                    <div className='my-5' key={question.contentful_id}>
+                      <h3 className='font-barlow_semi_condensed font-semibold text-lg text-gray-800 mt-2'>
+                        {question.question}
+                      </h3>
+                      <p className='text-base font-sans text-gray-600 my-2'>
+                        {question.answer.answer}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
           {blog.isComments && (
-            <Form
-              id={blog.contentful_id}
-              comments={blog.comments && blog.comments}
-            />
+            <div className='px-5 md:px-20'>
+              <Form
+                id={blog.contentful_id}
+                comments={blog.comments && blog.comments}
+              />
+            </div>
           )}
         </div>
       </div>
@@ -104,27 +152,3 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
 };
 
 export default Blog;
-
-// export const query = graphql`
-//   query ($slug: String!) {
-//     allWebMentionEntry(filter: { wmTarget: { eq: $slug } }) {
-//       totalCount
-//       edges {
-//         node {
-//           id
-//           published(formatString: "MM-DD-YYYY")
-//           author {
-//             name
-//             photo
-//             url
-//           }
-//           url
-//           wmId
-//           content {
-//             html
-//           }
-//         }
-//       }
-//     }
-//   }
-// `;

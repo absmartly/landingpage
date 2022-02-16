@@ -213,16 +213,76 @@ interface LandingPage {
   }[];
 }
 
-interface Blogs {
+interface FooterLinks {
+  contentful_id: string;
+  title: string;
+  slug: string;
+}
+
+interface SocialLinks {
+  contentful_id: string;
+  name: string;
+  url: string;
+  image: {
+    gatsbyImageData: IGatsbyImageData;
+  };
+}
+
+interface FooterContent {
+  title: string;
+  footerLinks: FooterLinks[];
+  socialLinks: SocialLinks[];
+}
+
+export interface FooterProps {
+  allContentfulFooter: {
+    nodes: FooterContent[];
+  };
+}
+
+export interface Blog {
+  id: string;
+  title: string;
+  slug: string;
+  heroImage: {
+    gatsbyImageData: IGatsbyImageData;
+  };
+  author: {
+    name: string;
+    username: string;
+  };
+  category: {
+    name: string;
+    url: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Questions {
+  contentful_id: string;
+  question: string;
+  answer: {
+    answer: string;
+  };
+}
+
+export interface Blogs {
   id: string;
   contentful_id: string;
   title: string;
+  heroImage:
+    | {
+        gatsbyImageData: IGatsbyImageData | undefined;
+      }
+    | undefined;
   description: {
     raw: string;
     references: References[];
   };
 
   comments: Comments[] | null;
+  seoTitle: string;
   seoDescription: {
     seoDescription: string;
   };
@@ -238,9 +298,14 @@ interface Blogs {
   category: CategroyProps;
   isSocialShare: boolean;
   isComments: boolean;
+  faQs?: {
+    id: string;
+    title: string;
+    questions: Questions[];
+  };
 }
 
-interface AuthorBlogs {
+export interface AuthorBlogs {
   id: string;
   title: string;
   slug: string;
@@ -249,12 +314,22 @@ interface AuthorBlogs {
   description: {
     raw: string;
   };
+  heroImage: {
+    gatsbyImageData: IGatsbyImageData | undefined;
+  };
 }
 
 interface Author {
   name: string;
   username: string;
-  blog?: AuthorBlogs[];
+  bio: {
+    bio: string;
+  };
+  profilePic: {
+    gatsbyImageData: IGatsbyImageData | undefined;
+  };
+  linkedinUrl: string | undefined;
+  blog?: Blog[];
 }
 
 export interface HomeProps {
@@ -264,6 +339,14 @@ export interface HomeProps {
     };
     allContentfulExperimentation: {
       nodes: ExperimentationList[];
+    };
+  };
+}
+
+export interface BlogListProps {
+  data: {
+    allContentfulBlog: {
+      nodes: Blog[];
     };
   };
 }

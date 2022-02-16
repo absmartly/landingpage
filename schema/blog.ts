@@ -94,11 +94,21 @@ module.exports = function (migration) {
     .name("Slug")
     .validations([{ unique: true }]);
   blog
+    .createField("heroImage")
+    .type("Link")
+    .name("Hero Image")
+    .validations([
+      {
+        linkMimetypeGroup: ["image"],
+      },
+    ]);
+  blog
     .createField("description")
     .type("RichText")
     .name("Description")
     .required(true);
   blog.createField("type").type("Symbol").name("Type").required(true);
+  blog.createField("seoTitle").type("Symbol").name("SEO Title").required(true);
   blog.createField("seoDescription").type("Text").name("SEO Description");
   blog
     .createField("tags")

@@ -20,9 +20,6 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
   const [sortComments, setSortComments] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  function getTime(time: number) {
-    return new Date(time).toDateString();
-  }
   const submitForm = (event) => {
     event.preventDefault();
     const axiosConfig = {
@@ -71,6 +68,13 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
     }
   };
 
+  function checkURL() {
+    if (!~website.indexOf("https://")) {
+      setWebsite("https://" + website);
+    }
+    return website;
+  }
+
   useEffect(() => {
     const sorts = postComments?.sort((a, b) =>
       a.updatedAt > b.updatedAt ? -1 : 1
@@ -93,38 +97,38 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
       }
     }
   }, []);
+
   return (
     <div className='py-10'>
       <div className='my-10'>
-        <h3 className='font-work_sans text-2xl font-normal mb-3 text-[#212121] leading-5'>
+        <h3 className='font-sans text-2xl font-normal mb-3 text-[#212121] leading-5'>
           {sortComments?.length} Comments
         </h3>
         {sortComments?.map((comment) => {
-          console.log(comment);
           return (
             <div key={comment?.id} className='py-5 flex items-start'>
               <div
-                className='m-1 mr-2 w-16 h-16 relative flex justify-center items-center rounded-full bg-gray-300 
+                className='m-1 mr-2 w-16 h-16 object-cover relative flex justify-center items-center rounded-full bg-gray-300 
                 text-2xl text-gray-700 uppercase'
               >
                 {comment?.name.charAt(0)}
               </div>
-              <div className='mx-4'>
-                <h3 className='text-2xl my-1 font-work_sans'>
-                  {comment?.name}
-                </h3>
-                <p className='text-gray-600 my-1 font-poppins'>
+              <div className='mx-4 w-3/4'>
+                <h3 className='text-2xl my-1 font-sans'>{comment?.name}</h3>
+                <p className='text-gray-600 my-1 font-sans'>
                   {comment.updatedAt}
                 </p>
-                <p className='text-gray-600 my-1 font-poppins'>
-                  <ReactMarkdown>{comment?.message.message}</ReactMarkdown>
-                </p>
+                <div className='text-gray-600 my-1 font-sans'>
+                  <div className='whitespace-pre-wrap'>
+                    <ReactMarkdown>{comment?.message.message}</ReactMarkdown>
+                  </div>
+                </div>
               </div>
             </div>
           );
         })}
       </div>
-      <h3 className='font-work_sans text-2xl font-normal mb-3 text-[#212121] leading-5'>
+      <h3 className='font-sans text-2xl font-normal mb-3 text-[#212121] leading-5'>
         Leave a Comment
       </h3>
       <form
@@ -139,8 +143,8 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
           placeholder='Comment *'
           value={comment}
           onChange={(e) => setComment(e.target.value)}
-          className='md:col-span-3 w-full mb-4 bg-[#2b60ba14] outline-0 border-0 py-3 px-5 text-black
-                font-normal text-sm'
+          className='md:col-span-3 w-full mb-4 bg-[#2b60ba14] outline-0 border-0 py-3 px-5 text-black font-normal 
+          text-sm'
           required
         />
         <label htmlFor='comment' hidden>
@@ -153,8 +157,7 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
           placeholder='Name *'
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className='w-full mb-4 bg-[#2b60ba14] outline-0 border-0 py-3 px-5 text-black
-                font-normal text-sm'
+          className='w-full mb-4 bg-[#2b60ba14] outline-0 border-0 py-3 px-5 text-black font-normal text-sm'
           required
         />
         <label htmlFor='name' hidden>
@@ -167,8 +170,7 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
           placeholder='Email *'
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className='w-full mb-4 bg-[#2b60ba14] outline-0 border-0 py-3 px-5 text-black
-                font-normal text-sm'
+          className='w-full mb-4 bg-[#2b60ba14] outline-0 border-0 py-3 px-5 text-black font-normal text-sm'
           required
         />
         <label htmlFor='email' hidden>
@@ -179,9 +181,9 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
           type='url'
           placeholder='Website *'
           value={website}
+          onBlur={checkURL}
           onChange={(e) => setWebsite(e.target.value)}
-          className='w-full mb-4 bg-[#2b60ba14] outline-0 border-0 py-3 px-5 text-black
-                font-normal text-sm'
+          className='w-full mb-4 bg-[#2b60ba14] outline-0 border-0 py-3 px-5 text-black font-normal text-sm'
           required
         />
 
@@ -198,7 +200,7 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
           />
           <label
             htmlFor='checkbox'
-            className='font-poppins text-[16px] font-medium ml-3 text-[#535353]'
+            className='font-sans text-[16px] font-medium ml-3 text-[#535353]'
           >
             Save my name, email, and website in this browser for the next time I
             comment.
@@ -239,7 +241,7 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
         <button
           type='submit'
           disabled={isSubmitting}
-          className='bg-primary w-min text-[13px] font-medium mx-2 py-[14px] px-7 rounded-3xl border-none
+          className='bg-primary w-min text-base font-medium mx-2 py-[14px] px-7 rounded-3xl border-none
               outline-none shadow-sm text-white align-middle whitespace-nowrap button-animation block'
         >
           Send Comment
