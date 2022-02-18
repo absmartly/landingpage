@@ -30,16 +30,16 @@ const Footer = () => {
     <div className='absolute bottom-0 left-0 bg-primary w-full py-4'>
       <div className='relative w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[1140px] xl:max-w-6xl'>
         <div className='flex flex-col justify-between flex-wrap items-center lg:flex-row my-auto mr-3 p-1 text-[13px] font-poppins font-medium uppercase text-white'>
-          <p className='font-poppins text-center text-[#a3b0bd]'>
-            Copyright 2020 - A/B Smartly |{" "}
+          <p className='font-poppins text-center text-white'>
+            Copyright 2020 - A/B Smartly
             {footer.footerLinks.map((node) => (
-              <Link
-                key={node.contentful_id}
-                to={`/${node.slug}`}
-                className='text-white'
-              >
-                {node.title}
-              </Link>
+              <span>
+                {" "}
+                |{" "}
+                <Link key={node.contentful_id} to={`/${node.slug}`}>
+                  {node.title}
+                </Link>
+              </span>
             ))}
           </p>
           <div className='mt-8 lg:mt-0'>

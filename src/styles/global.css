@@ -8,11 +8,6 @@
         font-family: WorkSans;
         src: url("WorkSans-VariableFont_wght.ttf") format("truetype");
     }
-
-    @font-face {
-        font-family: "Barlow Semi Condensed";
-        src: url("BarlowSemiCondensed-Regular.ttf") format("truetype");
-    }
 }
 
 @layer components {

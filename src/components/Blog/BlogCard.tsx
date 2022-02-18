@@ -27,16 +27,16 @@ const BlogCard: FC<BlogCardProps> = ({ blog, authorName, authorUsername }) => {
         </div>
       )}
       <div className='px-7'>
-        <span className='text-[#0033ff] font-sans text-sm tracking-wide'>
+        <span className='text-[#0033ff] font-poppins text-sm tracking-wide'>
           {blog.category.name}
         </span>
         <h5
-          className='mt-2 mb-5 text-3xl font-medium font-barlow_semi_condensed text-gray-800 hover:text-primary
+          className='mt-2 mb-5 text-3xl font-medium font-work_sans text-gray-800 hover:text-primary
         leading-10'
         >
           <Link to={`/${blog.category.url}/${blog.slug}`}>{blog.title}</Link>
         </h5>
-        <p className='font-sans text-base text-gray-700 pt-2 pb-5'>
+        <p className='font-poppins text-base text-gray-700 pt-2 pb-5'>
           By{" "}
           <Link
             to={`/author/${

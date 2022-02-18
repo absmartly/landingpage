@@ -19,7 +19,7 @@ const SocialShare: FC<ShareProps> = ({ title, tags }) => {
   });
   return (
     <div className='flex flex-col items-center justify-center'>
-      <span className='font-sans text-base text-gray-800 mb-2'>Share</span>
+      <span className='font-poppins text-base text-gray-800 mb-2'>Share</span>
       <FacebookShareButton
         url={url}
         quote={title}

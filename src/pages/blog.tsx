@@ -17,7 +17,7 @@ const Blogs: FC<BlogListProps> = ({ data }) => {
         <div className='w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[1140px] xl:max-w-6xl'>
           <div className='-mx-[15px]'>
             <div className='relative w-full px-10 md:px-20 md:grow-0 md:shrink-0 md:basis-full md:max-w-full mb-20'>
-              <h1 className='text-4xl leading-10 md:text-7xl md:leading-[80px] font-barlow_semi_condensed text-gray-800'>
+              <h1 className='text-4xl leading-10 md:text-7xl md:leading-[80px] font-work_sans text-gray-800'>
                 Blogs
               </h1>
             </div>
@@ -46,7 +46,6 @@ export const query = graphql`
         heroImage {
           gatsbyImageData
         }
-        createdAt(formatString: "MMMM DD, YYYY")
         updatedAt(formatString: "MMMM DD, YYYY")
         author {
           name

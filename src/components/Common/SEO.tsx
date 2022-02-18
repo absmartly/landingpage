@@ -17,7 +17,7 @@ interface ISEOProps {
   estTime?: string;
   author?: string;
   type?: string;
-  data: Faq | null;
+  data?: Faq | null;
 }
 
 const SEO: FC<ISEOProps> = ({

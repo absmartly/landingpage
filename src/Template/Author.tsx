@@ -36,10 +36,10 @@ const Author: FC<AuthorProps> = ({ pageContext }) => {
                   <span className='text-white text-4xl'>{author.name[0]}</span>
                 </div>
               )}
-              <h1 className='text-4xl mb-5 leading-10 md:text-7xl md:leading-[80px] font-barlow_semi_condensed text-gray-800'>
+              <h1 className='text-4xl mb-5 leading-10 md:text-7xl md:leading-[80px] font-work_sans text-gray-800'>
                 {author.name}
               </h1>
-              <p className='font-sans leading-8 tracking-wide text-xl text-gray-800 py-5 max-w-[640px] text-center'>
+              <p className='font-poppins leading-8 tracking-wide text-xl text-gray-800 py-5 max-w-[640px] text-center'>
                 {author.bio.bio}
               </p>
               {author?.linkedinUrl && (

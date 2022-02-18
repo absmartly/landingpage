@@ -18,10 +18,8 @@ module.exports = {
         tertiary: "#3634cf17",
       },
       fontFamily: {
-        sans: ["Source Sans Pro"],
         poppins: ["Poppins", "sans-serif"],
         work_sans: ["WorkSans", "sans-serif"],
-        barlow_semi_condensed: ["Barlow Semi Condensed", "sans-serif"],
       },
       transitionProperty: {
         height: ["responsive", "hover", "focus"],

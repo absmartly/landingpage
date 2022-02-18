@@ -48,9 +48,9 @@ exports.createPages = async function ({ actions, graphql }) {
           category {
             name
             url
+            isSocialShare
+            isComments
           }
-          isSocialShare
-          isComments
           faQs {
             id
             title

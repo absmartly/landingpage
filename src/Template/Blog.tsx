@@ -81,11 +81,11 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
               </div>
             )}
             <div className='relative w-full px-10 md:px-20 md:grow-0 md:shrink-0 md:basis-full md:max-w-full mb-20'>
-              <h1 className='text-4xl leading-10 md:text-7xl md:leading-[80px] font-barlow_semi_condensed text-gray-800'>
+              <h1 className='text-4xl leading-10 md:text-7xl md:leading-[80px] font-work_sans text-gray-800'>
                 {blog.title}
               </h1>
               {blog.author && (
-                <p className='font-sans text-base text-gray-700 py-5'>
+                <p className='font-poppins text-base text-gray-700 py-5'>
                   By{" "}
                   <Link
                     to={`/author/${blog.author.username}`}
@@ -95,7 +95,7 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
                   </Link>{" "}
                   on{" "}
                   <span className='text-lg text-gray-800'>
-                    {blog.createdAt}
+                    {blog.updatedAt}
                   </span>{" "}
                   |{" "}
                   <span className='text-lg text-gray-800'>
@@ -111,24 +111,24 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
                   )}
               </div>
               <div className='fixed left-2 top-24'>
-                {blog.isSocialShare && (
+                {blog.category.isSocialShare && (
                   <SocialShare title={blog.title} tags={blog.tags} />
                 )}
               </div>
               {blog.faQs && (
                 <div className='py-5'>
                   <h2
-                    className='font-barlow_semi_condensed font-semibold mb-[0.8rem] text-[2.3rem] text-gray-800 
+                    className='font-work_sans font-semibold mb-[0.8rem] text-[2.3rem] text-gray-800 
                   tracking-[1.25]'
                   >
                     Frequently asked questions on A/B testing
                   </h2>
                   {blog.faQs.questions.map((question) => (
                     <div className='my-5' key={question.contentful_id}>
-                      <h3 className='font-barlow_semi_condensed font-semibold text-lg text-gray-800 mt-2'>
+                      <h3 className='font-work_sans font-semibold text-lg text-gray-800 mt-2'>
                         {question.question}
                       </h3>
-                      <p className='text-base font-sans text-gray-600 my-2'>
+                      <p className='text-base font-poppins text-gray-600 my-2'>
                         {question.answer.answer}
                       </p>
                     </div>
@@ -137,7 +137,7 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
               )}
             </div>
           </div>
-          {blog.isComments && (
+          {blog.category.isComments && (
             <div className='px-5 md:px-20'>
               <Form
                 id={blog.contentful_id}

@@ -94,7 +94,6 @@ export interface Comments {
     message: string;
   };
   name: string;
-  createdAt: string;
   updatedAt: string;
   website: string;
   email: string;
@@ -111,6 +110,8 @@ export interface References {
 export interface CategroyProps {
   name: string;
   url: string;
+  isSocialShare: boolean;
+  isComments: boolean;
 }
 
 export interface GrowthProps {
@@ -255,7 +256,6 @@ export interface Blog {
     name: string;
     url: string;
   };
-  createdAt: string;
   updatedAt: string;
 }
 
@@ -296,8 +296,6 @@ export interface Blogs {
     username: string;
   };
   category: CategroyProps;
-  isSocialShare: boolean;
-  isComments: boolean;
   faQs?: {
     id: string;
     title: string;
