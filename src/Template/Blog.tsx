@@ -1,10 +1,9 @@
 import React, { FC } from "react";
-import Header from "../components/Blog/Header";
 import { BlogProps } from "../utils/types";
 import { BLOCKS } from "@contentful/rich-text-types";
 import Layout from "../components/Common/Layout";
 import SEO from "../components/Common/SEO";
-import { graphql, Link } from "gatsby";
+import { Link } from "gatsby";
 import { url } from "../utils/utils";
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
@@ -17,6 +16,7 @@ import {
   Paragraph,
 } from "../components/Common/RichTextComponents";
 import SocialShare from "../components/Common/SocialShare";
+import { Link as LinkScroll } from "react-scroll";
 
 const Blog: FC<BlogProps> = ({ pageContext }) => {
   let count = 0;
@@ -98,9 +98,16 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
                     {blog.updatedAt}
                   </span>{" "}
                   |{" "}
-                  <span className='text-lg text-gray-800'>
+                  <LinkScroll
+                    to='comment'
+                    spy={true}
+                    smooth={true}
+                    offset={-70}
+                    duration={500}
+                    className='text-lg text-gray-800 cursor-pointer'
+                  >
                     Be the first to comment
-                  </span>
+                  </LinkScroll>
                 </p>
               )}
               <div className='pt-10'>

@@ -130,14 +130,15 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
           );
         })}
       </div>
-      <h3 className='font-work_sans text-2xl font-normal mb-3 text-[#212121] leading-5'>
-        Leave a Comment
-      </h3>
       <form
+        id='comment'
         name='comments-queue'
         onSubmit={submitForm}
         className='grid md:grid-cols-3 grid-rows-1 gap-3'
       >
+        <h3 className='font-work_sans text-2xl font-normal mb-3 text-[#212121] leading-5'>
+          Leave a Comment
+        </h3>
         <textarea
           id='comment'
           name='comment'
