@@ -33,7 +33,7 @@ const Footer = () => {
           <p className='font-poppins text-center text-white'>
             Copyright 2020 - A/B Smartly
             {footer.footerLinks.map((node) => (
-              <span>
+              <span key={node.contentful_id}>
                 {" "}
                 |{" "}
                 <Link key={node.contentful_id} to={`/${node.slug}`}>

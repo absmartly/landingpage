@@ -100,6 +100,10 @@ export interface Comments {
   status: Status;
 }
 export interface References {
+  id: string;
+  table: {
+    tableData: Array<Array<string>>;
+  };
   contentful_id: string;
   gatsbyImageData: IGatsbyImageData;
   file: {

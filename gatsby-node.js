@@ -14,6 +14,12 @@ exports.createPages = async function ({ actions, graphql }) {
           description {
             raw
             references {
+              ... on ContentfulTable {
+                id
+                table {
+                  tableData
+                }
+              }
               ... on ContentfulAsset {
                 contentful_id
                 gatsbyImageData(placeholder: TRACED_SVG)
@@ -98,9 +104,9 @@ exports.createPages = async function ({ actions, graphql }) {
   data.allContentfulBlog.nodes.forEach((blog) => {
     actions.createPage({
       path:
-        blog.category.url === "/"
+        blog.category?.url === "/"
           ? `${blog.category.url}${blog.slug}`
-          : `/${blog.category.url}/${blog.slug}`,
+          : `/${blog.category?.url}/${blog.slug}`,
       component: require.resolve(`./src/Template/Blog.tsx`),
       context: {
         data: blog,

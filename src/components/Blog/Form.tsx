@@ -1,6 +1,6 @@
-import React, { useState, FC, useEffect } from "react";
+import React, { useState, FC, useEffect, useMemo } from "react";
 import { Comments as IComments } from "../../utils/types";
-import ReactMarkdown from "react-markdown";
+import Comment from "./Comment";
 
 interface IFormProps {
   id: string;
@@ -106,27 +106,14 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
         </h3>
         {sortComments?.map((comment) => {
           return (
-            <div key={comment?.id} className='py-5 flex items-start'>
-              <div
-                className='m-1 mr-2 w-16 h-16 object-cover relative flex justify-center items-center rounded-full bg-gray-300 
-                text-2xl text-gray-700 uppercase'
-              >
-                {comment?.name.charAt(0)}
-              </div>
-              <div className='mx-4 w-3/4'>
-                <h3 className='text-2xl my-1 font-work_sans'>
-                  {comment?.name}
-                </h3>
-                <p className='text-gray-600 my-1 font-poppins'>
-                  {comment.updatedAt}
-                </p>
-                <div className='text-gray-600 my-1 font-poppins'>
-                  <div className='whitespace-pre-wrap'>
-                    <ReactMarkdown>{comment?.message.message}</ReactMarkdown>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Comment
+              id={comment.id}
+              key={comment.id}
+              name={comment.name}
+              email={comment.email}
+              message={comment.message.message}
+              updatedAt={comment.updatedAt}
+            />
           );
         })}
       </div>
