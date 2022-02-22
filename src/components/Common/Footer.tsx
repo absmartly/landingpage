@@ -9,9 +9,18 @@ const Footer = () => {
         nodes {
           title
           footerLinks {
-            contentful_id
-            title
-            slug
+            ... on ContentfulBlog {
+              id
+              contentful_id
+              title
+              slug
+            }
+            ... on ContentfulLink {
+              id
+              contentful_id
+              title
+              slug
+            }
           }
           socialLinks {
             contentful_id
@@ -33,10 +42,15 @@ const Footer = () => {
           <p className='font-poppins text-center text-white'>
             Copyright 2020 - A/B Smartly
             {footer.footerLinks.map((node) => (
-              <span>
+              <span key={node.contentful_id}>
                 {" "}
                 |{" "}
-                <Link key={node.contentful_id} to={`/${node.slug}`}>
+                <Link
+                  key={node.contentful_id}
+                  to={`${
+                    node.slug.includes("https") ? node.slug : `/${node.slug}`
+                  }`}
+                >
                   {node.title}
                 </Link>
               </span>
