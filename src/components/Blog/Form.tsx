@@ -123,7 +123,7 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
         onSubmit={submitForm}
         className='grid md:grid-cols-3 grid-rows-1 gap-3'
       >
-        <h3 className='font-work_sans text-2xl font-normal mb-3 text-[#212121] leading-5'>
+        <h3 className='font-work_sans text-2xl font-normal mb-3 text-[#212121] leading-5 ml-2'>
           Leave a Comment
         </h3>
         <textarea
@@ -232,7 +232,7 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
           type='submit'
           disabled={isSubmitting}
           className='bg-primary w-min font-poppins text-base font-medium mx-2 py-3 px-7 rounded-3xl border-none
-              outline-none shadow-sm text-white align-middle whitespace-nowrap button-animation block'
+              outline-none shadow-sm text-white align-middle whitespace-nowrap button-animation block mb-10 sm:mb-0'
         >
           Send Comment
         </button>

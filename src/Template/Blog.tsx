@@ -104,7 +104,7 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
                 />
               </div>
             )}
-            <div className='relative w-full px-10 md:px-20 md:grow-0 md:shrink-0 md:basis-full md:max-w-full mb-20'>
+            <div className='relative w-full px-12 md:px-20 md:grow-0 md:shrink-0 md:basis-full md:max-w-full mb-20'>
               <h1 className='text-4xl leading-10 md:text-7xl md:leading-[80px] font-work_sans text-gray-800'>
                 {blog.title}
               </h1>
@@ -141,7 +141,7 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
                     options
                   )}
               </div>
-              <div className='fixed left-2 top-24'>
+              <div className='fixed left-2 top-16 sm:top-24'>
                 {blog.category.isSocialShare && (
                   <SocialShare title={blog.title} tags={blog.tags} />
                 )}
@@ -169,7 +169,7 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
             </div>
           </div>
           {blog.category.isComments && (
-            <div className='px-5 md:px-20'>
+            <div className='pl-7 pr-3 md:px-20'>
               <Form
                 id={blog.contentful_id}
                 comments={blog.comments && blog.comments}

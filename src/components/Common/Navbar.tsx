@@ -53,7 +53,7 @@ const Navbar = ({ home }) => {
           <Link to='/' className='max-w-[220px] cursor-pointer'>
             <StaticImage
               className='max-w-full'
-              src='https://absmartly.com/wp-content/uploads/2020/01/logo2.png'
+              src='../../assets/logo.webp'
               alt='Logo'
             />
           </Link>
