@@ -38,25 +38,29 @@ const Blogs: FC<BlogListProps> = ({ data }) => {
 export default Blogs;
 
 export const query = graphql`
-  {
-    allContentfulBlog(filter: { category: { url: { ne: "/" } } }) {
-      nodes {
-        id
-        title
-        heroImage {
-          gatsbyImageData
-        }
-        updatedAt(formatString: "MMMM DD, YYYY")
-        author {
-          name
-          username
-        }
-        category {
-          name
-          url
-        }
-        slug
+{
+  allContentfulBlog(
+    filter: {category: {url: {ne: "/"}}}
+    sort: {fields: createdAt, order: DESC}
+  ) {
+    nodes {
+      id
+      title
+      heroImage {
+        gatsbyImageData
       }
+      updatedAt(formatString: "MMMM DD, YYYY")
+      author {
+        name
+        username
+      }
+      category {
+        name
+        url
+      }
+      slug
     }
   }
+}
+
 `;

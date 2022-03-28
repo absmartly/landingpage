@@ -32,7 +32,7 @@ const BlogCard: FC<BlogCardProps> = ({ blog, authorName, authorUsername }) => {
         </span>
         <h5
           className='mt-2 mb-5 text-3xl font-medium font-work_sans text-gray-800 hover:text-primary
-        leading-10'
+        leading-10 h-20 overflow-clip'
         >
           <Link to={`/${blog.category.url}/${blog.slug}`}>{blog.title}</Link>
         </h5>
