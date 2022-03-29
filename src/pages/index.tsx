@@ -10,9 +10,12 @@ import { graphql } from "gatsby";
 import { HomeProps } from "../utils/types";
 import Layout from "../components/Common/Layout";
 import { url } from "../utils/utils";
+import FeaturedBlogs from "../components/Home/FeaturedBlogs";
 
 const Home: FC<HomeProps> = ({ data }) => {
   const {
+    pageTitle,
+    seoTitle,
     heroTitle,
     heroDescription,
     solutionTitle,
@@ -46,12 +49,10 @@ const Home: FC<HomeProps> = ({ data }) => {
   } = data.allContentfulLandingPage.nodes[0];
 
   const list = data.allContentfulExperimentation.nodes;
+  const blogs = data.allContentfulBlog.nodes;
   return (
     <Layout>
-      <SEO
-        title="Home - In-house experimentation platform | A/B Smartly"
-        path={url}
-      />
+      <SEO title={pageTitle} seoTitle={seoTitle} path={url} />
       <Hero title={heroTitle} description={heroDescription.heroDescription} />
       <Solution
         title={solutionTitle}
@@ -89,6 +90,7 @@ const Home: FC<HomeProps> = ({ data }) => {
           para4={aboutPara4.aboutPara4}
         />
       </div>
+      <FeaturedBlogs blogs={blogs} />
       <FAQ title={faqTitle} subTitle={faqSubtitle} list={faqList} />
     </Layout>
   );
@@ -98,6 +100,8 @@ export const query = graphql`
   {
     allContentfulLandingPage {
       nodes {
+        pageTitle
+        seoTitle
         heroTitle
         heroDescription {
           heroDescription
@@ -184,6 +188,25 @@ export const query = graphql`
         image {
           gatsbyImageData
         }
+      }
+    }
+    allContentfulBlog(limit: 6, sort: { fields: createdAt, order: DESC }) {
+      nodes {
+        id
+        title
+        heroImage {
+          gatsbyImageData
+        }
+        updatedAt(formatString: "MMMM DD, YYYY")
+        author {
+          name
+          username
+        }
+        category {
+          name
+          url
+        }
+        slug
       }
     }
   }

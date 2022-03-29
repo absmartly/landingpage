@@ -10,6 +10,7 @@ interface Faq {
 
 interface ISEOProps {
   title: string;
+  seoTitle?: string;
   description?: string;
   path: string;
   createdAt?: string;
@@ -22,6 +23,7 @@ interface ISEOProps {
 
 const SEO: FC<ISEOProps> = ({
   title,
+  seoTitle,
   description,
   path,
   createdAt,
@@ -61,7 +63,7 @@ const SEO: FC<ISEOProps> = ({
       <title>{title}</title>
       <meta property='og:locale' content='en_US' />
       {type && <meta property='og:type' content='article' />}
-      <meta property='og:title' content={title} />
+      <meta property='og:title' content={seoTitle ?? title} />
       {description && <meta name='description' content={description} />}
       {description && <meta property='og:description' content={description} />}
       <meta property='og:url' content={path} />

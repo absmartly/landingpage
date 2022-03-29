@@ -16,3 +16,14 @@ export const cardsColors = [
 export const url = typeof window !== "undefined" ? window.location.href : "";
 export const path =
   typeof window !== "undefined" ? window.location.pathname : "";
+
+export function truncate(str: string, n: number) {
+  return str?.length > n ? str.substring(0, n - 1) + "..." : str;
+}
+
+export function IsURL(url: string): boolean {
+  if (~url.indexOf("https://") && !~url.indexOf("http://")) {
+    return true;
+  }
+  return false;
+}

@@ -19,6 +19,7 @@ exports.createPages = async function ({ actions, graphql }) {
                 table {
                   tableData
                 }
+                __typename
               }
               ... on ContentfulAsset {
                 contentful_id
@@ -26,6 +27,23 @@ exports.createPages = async function ({ actions, graphql }) {
                 file {
                   fileName
                 }
+                __typename
+              }
+              ... on ContentfulLink {
+                id
+                title
+                slug
+                newTab
+                __typename
+              }
+              ... on ContentfulBanner {
+                id
+                title
+                banner {
+                  gatsbyImageData(placeholder: TRACED_SVG)
+                }
+                slug
+                __typename
               }
             }
           }
@@ -67,6 +85,17 @@ exports.createPages = async function ({ actions, graphql }) {
                 answer
               }
             }
+          }
+          popUp {
+            banner {
+              gatsbyImageData
+            }
+            title
+            description {
+              description
+            }
+            buttonText
+            slug
           }
         }
       }

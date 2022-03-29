@@ -14,7 +14,6 @@ const Hero: FC<HeroProps> = ({ title, description }) => {
   const [successMsg, setSuccessMsg] = useState("");
   const [showMsg, setShowMsg] = useState(false);
 
-  console.log(portalId, formId);
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     let firstName = name.split(" ").slice(0, -1).join(" ");
@@ -23,7 +22,6 @@ const Hero: FC<HeroProps> = ({ title, description }) => {
     const hutk = isBrowser ? Cookies.get("hubspotutk") : null;
     const pageUri = isBrowser ? window.location.href : null;
     const pageName = isBrowser ? document.title : null;
-    console.log(firstName, lastName);
     const postUrl = `https://api.hsforms.com/submissions/v3/integration/submit/20189991/48243ec1-df0f-4cd3-bc86-db322278f098`;
     var body = {
       submittedAt: Date.now(),
