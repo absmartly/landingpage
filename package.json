@@ -10,7 +10,7 @@
     "develop": "gatsby develop",
     "start": "gatsby start",
     "clean": "gatsby clean",
-    "build": "gatsby build"
+    "build": "gatsby clean && gatsby build"
   },
   "dependencies": {
     "@contentful/rich-text-plain-text-renderer": "^15.11.1",
