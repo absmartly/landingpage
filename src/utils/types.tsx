@@ -234,6 +234,17 @@ interface LandingPage {
     question: string;
     answer: string;
   }[];
+  featured: {
+    id: string;
+    title: string;
+    slug: string;
+    heroImage: {
+      gatsbyImageData: IGatsbyImageData;
+    };
+    category: {
+      url: string;
+    };
+  }[];
 }
 
 interface FooterLinks {

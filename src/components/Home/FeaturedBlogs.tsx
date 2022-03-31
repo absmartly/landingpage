@@ -1,14 +1,30 @@
-import React, { FC, useState } from "react";
-import { FeaturedBlogProps } from "../../utils/types";
-import BlogCard from "../Blog/BlogCard";
+import React, { FC } from "react";
+import { IGatsbyImageData, GatsbyImage } from "gatsby-plugin-image";
+import { Link } from "gatsby";
 
-const FeaturedBlogs: FC<FeaturedBlogProps> = ({ blogs }) => {
+interface FeaturedBlog {
+  id: string;
+  title: string;
+  slug: string;
+  heroImage: {
+    gatsbyImageData: IGatsbyImageData;
+  };
+  category: {
+    url: string;
+  };
+}
+
+interface FeaturedBlogs {
+  featuredBlogs: FeaturedBlog[];
+}
+
+const FeaturedBlogs: FC<FeaturedBlogs> = ({ featuredBlogs }) => {
   return (
     <section
       id="faq"
       className="relative w-full min-h-screen block overflow-x-hidden pt-20 pb-28 bg-white"
     >
-      <div className="w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[1140px] xl:max-w-6xl">
+      <div className="w-full mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[1240px] xl:max-w-full px-10 lg:px-20 xl:px-40 2xl:px-60">
         <div className="flex flex-wrap mx-[-15px]">
           {/* Heading */}
           <div className="float-left w-full text-left relative">
@@ -24,13 +40,16 @@ const FeaturedBlogs: FC<FeaturedBlogProps> = ({ blogs }) => {
             </div>
           </div>
           {/* Content */}
-          <div className="relative w-full px-[15px] md:grow-0 md:shrink-0 md:basis-full md:max-w-full">
-            <div className="grid grid-cols-1 lg:grid-cols-2 grid-rows-1 space-x-5 text-center">
-              {blogs.map((blog) => (
-                <BlogCard
-                  blog={blog}
-                  authorName={blog.author?.name}
-                  authorUsername={blog.author?.username}
+          <div className="relative w-full md:grow-0 md:shrink-0 md:basis-full md:max-w-full">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4  grid-rows-1 space-x-5 text-center">
+              {featuredBlogs.map((blog) => (
+                <FeaturedBlogCard
+                  key={blog.id}
+                  id={blog.id}
+                  title={blog.title}
+                  slug={blog.slug}
+                  heroImage={blog.heroImage}
+                  category={blog.category}
                 />
               ))}
             </div>
@@ -42,3 +61,44 @@ const FeaturedBlogs: FC<FeaturedBlogProps> = ({ blogs }) => {
 };
 
 export default FeaturedBlogs;
+
+const FeaturedBlogCard: FC<FeaturedBlog> = ({
+  id,
+  title,
+  slug,
+  heroImage,
+  category,
+}) => {
+  return (
+    <div
+      key={id}
+      className={`z-[2] mb-[30px] max-w-full text-left border border-solid border-[#D8D8D8] ${
+        heroImage?.gatsbyImageData ? "row-span-2 pb-6" : "py-6 row-span-1"
+      }`}
+    >
+      {heroImage && (
+        <div className={`w-full ${heroImage?.gatsbyImageData && "mb-5"}`}>
+          <GatsbyImage
+            image={heroImage.gatsbyImageData}
+            alt={title}
+            className="max-w-full w-full h-fit object-contain block align-middle border-none"
+          />
+        </div>
+      )}
+      <div className="px-7 space-y-3">
+        <h5
+          className="my-2 md:h-[100px] overflow-x-clip text-xl font-work_sans font-semibold text-gray-800 hover:text-primary
+        leading-8 lg:leading-7"
+        >
+          {title}
+        </h5>
+        <Link
+          className="font-work_sans font-medium text-lg leading-8 lg:leading-10 text-white bg-primary rounded-md px-3 py-2"
+          to={`/${category.url}/${slug}`}
+        >
+          Read More
+        </Link>
+      </div>
+    </div>
+  );
+};

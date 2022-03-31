@@ -46,10 +46,11 @@ const Home: FC<HomeProps> = ({ data }) => {
     faqTitle,
     faqSubtitle,
     faqList,
+    featured,
   } = data.allContentfulLandingPage.nodes[0];
 
   const list = data.allContentfulExperimentation.nodes;
-  const blogs = data.allContentfulBlog.nodes;
+
   return (
     <Layout>
       <SEO title={pageTitle} seoTitle={seoTitle} path={url} />
@@ -90,7 +91,7 @@ const Home: FC<HomeProps> = ({ data }) => {
           para4={aboutPara4.aboutPara4}
         />
       </div>
-      <FeaturedBlogs blogs={blogs} />
+      <FeaturedBlogs featuredBlogs={featured} />
       <FAQ title={faqTitle} subTitle={faqSubtitle} list={faqList} />
     </Layout>
   );
@@ -176,6 +177,17 @@ export const query = graphql`
           question
           answer
         }
+        featured {
+          id
+          title
+          slug
+          heroImage {
+            gatsbyImageData(placeholder: TRACED_SVG)
+          }
+          category {
+            url
+          }
+        }
       }
     }
     allContentfulExperimentation(sort: { fields: createdAt, order: ASC }) {
@@ -188,25 +200,6 @@ export const query = graphql`
         image {
           gatsbyImageData
         }
-      }
-    }
-    allContentfulBlog(limit: 6, sort: { fields: createdAt, order: DESC }) {
-      nodes {
-        id
-        title
-        heroImage {
-          gatsbyImageData
-        }
-        updatedAt(formatString: "MMMM DD, YYYY")
-        author {
-          name
-          username
-        }
-        category {
-          name
-          url
-        }
-        slug
       }
     }
   }

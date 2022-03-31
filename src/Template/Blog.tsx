@@ -88,6 +88,7 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
             <div>
               {ref.newTab ? (
                 <a
+                  className="text-base font-poppins underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
                   href={`${
                     IsURL(ref.slug) ? `${ref.slug}` : `/blog${ref.slug}`
                   }`}
@@ -97,6 +98,7 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
                 </a>
               ) : (
                 <Link
+                  className="text-base font-poppins underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
                   to={`${IsURL(ref.slug) ? `${ref.slug}` : `/blog${ref.slug}`}`}
                 >
                   {ref.title}

@@ -33,7 +33,7 @@ module.exports = {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
         accessToken: process.env.CONTENT_PREVIEW_TOKEN,
         host: process.env.CONTENTFUL_HOST || "cdn.contentful.com",
-        environment: "Development"
+        // environment: "Development"
         // spaceId: process.env.CONTENTFUL_SPACE_ID,
         // accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
