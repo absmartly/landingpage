@@ -87,7 +87,7 @@ const FeaturedBlogCard: FC<FeaturedBlog> = ({
       )}
       <div className="px-7 space-y-3">
         <h5
-          className="my-2 md:h-[100px] overflow-x-clip text-xl font-work_sans font-semibold text-gray-800 hover:text-primary
+          className="my-2 md:h-24 overflow-x-clip text-xl font-work_sans font-semibold text-gray-800 hover:text-primary
         leading-8 lg:leading-7"
         >
           {title}
