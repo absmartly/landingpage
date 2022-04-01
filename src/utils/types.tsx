@@ -60,6 +60,12 @@ export interface SolutionProps {
   details: SolutionDetail[];
 }
 
+export interface BlogCardProps {
+  blog: Blog;
+  authorName?: string;
+  authorUsername?: string;
+}
+
 export interface ExperimentationProps {
   title: string;
   description: string;
@@ -83,6 +89,10 @@ export interface FAQProps {
   }[];
 }
 
+export interface FeaturedBlogProps {
+  blogs: Blog[];
+}
+
 export enum Status {
   UnApproved = "UnApproved",
   Approved = "Approved",
@@ -101,15 +111,21 @@ export interface Comments {
 }
 export interface References {
   id: string;
-  table: {
+  table?: {
     tableData: Array<Array<string>>;
   };
   contentful_id: string;
-  gatsbyImageData: IGatsbyImageData;
-  file: {
+  gatsbyImageData?: IGatsbyImageData;
+  file?: {
     fileName: string;
   };
   title: string;
+  __typename: string;
+  slug?: string;
+  newTab?: string;
+  banner?: {
+    gatsbyImageData: IGatsbyImageData;
+  };
 }
 export interface CategroyProps {
   name: string;
@@ -149,6 +165,8 @@ export interface GrowthProps {
 }
 
 interface LandingPage {
+  pageTitle: string;
+  seoTitle: string;
   heroTitle: string;
   heroDescription: {
     heroDescription: string;
@@ -216,6 +234,17 @@ interface LandingPage {
     question: string;
     answer: string;
   }[];
+  featured: {
+    id: string;
+    title: string;
+    slug: string;
+    heroImage: {
+      gatsbyImageData: IGatsbyImageData;
+    };
+    category: {
+      url: string;
+    };
+  }[];
 }
 
 interface FooterLinks {
@@ -261,6 +290,7 @@ export interface Blog {
     url: string;
   };
   updatedAt: string;
+  createdAt: string;
 }
 
 export interface Questions {
@@ -305,6 +335,17 @@ export interface Blogs {
     title: string;
     questions: Questions[];
   };
+  popUp?: {
+    banner: {
+      gatsbyImageData: IGatsbyImageData;
+    };
+    title: string;
+    description: {
+      description: string;
+    };
+    buttonText: string;
+    slug: string;
+  };
 }
 
 export interface AuthorBlogs {
@@ -341,6 +382,9 @@ export interface HomeProps {
     };
     allContentfulExperimentation: {
       nodes: ExperimentationList[];
+    };
+    allContentfulBlog: {
+      nodes: Blog[];
     };
   };
 }
