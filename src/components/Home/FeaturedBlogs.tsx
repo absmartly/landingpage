@@ -22,7 +22,7 @@ const FeaturedBlogs: FC<FeaturedBlogs> = ({ featuredBlogs }) => {
   return (
     <section
       id="faq"
-      className="relative w-full min-h-screen block overflow-x-hidden pt-20 pb-28 bg-white"
+      className="relative w-full block overflow-x-hidden pt-20 pb-28 bg-white"
     >
       <div className="w-full mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[1240px] xl:max-w-full px-10 lg:px-20 xl:px-40 2xl:px-60">
         <div className="flex flex-wrap mx-[-15px]">
