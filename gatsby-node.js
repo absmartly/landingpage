@@ -1,3 +1,63 @@
+// exports.createSchemaCustomization = ({ actions }) => {
+//   const { createTypes } = actions;
+//   const typeDefs = `
+//   type ContentfulAsset implements Node {
+//     contentful_id: String!
+//     id: ID
+//     gatsbyImageData: JSON
+//   }
+
+//   type contentfulPopUpDescriptionTextNode implements Node {
+//     description: String
+//   }
+
+//   type ContentfulBanner implements Node {
+//     id: ID
+//     title: String
+//     banner: ContentfulAsset
+//     slug: String
+//   }
+
+//   type ContentfulLink implements Node {
+//     id: ID
+//     title: String
+//     slug: String
+//     newTab: Boolean
+//   }
+
+//   type contentfulTableTableJsonNode implements Node {
+//     tableData: [[String]]
+//   }
+
+//   type ContentfulTable implements Node {
+//     id: ID
+//     table: contentfulTableTableJsonNode
+//   }
+
+//   union ContentfulAssetContentfulBannerContentfulLinkContentfulTableUnion = ContentfulAsset | ContentfulBanner | ContentfulLink | ContentfulTable
+
+//   type ContentfulBlogDescription implements Node {
+//     raw: String
+//     references: [ContentfulAssetContentfulBannerContentfulLinkContentfulTableUnion]
+//   }
+
+//   type ContentfulPopUp implements Node {
+//     id: String
+//     title: String
+//     description: contentfulPopUpDescriptionTextNode
+//     buttonText: String
+//     slug: String
+//     banner: ContentfulAsset
+//   }
+
+//     type ContentfulBlog implements Node {
+//       popUp: ContentfulPopUp
+//       description: ContentfulBlogDescription
+//      }
+//   `;
+//   createTypes(typeDefs);
+// };
+
 exports.createPages = async function ({ actions, graphql }) {
   const { data } = await graphql(`
     query MyQuery {
