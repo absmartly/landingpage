@@ -17,7 +17,7 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
     comments?.filter((comment) => comment.status === "Approved") || []
   );
   const [showAlert, setShowAlert] = useState(false);
-  const [sortComments, setSortComments] = useState([]);
+  const [sortComments, setSortComments] = useState<IComments[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const submitForm = (event) => {
@@ -76,7 +76,7 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
   }
 
   useEffect(() => {
-    const sorts = postComments?.sort((a, b) =>
+    const sorts: IComments[] = postComments?.sort((a, b) =>
       a.updatedAt > b.updatedAt ? -1 : 1
     );
     setSortComments(sorts);
@@ -99,9 +99,9 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
   }, []);
 
   return (
-    <div className='py-10'>
-      <div className='my-10'>
-        <h3 className='font-work_sans text-2xl font-normal mb-3 text-[#212121] leading-5'>
+    <div className="py-10">
+      <div className="my-10">
+        <h3 className="font-work_sans text-2xl font-normal mb-3 text-[#212121] leading-5">
           {sortComments?.length} Comments
         </h3>
         {sortComments?.map((comment) => {
@@ -118,79 +118,79 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
         })}
       </div>
       <form
-        id='comment'
-        name='comments-queue'
+        id="comment"
+        name="comments-queue"
         onSubmit={submitForm}
-        className='grid md:grid-cols-3 grid-rows-1 gap-3'
+        className="grid md:grid-cols-3 grid-rows-1 gap-3"
       >
-        <h3 className='font-work_sans text-2xl font-normal mb-3 text-[#212121] leading-5 ml-2'>
+        <h3 className="font-work_sans text-2xl font-normal mb-3 text-[#212121] leading-5 ml-2">
           Leave a Comment
         </h3>
         <textarea
-          id='comment'
-          name='comment'
+          id="comment"
+          name="comment"
           rows={6}
-          placeholder='Comment *'
+          placeholder="Comment *"
           value={comment}
           onChange={(e) => setComment(e.target.value)}
-          className='md:col-span-3 w-full mb-4 font-poppins bg-[#2b60ba14] outline-0 border-0 py-3 px-5 text-black font-normal 
-          text-sm'
+          className="md:col-span-3 w-full mb-4 font-poppins bg-[#2b60ba14] outline-0 border-0 py-3 px-5 text-black font-normal 
+          text-sm"
           required
         />
-        <label htmlFor='comment' hidden>
+        <label htmlFor="comment" hidden>
           Comment
         </label>
         <input
-          id='name'
-          name='name'
-          type='text'
-          placeholder='Name *'
+          id="name"
+          name="name"
+          type="text"
+          placeholder="Name *"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className='w-full mb-4 font-poppins bg-[#2b60ba14] outline-0 border-0 py-3 px-5 text-black font-normal text-sm'
+          className="w-full mb-4 font-poppins bg-[#2b60ba14] outline-0 border-0 py-3 px-5 text-black font-normal text-sm"
           required
         />
-        <label htmlFor='name' hidden>
+        <label htmlFor="name" hidden>
           Name
         </label>
         <input
-          id='email'
-          name='email'
-          type='email'
-          placeholder='Email *'
+          id="email"
+          name="email"
+          type="email"
+          placeholder="Email *"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className='w-full mb-4 font-poppins bg-[#2b60ba14] outline-0 border-0 py-3 px-5 text-black font-normal text-sm'
+          className="w-full mb-4 font-poppins bg-[#2b60ba14] outline-0 border-0 py-3 px-5 text-black font-normal text-sm"
           required
         />
-        <label htmlFor='email' hidden>
+        <label htmlFor="email" hidden>
           Email
         </label>
         <input
-          name='website'
-          type='url'
-          placeholder='Website *'
+          name="website"
+          type="url"
+          placeholder="Website *"
           value={website}
           onBlur={checkURL}
           onChange={(e) => setWebsite(e.target.value)}
-          className='w-full mb-4 font-poppins bg-[#2b60ba14] outline-0 border-0 py-3 px-5 text-black font-normal text-sm'
+          className="w-full mb-4 font-poppins bg-[#2b60ba14] outline-0 border-0 py-3 px-5 text-black font-normal text-sm"
           required
         />
 
-        <label htmlFor='website' hidden>
+        <label htmlFor="website" hidden>
           Website
         </label>
-        <p className='md:col-span-3 w-full mb-4 py-3 px-1 flex items-center'>
+        <p className="md:col-span-3 w-full mb-4 py-3 px-1 flex items-center">
           <input
-            id='checkbox'
-            name='checkbox'
-            type='checkbox'
+            id="checkbox"
+            name="checkbox"
+            type="checkbox"
             checked={save}
             onChange={() => setSave(!save)}
           />
           <label
-            htmlFor='checkbox'
-            className='font-poppins text-[16px] font-medium ml-3 text-[#535353]'
+            htmlFor="checkbox"
+            className="font-poppins text-[16px] font-medium ml-3 text-[#535353]"
           >
             Save my name, email, and website in this browser for the next time I
             comment.
@@ -198,41 +198,41 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
         </p>
         {showAlert && (
           <div
-            className='px-4 py-2 mb-4 col-span-3 text-sm text-gray-100 bg-green-600 rounded-lg w-max 
-          flex items-center justify-between'
+            className="px-4 py-2 mb-4 col-span-3 text-sm text-gray-100 bg-green-600 rounded-lg w-max 
+          flex items-center justify-between"
             onClick={() => setShowAlert(false)}
-            role='alert'
+            role="alert"
           >
-            <span className='font-medium'>
+            <span className="font-medium">
               Your comment is submitted for approval
             </span>
             <button
-              type='button'
-              className='bg-transparent text-gray-100 rounded-lg ml-5'
-              data-collapse-toggle='alertId'
-              aria-label='Close'
+              type="button"
+              className="bg-transparent text-gray-100 rounded-lg ml-5"
+              data-collapse-toggle="alertId"
+              aria-label="Close"
             >
-              <span className='sr-only'>Dismiss</span>
+              <span className="sr-only">Dismiss</span>
               <svg
-                className='w-5 h-5'
-                fill='currentColor'
-                viewBox='0 0 20 20'
-                xmlns='http://www.w3.org/2000/svg'
+                className="w-5 h-5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  fillRule='evenodd'
-                  d='M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z'
-                  clipRule='evenodd'
+                  fillRule="evenodd"
+                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                  clipRule="evenodd"
                 ></path>
               </svg>
             </button>
           </div>
         )}
         <button
-          type='submit'
+          type="submit"
           disabled={isSubmitting}
-          className='bg-primary w-min font-poppins text-base font-medium mx-2 py-3 px-7 rounded-3xl border-none
-              outline-none shadow-sm text-white align-middle whitespace-nowrap button-animation block mb-10 sm:mb-0'
+          className="bg-primary w-min font-poppins text-base font-medium mx-2 py-3 px-7 rounded-3xl border-none
+              outline-none shadow-sm text-white align-middle whitespace-nowrap button-animation block mb-10 sm:mb-0"
         >
           Send Comment
         </button>

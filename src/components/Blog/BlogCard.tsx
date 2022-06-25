@@ -21,32 +21,32 @@ const BlogCard: FC<BlogCardProps> = ({ blog, authorName, authorUsername }) => {
         <div className={`w-full ${blog.heroImage?.gatsbyImageData && "mb-5"}`}>
           <GatsbyImage
             image={blog.heroImage.gatsbyImageData}
-            alt={blog.title}
-            className='max-w-full w-full h-60 object-contain block align-middle border-none'
+            alt={blog.heroImage.title || blog.heroImage.file.fileName}
+            className="max-w-full w-full h-60 object-contain block align-middle border-none"
           />
         </div>
       )}
-      <div className='px-7'>
-        <span className='text-[#0033ff] font-poppins text-sm tracking-wide'>
+      <div className="px-7">
+        <span className="text-[#0033ff] font-poppins text-sm tracking-wide">
           {blog.category.name}
         </span>
         <h5
-          className='mt-2 mb-5 text-3xl font-medium font-work_sans text-gray-800 hover:text-primary
-        leading-10'
+          className="mt-2 mb-5 text-3xl font-medium font-work_sans text-gray-800 hover:text-primary
+        leading-10"
         >
           <Link to={`/${blog.category.url}/${blog.slug}`}>{blog.title}</Link>
         </h5>
-        <p className='font-poppins text-base text-gray-700 pt-2 pb-5'>
+        <p className="font-poppins text-base text-gray-700 pt-2 pb-5">
           By{" "}
           <Link
             to={`/author/${
               blog?.author ? blog.author.username : authorUsername
             }`}
-            className='text-[#039] hover:text-primary'
+            className="text-[#039] hover:text-primary"
           >
             {blog?.author ? blog.author.name : authorName}
           </Link>{" "}
-          • <span className='text-lg text-gray-800'>{blog.updatedAt}</span>
+          • <span className="text-lg text-gray-800">{blog.updatedAt}</span>
         </p>
       </div>
     </div>

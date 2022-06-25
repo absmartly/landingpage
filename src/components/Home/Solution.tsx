@@ -17,8 +17,8 @@ const Solution: FC<SolutionProps> = ({ title, details, image }) => {
               <div className="relative w-full pb-10">
                 <GatsbyImage
                   className="relative lg:absolute top-0 min-w-full lg:min-w-[990px] max-w-full w-full left-0 lg:left-[-450px] align-middle border-none"
-                  image={image}
-                  alt={title}
+                  image={image.gatsbyImageData}
+                  alt={image.title || image.file.fileName}
                 />
               </div>
             </div>

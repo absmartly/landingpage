@@ -59,7 +59,7 @@ const Slider: FC<SliderProps> = ({ list }) => {
                     <div className="relative max-w-[300px] float-left w-full">
                       <GatsbyImage
                         image={item.image.gatsbyImageData}
-                        alt={item.title}
+                        alt={item.image.title || item.image.file.fileName}
                         className="max-w-full w-full block align-middle border-none"
                       />
                     </div>
@@ -107,7 +107,7 @@ const Slider: FC<SliderProps> = ({ list }) => {
                       <div className="leading-[26px] text-sm text-[#333333] font-medium mb-4 block">
                         <GatsbyImage
                           image={item.image.gatsbyImageData}
-                          alt={item.title}
+                          alt={item.image.title || item.image.file.fileName}
                           className="max-w-full xs:max-w-[200px] w-full float-left border-none"
                         />
                         <div className="max-w-full xs:max-w-[50%] w-full float-left xs:float-right my-0 py-0">

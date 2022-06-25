@@ -28,6 +28,10 @@ const Footer = () => {
             url
             image {
               gatsbyImageData
+              title
+              file {
+                fileName
+              }
             }
           }
         }
@@ -36,10 +40,10 @@ const Footer = () => {
   `);
   const footer = data.allContentfulFooter.nodes[0];
   return (
-    <div className='absolute bottom-0 left-0 bg-primary w-full py-4'>
-      <div className='relative w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[1140px] xl:max-w-6xl'>
-        <div className='flex flex-col justify-between flex-wrap items-center lg:flex-row my-auto mr-3 p-1 text-[13px] font-poppins font-medium uppercase text-white'>
-          <p className='font-poppins text-center text-white'>
+    <div className="absolute bottom-0 left-0 bg-primary w-full py-4">
+      <div className="relative w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[1140px] xl:max-w-6xl">
+        <div className="flex flex-col justify-between flex-wrap items-center lg:flex-row my-auto mr-3 p-1 text-[13px] font-poppins font-medium uppercase text-white">
+          <p className="font-poppins text-center text-white">
             Copyright 2020 - A/B Smartly
             {footer.footerLinks.map((node) => (
               <span key={node.contentful_id}>
@@ -56,18 +60,18 @@ const Footer = () => {
               </span>
             ))}
           </p>
-          <div className='mt-8 lg:mt-0'>
+          <div className="mt-8 lg:mt-0">
             {footer.socialLinks.map((node) => (
               <a
                 key={node.contentful_id}
                 href={node.url}
-                target='_blank'
-                rel='me'
+                target="_blank"
+                rel="me"
               >
                 <GatsbyImage
-                  className='w-4 h-4 object-contain mr-3 ml-3 cursor-pointer'
+                  className="w-4 h-4 object-contain mr-3 ml-3 cursor-pointer"
                   image={node.image.gatsbyImageData}
-                  alt={node.name}
+                  alt={node.image.title || node.image.file.fileName}
                 />
               </a>
             ))}

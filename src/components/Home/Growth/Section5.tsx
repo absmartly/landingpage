@@ -15,8 +15,8 @@ const Section5: FC<SolutionProps> = ({ title, details, image }) => {
               <div className="relative w-full pb-10">
                 <GatsbyImage
                   className="relative top-0 min-w-full lg:min-w-full max-w-full w-full align-middle border-none"
-                  image={image}
-                  alt="Home built solution"
+                  image={image.gatsbyImageData}
+                  alt={image.title || image.file.fileName}
                 />
               </div>
             </div>

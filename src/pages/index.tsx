@@ -9,7 +9,7 @@ import Solution from "../components/Home/Solution";
 import { graphql } from "gatsby";
 import { HomeProps } from "../utils/types";
 import Layout from "../components/Common/Layout";
-import { url } from "../utils/utils";
+import { url, path } from "../utils/utils";
 
 const Home: FC<HomeProps> = ({ data }) => {
   const {
@@ -46,6 +46,7 @@ const Home: FC<HomeProps> = ({ data }) => {
   } = data.allContentfulLandingPage.nodes[0];
 
   const list = data.allContentfulExperimentation.nodes;
+  console.log(url);
   return (
     <Layout>
       <SEO
@@ -55,7 +56,7 @@ const Home: FC<HomeProps> = ({ data }) => {
       <Hero title={heroTitle} description={heroDescription.heroDescription} />
       <Solution
         title={solutionTitle}
-        image={solutionImage.gatsbyImageData}
+        image={solutionImage}
         details={solutionDetails}
       />
       <Growth
@@ -105,6 +106,10 @@ export const query = graphql`
         solutionTitle
         solutionImage {
           gatsbyImageData
+          title
+          file {
+            fileName
+          }
         }
         solutionDetails {
           id
@@ -119,6 +124,10 @@ export const query = graphql`
         growthCards {
           title
           gatsbyImageData
+          title
+          file {
+            fileName
+          }
         }
         growthBanner {
           growthBanner
@@ -126,6 +135,10 @@ export const query = graphql`
         growthPerformanceTitle
         growthPerformanceImage {
           gatsbyImageData
+          title
+          file {
+            fileName
+          }
         }
         growthPerformanceDescription {
           growthPerformanceDescription
@@ -139,6 +152,10 @@ export const query = graphql`
         growthDecisionTitle
         growthDecisionImage {
           gatsbyImageData
+          title
+          file {
+            fileName
+          }
         }
         growthDecisionPoints {
           id
@@ -148,6 +165,10 @@ export const query = graphql`
         growthBanner2
         growthBanner2Image {
           gatsbyImageData
+          title
+          file {
+            fileName
+          }
         }
         experimentationTitle
         experimentationDescription {
@@ -183,6 +204,10 @@ export const query = graphql`
         }
         image {
           gatsbyImageData
+          title
+          file {
+            fileName
+          }
         }
       }
     }
