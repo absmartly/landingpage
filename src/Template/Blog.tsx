@@ -33,8 +33,7 @@ export enum POPUP_STATE {
   UNCHECKED = "unchecked",
 }
 
-  
-  const Blog: FC<BlogProps> = ({ pageContext, data }) => {
+const Blog: FC<BlogProps> = ({ pageContext, data }) => {
   const [popup, setPopup] = useState<POPUP_STATE>(POPUP_STATE.UNCHECKED);
   const relatedBlogs =
     data.PostWithTag.nodes.length > 0
@@ -88,24 +87,25 @@ export enum POPUP_STATE {
                     : "flex-start",
               }}
             >
-            <table className="table mt-5 mb-14 border-collapse border-gray-500 font-thin text-[#2d2d2d] ">
-              {ref.table.tableData.map((row, index) => (
-                <tbody key={index}>
-                  <tr>
-                    {row.map((column, subindex) => (
-                      <td
-                        key={subindex}
-                        className={`py-2 px-3 border border-solid border-[#ccc] font-poppins text-base font-thin ${
-                          subindex === 0 ? "w-44" : "w-96"
-                        }`}
-                      >
-                        {subindex === 0 ? <strong>{column}</strong> : column}
-                      </td>
-                    ))}
-                  </tr>
-                </tbody>
-              ))}
-            </table></div>
+              <table className="table mt-5 mb-14 border-collapse border-gray-500 font-thin text-[#2d2d2d] ">
+                {ref.table.tableData.map((row, index) => (
+                  <tbody key={index}>
+                    <tr>
+                      {row.map((column, subindex) => (
+                        <td
+                          key={subindex}
+                          className={`py-2 px-3 border border-solid border-[#ccc] font-poppins text-base font-thin ${
+                            subindex === 0 ? "w-44" : "w-96"
+                          }`}
+                        >
+                          {subindex === 0 ? <strong>{column}</strong> : column}
+                        </td>
+                      ))}
+                    </tr>
+                  </tbody>
+                ))}
+              </table>
+            </div>
           );
         } else if (ref.__typename === CONTENT_TYPE.CONTENTFUL_LINK) {
           console.log(IsURL(ref.slug));
@@ -132,7 +132,6 @@ export enum POPUP_STATE {
             </div>
           );
         } else if (ref.__typename === CONTENT_TYPE.CONTENTFUL_BANNER) {
-          console.log(ref.banner.gatsbyImageData);
           return (
             <a
               href={`${IsURL(ref.slug) ? `${ref.slug}` : `/blog${ref.slug}`}`}
@@ -145,10 +144,10 @@ export enum POPUP_STATE {
               />
             </a>
           );
+        }
       },
     },
-  }
-  }
+  };
   useEffect(() => {
     setTimeout(() => {
       setPopup(POPUP_STATE.OPEN);
@@ -181,7 +180,7 @@ export enum POPUP_STATE {
       <div className="py-20 sm:px-10 md:px-20">
         <div className="w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[1140px] xl:max-w-6xl">
           <div className="-mx-[15px] border-b-2 border-secondary">
-            {blog.heroImage && (
+            {blog.heroImage?.gatsbyImageData && (
               <div className="my-10">
                 <GatsbyImage
                   image={blog.heroImage.gatsbyImageData}

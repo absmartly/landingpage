@@ -155,9 +155,9 @@ export interface References {
   };
   title: string;
   __typename: string;
-  slug?: string;
+  slug: string;
   newTab?: string;
-  banner?: {
+  banner: {
     gatsbyImageData: IGatsbyImageData;
   };
 }
