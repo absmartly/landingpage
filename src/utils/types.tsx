@@ -126,10 +126,19 @@ export interface Comments {
 }
 export interface References {
   id: string;
+  align: string;
   table: {
+    align: string;
     tableData: Array<Array<string>>;
   };
   contentful_id: string;
+  media: {
+    gatsbyImageData: IGatsbyImageData;
+    title: string;
+    file: {
+      fileName: string;
+    };
+  };
   gatsbyImageData: IGatsbyImageData;
   file: {
     fileName: string;

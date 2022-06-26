@@ -61,26 +61,61 @@ const Blog: FC<BlogProps> = ({ pageContext, data }) => {
       [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
         const ref = blog.description.references[count];
         count++;
-        return (
-          <table className="table mt-5 mb-14 border-collapse border-gray-500 font-thin text-[#2d2d2d] ">
-            {ref.table.tableData.map((row, index) => (
-              <tbody key={index}>
-                <tr>
-                  {row.map((column, subindex) => (
-                    <td
-                      key={subindex}
-                      className={`py-2 px-3 border border-solid border-[#ccc] font-poppins text-base font-thin ${
-                        subindex === 0 ? "w-44" : "w-96"
-                      }`}
-                    >
-                      {subindex === 0 ? <strong>{column}</strong> : column}
-                    </td>
-                  ))}
-                </tr>
-              </tbody>
-            ))}
-          </table>
-        );
+        console.log(ref.align);
+        if (ref.table) {
+          return (
+            <div
+              className="w-full flex flex-col"
+              style={{
+                alignItems:
+                  ref.align === "center"
+                    ? "center"
+                    : ref.align === "right"
+                    ? "flex-end"
+                    : "flex-start",
+              }}
+            >
+              <table className="table mt-5 mb-14 border-collapse border-gray-500 font-thin text-[#2d2d2d] ">
+                {ref.table.tableData.map((row, index) => (
+                  <tbody key={index}>
+                    <tr>
+                      {row.map((column, subindex) => (
+                        <td
+                          key={subindex}
+                          className={`py-2 px-3 border border-solid border-[#ccc] font-poppins text-base font-thin ${
+                            subindex === 0 ? "w-44" : "w-96"
+                          }`}
+                        >
+                          {subindex === 0 ? <strong>{column}</strong> : column}
+                        </td>
+                      ))}
+                    </tr>
+                  </tbody>
+                ))}
+              </table>
+            </div>
+          );
+        } else if (ref.media) {
+          return (
+            <div
+              className="w-full flex flex-col"
+              style={{
+                alignItems:
+                  ref.align === "center"
+                    ? "center"
+                    : ref.align === "right"
+                    ? "flex-end"
+                    : "flex-start",
+              }}
+            >
+              <GatsbyImage
+                image={ref.media.gatsbyImageData}
+                alt={ref.media.title || ref.media.file.fileName}
+                objectFit="contain"
+              />
+            </div>
+          );
+        }
       },
     },
   };
