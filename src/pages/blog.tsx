@@ -48,6 +48,10 @@ export const query = graphql`
         title
         heroImage {
           gatsbyImageData
+          title
+          file {
+            fileName
+          }
         }
         updatedAt(formatString: "MMMM DD, YYYY")
         createdAt(formatString: "MMMM DD, YYYY")

@@ -68,6 +68,10 @@ exports.createPages = async function ({ actions, graphql }) {
           title
           heroImage {
             gatsbyImageData
+            title
+            file {
+              fileName
+            }
           }
           createdAt(formatString: "MMM DD YYYY")
           updatedAt(formatString: "MMM DD YYYY")
@@ -76,6 +80,7 @@ exports.createPages = async function ({ actions, graphql }) {
             references {
               ... on ContentfulTable {
                 id
+                align
                 table {
                   tableData
                 }
@@ -84,6 +89,7 @@ exports.createPages = async function ({ actions, graphql }) {
               ... on ContentfulAsset {
                 contentful_id
                 gatsbyImageData(placeholder: TRACED_SVG)
+                title
                 file {
                   fileName
                 }
@@ -104,6 +110,16 @@ exports.createPages = async function ({ actions, graphql }) {
                 }
                 slug
                 __typename
+              }
+              ... on ContentfulCustomAsset {
+                media {
+                  gatsbyImageData
+                  title
+                  file {
+                    fileName
+                  }
+                }
+                align
               }
             }
           }
@@ -157,6 +173,7 @@ exports.createPages = async function ({ actions, graphql }) {
             buttonText
             slug
           }
+          relatedPostsTag
         }
       }
       allContentfulAuthor {
@@ -168,6 +185,10 @@ exports.createPages = async function ({ actions, graphql }) {
           }
           profilePic {
             gatsbyImageData
+            title
+            file {
+              fileName
+            }
           }
           linkedinUrl
           blog {
@@ -176,6 +197,10 @@ exports.createPages = async function ({ actions, graphql }) {
             slug
             heroImage {
               gatsbyImageData
+              title
+              file {
+                fileName
+              }
             }
             category {
               name
@@ -199,6 +224,7 @@ exports.createPages = async function ({ actions, graphql }) {
       component: require.resolve(`./src/Template/Blog.tsx`),
       context: {
         data: blog,
+        tag: blog.relatedPostsTag ?? "",
       },
     });
   });

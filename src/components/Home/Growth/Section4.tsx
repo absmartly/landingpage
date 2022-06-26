@@ -30,8 +30,8 @@ const Section4: FC<Section4Props> = ({ title, para1, para2, para3, image }) => {
               <div className="relative w-full">
                 <GatsbyImage
                   className="w-full max-w-full align-middle block"
-                  image={image}
-                  alt={title}
+                  image={image.gatsbyImageData}
+                  alt={image.title || image.file.fileName}
                 />
               </div>
             </div>

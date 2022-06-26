@@ -28,6 +28,10 @@ const Footer = () => {
             url
             image {
               gatsbyImageData
+              title
+              file {
+                fileName
+              }
             }
           }
         }
@@ -67,7 +71,7 @@ const Footer = () => {
                 <GatsbyImage
                   className="w-4 h-4 object-contain mr-3 ml-3 cursor-pointer"
                   image={node.image.gatsbyImageData}
-                  alt={node.name}
+                  alt={node.image.title || node.image.file.fileName}
                 />
               </a>
             ))}

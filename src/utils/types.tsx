@@ -14,17 +14,30 @@ export interface ExperimentationList {
   };
   image: {
     gatsbyImageData: IGatsbyImageData;
+    title: string;
+    file: {
+      fileName: string;
+    };
   };
 }
 
 export interface Section6Props {
   description: string;
-  image: IGatsbyImageData;
+  image: {
+    gatsbyImageData: IGatsbyImageData;
+    title: string;
+    file: {
+      fileName: string;
+    };
+  };
 }
 
 interface Cards {
   title: string;
   gatsbyImageData: IGatsbyImageData;
+  file: {
+    fileName: string;
+  };
 }
 
 export interface Section1Props {
@@ -46,7 +59,13 @@ export interface Section4Props {
   para1: string;
   para2: string;
   para3: string;
-  image: IGatsbyImageData;
+  image: {
+    gatsbyImageData: IGatsbyImageData;
+    title: string;
+    file: {
+      fileName: string;
+    };
+  };
 }
 
 export interface HeroProps {
@@ -56,7 +75,13 @@ export interface HeroProps {
 
 export interface SolutionProps {
   title: string;
-  image: IGatsbyImageData;
+  image: {
+    gatsbyImageData: IGatsbyImageData;
+    title: string;
+    file: {
+      fileName: string;
+    };
+  };
   details: SolutionDetail[];
 }
 
@@ -111,12 +136,21 @@ export interface Comments {
 }
 export interface References {
   id: string;
-  table?: {
+  align: string;
+  table: {
+    align: string;
     tableData: Array<Array<string>>;
   };
   contentful_id: string;
-  gatsbyImageData?: IGatsbyImageData;
-  file?: {
+  media: {
+    gatsbyImageData: IGatsbyImageData;
+    title: string;
+    file: {
+      fileName: string;
+    };
+  };
+  gatsbyImageData: IGatsbyImageData;
+  file: {
     fileName: string;
   };
   title: string;
@@ -143,6 +177,10 @@ export interface GrowthProps {
   growthPerformanceTitle: string;
   growthPerformanceImage: {
     gatsbyImageData: IGatsbyImageData;
+    title: string;
+    file: {
+      fileName: string;
+    };
   };
   growthPerformanceDescription: {
     growthPerformanceDescription: string;
@@ -156,11 +194,19 @@ export interface GrowthProps {
   growthDecisionTitle: string;
   growthDecisionImage: {
     gatsbyImageData: IGatsbyImageData;
+    title: string;
+    file: {
+      fileName: string;
+    };
   };
   growthDecisionPoints: SolutionDetail[];
   growthBanner2: string;
   growthBanner2Image: {
     gatsbyImageData: IGatsbyImageData;
+    title: string;
+    file: {
+      fileName: string;
+    };
   };
 }
 
@@ -174,6 +220,10 @@ interface LandingPage {
   solutionTitle: string;
   solutionImage: {
     gatsbyImageData: IGatsbyImageData;
+    title: string;
+    file: {
+      fileName: string;
+    };
   };
   solutionDetails: SolutionDetail[];
   growthTitle: string;
@@ -188,6 +238,10 @@ interface LandingPage {
   growthPerformanceTitle: string;
   growthPerformanceImage: {
     gatsbyImageData: IGatsbyImageData;
+    title: string;
+    file: {
+      fileName: string;
+    };
   };
   growthPerformanceDescription: {
     growthPerformanceDescription: string;
@@ -201,6 +255,10 @@ interface LandingPage {
   growthDecisionTitle: string;
   growthDecisionImage: {
     gatsbyImageData: IGatsbyImageData;
+    title: string;
+    file: {
+      fileName: string;
+    };
   };
   growthDecisionPoints: {
     id: string;
@@ -210,6 +268,10 @@ interface LandingPage {
   growthBanner2: string;
   growthBanner2Image: {
     gatsbyImageData: IGatsbyImageData;
+    title: string;
+    file: {
+      fileName: string;
+    };
   };
   experimentationTitle: string;
   experimentationDescription: {
@@ -259,6 +321,10 @@ interface SocialLinks {
   url: string;
   image: {
     gatsbyImageData: IGatsbyImageData;
+    title: string;
+    file: {
+      fileName: string;
+    };
   };
 }
 
@@ -280,6 +346,10 @@ export interface Blog {
   slug: string;
   heroImage: {
     gatsbyImageData: IGatsbyImageData;
+    title: string;
+    file: {
+      fileName: string;
+    };
   };
   author: {
     name: string;
@@ -308,6 +378,10 @@ export interface Blogs {
   heroImage:
     | {
         gatsbyImageData: IGatsbyImageData | undefined;
+        title: string;
+        file: {
+          fileName: string;
+        };
       }
     | undefined;
   description: {
@@ -359,6 +433,10 @@ export interface AuthorBlogs {
   };
   heroImage: {
     gatsbyImageData: IGatsbyImageData | undefined;
+    title: string;
+    file: {
+      fileName: string;
+    };
   };
 }
 
@@ -370,6 +448,10 @@ interface Author {
   };
   profilePic: {
     gatsbyImageData: IGatsbyImageData | undefined;
+    title: string;
+    file: {
+      fileName: string;
+    };
   };
   linkedinUrl: string | undefined;
   blog?: Blog[];
@@ -405,11 +487,20 @@ export interface BlogsProps {
   };
 }
 
+export interface RelatedBlogsProps {
+  PostWithTag: {
+    nodes: Blog[];
+  };
+  PostWithoutTag: {
+    nodes: Blog[];
+  };
+}
+
 export interface BlogProps {
   pageContext: {
     data: Blogs;
   };
-  data: any;
+  data: RelatedBlogsProps;
 }
 
 export interface AuthorProps {

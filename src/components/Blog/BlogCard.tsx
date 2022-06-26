@@ -15,7 +15,7 @@ const BlogCard: FC<BlogCardProps> = ({ blog, authorName, authorUsername }) => {
         <div className={`w-full ${blog.heroImage?.gatsbyImageData && "mb-5"}`}>
           <GatsbyImage
             image={blog.heroImage.gatsbyImageData}
-            alt={blog.title}
+            alt={blog.heroImage.title || blog.heroImage.file.fileName}
             className="max-w-full w-full h-60 object-contain block align-middle border-none"
           />
         </div>
@@ -25,7 +25,7 @@ const BlogCard: FC<BlogCardProps> = ({ blog, authorName, authorUsername }) => {
           {blog.category.name}
         </span>
         <h5
-          className="mt-2 mb-5 text-2xl font-medium font-work_sans text-gray-800 hover:text-primary
+          className="mt-2 mb-5 text-3xl font-medium font-work_sans text-gray-800 hover:text-primary
         leading-10"
         >
           <Link to={`/${blog.category.url}/${blog.slug}`}>{blog.title}</Link>
@@ -40,7 +40,7 @@ const BlogCard: FC<BlogCardProps> = ({ blog, authorName, authorUsername }) => {
           >
             {blog?.author ? blog.author.name : authorName}
           </Link>{" "}
-          • <span className="text-lg text-gray-800">{blog.createdAt}</span>
+          • <span className="text-lg text-gray-800">{blog.updatedAt}</span>
         </p>
       </div>
     </div>

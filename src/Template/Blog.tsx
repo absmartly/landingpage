@@ -3,8 +3,8 @@ import { BlogProps } from "../utils/types";
 import { BLOCKS } from "@contentful/rich-text-types";
 import Layout from "../components/Common/Layout";
 import SEO from "../components/Common/SEO";
-import { Link } from "gatsby";
 import { IsURL, truncate, url } from "../utils/utils";
+import { graphql, Link } from "gatsby";
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import getReadingTime from "../components/Common/readTime";
@@ -18,6 +18,7 @@ import {
 import SocialShare from "../components/Common/SocialShare";
 import { Link as LinkScroll } from "react-scroll";
 import Popup from "../components/Blog/Popup";
+import RelatedPosts from "../components/Blog/RelatedPosts";
 
 enum CONTENT_TYPE {
   CONTENTFUL_ASSET = "ContentfulAsset",
@@ -32,8 +33,14 @@ export enum POPUP_STATE {
   UNCHECKED = "unchecked",
 }
 
-const Blog: FC<BlogProps> = ({ pageContext }) => {
+  
+  const Blog: FC<BlogProps> = ({ pageContext, data }) => {
   const [popup, setPopup] = useState<POPUP_STATE>(POPUP_STATE.UNCHECKED);
+  const relatedBlogs =
+    data.PostWithTag.nodes.length > 0
+      ? data.PostWithTag.nodes
+      : data.PostWithoutTag.nodes;
+  console.log(relatedBlogs);
   let count = 0;
   const blog = pageContext.data;
 
@@ -47,13 +54,20 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
 
       [BLOCKS.HEADING_2]: (node, children) => <Heading2>{children}</Heading2>,
       [BLOCKS.HEADING_3]: (node, children) => <Heading3>{children}</Heading3>,
+      [BLOCKS.TABLE]: (node, children) => <table>{children}</table>,
+      [BLOCKS.TABLE_ROW]: (node, children) => (
+        <tr className="text-center p-2">{children}</tr>
+      ),
+      [BLOCKS.TABLE_CELL]: (node, children) => (
+        <td className="p-2">{children}</td>
+      ),
       [BLOCKS.EMBEDDED_ASSET]: (node, children) => {
         const ref = blog.description.references[count];
         count++;
         return (
           <GatsbyImage
             image={ref.gatsbyImageData}
-            alt={ref.file.fileName}
+            alt={ref.title || ref.file.fileName}
             objectFit="contain"
           />
         );
@@ -63,6 +77,17 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
         count++;
         if (ref.__typename === CONTENT_TYPE.CONTENTFUL_TABLE) {
           return (
+            <div
+              className="w-full flex flex-col"
+              style={{
+                alignItems:
+                  ref.align === "center"
+                    ? "center"
+                    : ref.align === "right"
+                    ? "flex-end"
+                    : "flex-start",
+              }}
+            >
             <table className="table mt-5 mb-14 border-collapse border-gray-500 font-thin text-[#2d2d2d] ">
               {ref.table.tableData.map((row, index) => (
                 <tbody key={index}>
@@ -80,7 +105,7 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
                   </tr>
                 </tbody>
               ))}
-            </table>
+            </table></div>
           );
         } else if (ref.__typename === CONTENT_TYPE.CONTENTFUL_LINK) {
           console.log(IsURL(ref.slug));
@@ -120,11 +145,10 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
               />
             </a>
           );
-        }
       },
     },
-  };
-
+  }
+  }
   useEffect(() => {
     setTimeout(() => {
       setPopup(POPUP_STATE.OPEN);
@@ -168,7 +192,7 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
             )}
             <div className="relative w-full px-12 md:px-20 md:grow-0 md:shrink-0 md:basis-full md:max-w-full mb-20">
               <h1 className="text-4xl leading-10 md:text-7xl md:leading-[80px] font-work_sans text-gray-800">
-                {blog.title}
+                {blog.seoTitle}
               </h1>
               {blog.author && (
                 <p className="font-poppins text-base text-gray-700 py-5">
@@ -230,7 +254,8 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
               )}
             </div>
           </div>
-          {blog.category.isComments && (
+          <RelatedPosts blogs={relatedBlogs} />
+          {blog.comments?.length && (
             <div className="pl-7 pr-3 md:px-20">
               <Form
                 id={blog.contentful_id}
@@ -245,3 +270,61 @@ const Blog: FC<BlogProps> = ({ pageContext }) => {
 };
 
 export default Blog;
+
+export const query = graphql`
+  query BlogQuery($tag: [String]) {
+    PostWithTag: allContentfulBlog(
+      filter: { tags: { in: $tag } }
+      limit: 2
+      sort: { fields: createdAt, order: DESC }
+    ) {
+      nodes {
+        id
+        title
+        heroImage {
+          gatsbyImageData
+          title
+          file {
+            fileName
+          }
+        }
+        updatedAt(formatString: "MMMM DD, YYYY")
+        author {
+          name
+          username
+        }
+        category {
+          name
+          url
+        }
+        slug
+      }
+    }
+    PostWithoutTag: allContentfulBlog(
+      limit: 2
+      sort: { fields: createdAt, order: DESC }
+    ) {
+      nodes {
+        id
+        title
+        heroImage {
+          gatsbyImageData
+          title
+          file {
+            fileName
+          }
+        }
+        updatedAt(formatString: "MMMM DD, YYYY")
+        author {
+          name
+          username
+        }
+        category {
+          name
+          url
+        }
+        slug
+      }
+    }
+  }
+`;

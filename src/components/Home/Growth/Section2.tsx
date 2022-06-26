@@ -20,7 +20,7 @@ const Section2: FC<Section2Props> = ({ cards }) => {
                   <GatsbyImage
                     className={`w-[100px] h-[100px] ${cardsColors[index].filter} object-cover align-middle text-center rounded-full border-[10px] border-solid border-[#d4f7f8] mb-6`}
                     image={card.gatsbyImageData}
-                    alt={card.title}
+                    alt={card.title || card.file.fileName}
                   />
                   <h5 className="mb-[0.8rem] font-work_sans text-[#212121] font-semibold text-center text-xl">
                     {card.title}

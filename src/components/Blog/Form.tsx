@@ -17,7 +17,7 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
     comments?.filter((comment) => comment.status === "Approved") || []
   );
   const [showAlert, setShowAlert] = useState(false);
-  const [sortComments, setSortComments] = useState([]);
+  const [sortComments, setSortComments] = useState<IComments[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const submitForm = (event) => {
@@ -76,7 +76,7 @@ const Form: FC<IFormProps> = ({ id, comments }) => {
   }
 
   useEffect(() => {
-    const sorts = postComments?.sort((a, b) =>
+    const sorts: IComments[] = postComments?.sort((a, b) =>
       a.updatedAt > b.updatedAt ? -1 : 1
     );
     setSortComments(sorts);

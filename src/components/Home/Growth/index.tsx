@@ -35,17 +35,14 @@ const Growth: FC<GrowthProps> = ({
         para1={growthPerformanceDescription.growthPerformanceDescription}
         para2={growthPerformancePara2.growthPerformancePara2}
         para3={growthPerformancePara3.growthPerformancePara3}
-        image={growthPerformanceImage.gatsbyImageData}
+        image={growthPerformanceImage}
       />
       <Section5
         title={growthDecisionTitle}
-        image={growthDecisionImage.gatsbyImageData}
+        image={growthDecisionImage}
         details={growthDecisionPoints}
       />
-      <Section6
-        description={growthBanner2}
-        image={growthBanner2Image.gatsbyImageData}
-      />
+      <Section6 description={growthBanner2} image={growthBanner2Image} />
     </div>
   );
 };
