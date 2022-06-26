@@ -112,6 +112,7 @@ exports.createPages = async function ({ actions, graphql }) {
                 __typename
               }
               ... on ContentfulCustomAsset {
+                __typename
                 media {
                   gatsbyImageData
                   title

@@ -25,6 +25,7 @@ enum CONTENT_TYPE {
   CONTENTFUL_TABLE = "ContentfulTable",
   CONTENTFUL_LINK = "ContentfulLink",
   CONTENTFUL_BANNER = "ContentfulBanner",
+  CONTENTFUL_CUSTOM_ASSET = "ContentfulCustomAsset",
 }
 
 export enum POPUP_STATE {
@@ -143,6 +144,26 @@ const Blog: FC<BlogProps> = ({ pageContext, data }) => {
                 objectFit="contain"
               />
             </a>
+          );
+        } else if (ref.__typename === CONTENT_TYPE.CONTENTFUL_CUSTOM_ASSET) {
+          return (
+            <div
+              className="w-full flex flex-col"
+              style={{
+                alignItems:
+                  ref.align === "center"
+                    ? "center"
+                    : ref.align === "right"
+                    ? "flex-end"
+                    : "flex-start",
+              }}
+            >
+              <GatsbyImage
+                image={ref.media.gatsbyImageData}
+                alt={ref.media.title || ref.media.file.fileName}
+                objectFit="contain"
+              />
+            </div>
           );
         }
       },
