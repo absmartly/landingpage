@@ -20,6 +20,7 @@ exports.createPages = async function ({ actions, graphql }) {
             references {
               ... on ContentfulTable {
                 id
+                align
                 table {
                   tableData
                 }
@@ -31,6 +32,16 @@ exports.createPages = async function ({ actions, graphql }) {
                 file {
                   fileName
                 }
+              }
+              ... on ContentfulCustomAsset {
+                media {
+                  gatsbyImageData
+                  title
+                  file {
+                    fileName
+                  }
+                }
+                align
               }
             }
           }
