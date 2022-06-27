@@ -292,12 +292,12 @@ const Blog: FC<BlogProps> = ({ pageContext, data }) => {
 export default Blog;
 
 export const query = graphql`
-  query BlogQuery($tag: [String]) {
-    PostWithTag: allContentfulBlog(
-      filter: { tags: { in: $tag } }
-      limit: 2
-      sort: { fields: createdAt, order: DESC }
-    ) {
+query BlogQuery($tag: [String], $noOfPost: Int) {
+  PostWithTag: allContentfulBlog(
+    filter: { tags: { in: $tag } }
+    limit: $noOfPost
+    sort: { fields: createdAt, order: DESC }
+  ) {
       nodes {
         id
         title

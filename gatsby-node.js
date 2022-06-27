@@ -60,12 +60,113 @@
 
 exports.createPages = async function ({ actions, graphql }) {
   const { data } = await graphql(`
-    query MyQuery {
-      allContentfulBlog {
-        nodes {
-          id
-          contentful_id
+  query MyQuery {
+    allContentfulBlog {
+      nodes {
+        id
+        contentful_id
+        title
+        heroImage {
+          gatsbyImageData
           title
+          file {
+            fileName
+          }
+        }
+        createdAt(formatString: "MMM DD YYYY")
+        updatedAt(formatString: "MMM DD YYYY")
+        description {
+          raw
+          references {
+            ... on ContentfulTable {
+              id
+              align
+              table {
+                tableData
+              }
+            }
+            ... on ContentfulAsset {
+              contentful_id
+              gatsbyImageData(placeholder: TRACED_SVG)
+              title
+              file {
+                fileName
+              }
+            }
+            ... on ContentfulCustomAsset {
+              media {
+                gatsbyImageData
+                title
+                file {
+                  fileName
+                }
+              }
+              align
+            }
+          }
+        }
+        tags
+        slug
+        seoTitle
+        seoDescription {
+          seoDescription
+        }
+        author {
+          name
+          username
+        }
+        comments {
+          id
+          message {
+            message
+          }
+          createdAt(formatString: "MMM DD YYYY")
+          updatedAt(formatString: "MMM DD YYYY")
+          name
+          website
+          email
+          status
+        }
+        category {
+          name
+          url
+          isSocialShare
+          isComments
+        }
+        faQs {
+          id
+          title
+          questions {
+            contentful_id
+            question
+            answer {
+              answer
+            }
+          }
+        }
+        relatedPostsTag
+        numberOfRelatedPosts
+      }
+    }
+    allContentfulAuthor {
+      nodes {
+        name
+        username
+        bio {
+          bio
+        }
+        profilePic {
+          gatsbyImageData
+          title
+          file {
+            fileName
+          }
+        }
+        linkedinUrl
+        blog {
+          id
+          title
+          slug
           heroImage {
             gatsbyImageData
             title
@@ -73,148 +174,18 @@ exports.createPages = async function ({ actions, graphql }) {
               fileName
             }
           }
-          createdAt(formatString: "MMM DD YYYY")
-          updatedAt(formatString: "MMM DD YYYY")
-          description {
-            raw
-            references {
-              ... on ContentfulTable {
-                id
-                align
-                table {
-                  tableData
-                }
-                __typename
-              }
-              ... on ContentfulAsset {
-                contentful_id
-                gatsbyImageData(placeholder: TRACED_SVG)
-                title
-                file {
-                  fileName
-                }
-                __typename
-              }
-              ... on ContentfulLink {
-                id
-                title
-                slug
-                newTab
-                __typename
-              }
-              ... on ContentfulBanner {
-                id
-                title
-                banner {
-                  gatsbyImageData(placeholder: TRACED_SVG)
-                }
-                slug
-                __typename
-              }
-              ... on ContentfulCustomAsset {
-                __typename
-                media {
-                  gatsbyImageData
-                  title
-                  file {
-                    fileName
-                  }
-                }
-                align
-              }
-            }
-          }
-          tags
-          slug
-          seoTitle
-          seoDescription {
-            seoDescription
-          }
-          author {
-            name
-            username
-          }
-          comments {
-            id
-            message {
-              message
-            }
-            createdAt(formatString: "MMM DD YYYY")
-            updatedAt(formatString: "MMM DD YYYY")
-            name
-            website
-            email
-            status
-          }
           category {
             name
             url
-            isSocialShare
-            isComments
           }
-          faQs {
-            id
-            title
-            questions {
-              contentful_id
-              question
-              answer {
-                answer
-              }
-            }
-          }
-          popUp {
-            banner {
-              gatsbyImageData
-            }
-            title
-            description {
-              description
-            }
-            buttonText
-            slug
-          }
-          relatedPostsTag
-        }
-      }
-      allContentfulAuthor {
-        nodes {
-          name
-          username
-          bio {
-            bio
-          }
-          profilePic {
-            gatsbyImageData
-            title
-            file {
-              fileName
-            }
-          }
-          linkedinUrl
-          blog {
-            id
-            title
-            slug
-            heroImage {
-              gatsbyImageData
-              title
-              file {
-                fileName
-              }
-            }
-            category {
-              name
-              url
-            }
-            updatedAt(formatString: "MMM DD YYYY")
-            description {
-              raw
-            }
+          updatedAt(formatString: "MMM DD YYYY")
+          description {
+            raw
           }
         }
       }
     }
+  }
   `);
   data.allContentfulBlog.nodes.forEach((blog) => {
     actions.createPage({
@@ -226,6 +197,7 @@ exports.createPages = async function ({ actions, graphql }) {
       context: {
         data: blog,
         tag: blog.relatedPostsTag ?? "",
+        noOfPost: blog.numberOfRelatedPosts ?? 2
       },
     });
   });
