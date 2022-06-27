@@ -175,6 +175,7 @@ exports.createPages = async function ({ actions, graphql }) {
             slug
           }
           relatedPostsTag
+          numberOfRelatedPosts
         }
       }
       allContentfulAuthor {
@@ -226,6 +227,7 @@ exports.createPages = async function ({ actions, graphql }) {
       context: {
         data: blog,
         tag: blog.relatedPostsTag ?? "",
+        noOfPost: blog.numberOfRelatedPosts ?? 2
       },
     });
   });
