@@ -157,6 +157,7 @@ export interface References {
   __typename: string;
   slug: string;
   newTab?: string;
+  altText?: string;
   banner: {
     gatsbyImageData: IGatsbyImageData;
   };
@@ -351,6 +352,7 @@ export interface Blog {
       fileName: string;
     };
   };
+  heroImageAltText?: string;
   author: {
     name: string;
     username: string;
@@ -384,6 +386,7 @@ export interface Blogs {
         };
       }
     | undefined;
+  heroImageAltText: string;
   description: {
     raw: string;
     references: References[];

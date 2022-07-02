@@ -1,7 +1,7 @@
 require("dotenv").config();
 
 module.exports = {
-  trailingSlash: "never",
+  trailingSlash: "ignore",
   siteMetadata: {
     siteUrl: "https://absmartly.netlify.app/",
   },

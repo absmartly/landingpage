@@ -13,8 +13,8 @@ const RelatedPosts: FC<IBlogsProps> = ({ blogs }) => {
         Related Posts
       </h2>
       <div className="grid grid-cols-1 lg:grid-cols-2 grid-rows-1 space-x-5 text-center">
-        {blogs.map((blog) => (
-          <BlogCard blog={blog} />
+        {blogs.map((blog, index) => (
+          <BlogCard key={index} blog={blog} />
         ))}
       </div>
     </div>

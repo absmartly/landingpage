@@ -40,7 +40,6 @@ const Blog: FC<BlogProps> = ({ pageContext, data }) => {
     data.PostWithTag.nodes.length > 0
       ? data.PostWithTag.nodes
       : data.PostWithoutTag.nodes;
-  console.log(relatedBlogs);
   let count = 0;
   const blog = pageContext.data;
 
@@ -140,7 +139,7 @@ const Blog: FC<BlogProps> = ({ pageContext, data }) => {
             >
               <GatsbyImage
                 image={ref.banner.gatsbyImageData}
-                alt={ref.title}
+                alt={ref.altText || ref.file.fileName}
                 objectFit="contain"
               />
             </a>
@@ -160,7 +159,7 @@ const Blog: FC<BlogProps> = ({ pageContext, data }) => {
             >
               <GatsbyImage
                 image={ref.media.gatsbyImageData}
-                alt={ref.media.title || ref.media.file.fileName}
+                alt={ref.altText || ref.media.title}
                 objectFit="contain"
               />
             </div>
@@ -174,7 +173,7 @@ const Blog: FC<BlogProps> = ({ pageContext, data }) => {
       setPopup(POPUP_STATE.OPEN);
     }, 10000);
   }, []);
-
+  console.log(url);
   return (
     <Layout>
       <SEO
@@ -292,12 +291,12 @@ const Blog: FC<BlogProps> = ({ pageContext, data }) => {
 export default Blog;
 
 export const query = graphql`
-query BlogQuery($tag: [String], $noOfPost: Int) {
-  PostWithTag: allContentfulBlog(
-    filter: { tags: { in: $tag } }
-    limit: $noOfPost
-    sort: { fields: createdAt, order: DESC }
-  ) {
+  query BlogQuery($tag: [String], $noOfPost: Int) {
+    PostWithTag: allContentfulBlog(
+      filter: { tags: { in: $tag } }
+      limit: $noOfPost
+      sort: { fields: createdAt, order: DESC }
+    ) {
       nodes {
         id
         title
