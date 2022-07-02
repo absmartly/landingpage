@@ -94,7 +94,7 @@ const FeaturedBlogCard: FC<FeaturedBlog> = ({
         </h5>
         <Link
           className="font-work_sans font-medium text-lg leading-8 lg:leading-10 text-white bg-primary rounded-md px-3 py-2"
-          to={`/${category.url}/${slug}`}
+          to={`/${category.url}/${slug}/`}
         >
           Read More
         </Link>

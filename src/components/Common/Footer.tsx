@@ -52,7 +52,7 @@ const Footer = () => {
                 <Link
                   key={node.contentful_id}
                   to={`${
-                    node.slug.includes("https") ? node.slug : `/${node.slug}`
+                    node.slug.includes("https") ? node.slug : `/${node.slug}/`
                   }`}
                 >
                   {node.title}

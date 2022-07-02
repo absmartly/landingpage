@@ -124,7 +124,7 @@ const Blog: FC<BlogProps> = ({ pageContext, data }) => {
               ) : (
                 <Link
                   className="text-base font-poppins underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
-                  to={`${IsURL(ref.slug) ? `${ref.slug}` : `/blog${ref.slug}`}`}
+                  to={`${IsURL(ref.slug) ? `${ref.slug}` : `/blog${ref.slug}/`}`}
                 >
                   {ref.title}
                 </Link>
@@ -217,7 +217,7 @@ const Blog: FC<BlogProps> = ({ pageContext, data }) => {
                 <p className="font-poppins text-base text-gray-700 py-5">
                   By{" "}
                   <Link
-                    to={`/author/${blog.author.username}`}
+                    to={`/author/${blog.author.username}/`}
                     className="text-[#039] hover:text-primary"
                   >
                     {blog.author.name}

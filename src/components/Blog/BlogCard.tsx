@@ -28,14 +28,14 @@ const BlogCard: FC<BlogCardProps> = ({ blog, authorName, authorUsername }) => {
           className="mt-2 mb-5 text-3xl font-medium font-work_sans text-gray-800 hover:text-primary
         leading-10"
         >
-          <Link to={`/${blog.category.url}/${blog.slug}`}>{blog.title}</Link>
+          <Link to={`/${blog.category.url}/${blog.slug}/`}>{blog.title}</Link>
         </h5>
         <p className="font-poppins text-base text-gray-700 pt-2 pb-5">
           By{" "}
           <Link
             to={`/author/${
               blog?.author ? blog.author.username : authorUsername
-            }`}
+            }/`}
             className="text-[#039] hover:text-primary"
           >
             {blog?.author ? blog.author.name : authorName}
