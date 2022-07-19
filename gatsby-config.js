@@ -1,9 +1,9 @@
 require("dotenv").config();
 
 module.exports = {
-  trailingSlash: "ignore",
+  trailingSlash: "never",
   siteMetadata: {
-    siteUrl: "https://absmartly.netlify.app/",
+    siteUrl: "https://absmartly.netlify.app",
   },
   plugins: [
     "gatsby-plugin-postcss",
