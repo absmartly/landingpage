@@ -124,7 +124,9 @@ const Blog: FC<BlogProps> = ({ pageContext, data }) => {
               ) : (
                 <Link
                   className="text-base font-poppins underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
-                  to={`${IsURL(ref.slug) ? `${ref.slug}` : `/blog${ref.slug}/`}`}
+                  to={`${
+                    IsURL(ref.slug) ? `${ref.slug}` : `/blog${ref.slug}/`
+                  }`}
                 >
                   {ref.title}
                 </Link>
@@ -213,7 +215,7 @@ const Blog: FC<BlogProps> = ({ pageContext, data }) => {
               <h1 className="text-4xl leading-10 md:text-7xl md:leading-[80px] font-work_sans text-gray-800">
                 {blog.seoTitle}
               </h1>
-              {blog.author && (
+              {blog.author ? (
                 <p className="font-poppins text-base text-gray-700 py-5">
                   By{" "}
                   <Link
@@ -225,6 +227,23 @@ const Blog: FC<BlogProps> = ({ pageContext, data }) => {
                   on{" "}
                   <span className="text-lg text-gray-800">
                     {blog.updatedAt}
+                  </span>{" "}
+                  |{" "}
+                  <LinkScroll
+                    to="comment"
+                    spy={true}
+                    smooth={true}
+                    offset={-70}
+                    duration={500}
+                    className="text-lg text-gray-800 cursor-pointer"
+                  >
+                    Be the first to comment
+                  </LinkScroll>
+                </p>
+              ) : (
+                <p className="font-poppins text-base text-gray-700 py-5">
+                  <span className="text-lg text-gray-800">
+                    On {blog.updatedAt}
                   </span>{" "}
                   |{" "}
                   <LinkScroll
